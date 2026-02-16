@@ -1,0 +1,32 @@
+# Gitleaks Configuration
+# Customizes secret detection behavior
+# See: https://github.com/gitleaks/gitleaks#configuration
+
+title = "Gitleaks Security Scan"
+
+[extend]
+# Use default gitleaks rules
+useDefault = true
+
+[allowlist]
+description = "Allowlist for false positives"
+
+# Common false positive patterns
+regexes = [
+  # Example placeholder patterns that look like secrets
+  '''(example|sample|test|fake|dummy|placeholder)[-_]?(key|token|secret|password)''',
+  # Common test values
+  '''(xxx|aaa|000|123)''',
+]
+
+# Paths to ignore (already covered by .gitignore but can add more)
+paths = [
+  '''\.git/''',
+  '''node_modules/''',
+  '''venv/''',
+  '''\.venv/''',
+  # Uncomment if you want to skip checking example files entirely (NOT recommended)
+  # '''\.example$''',
+  # '''\.sample$''',
+  # '''\.template$''',
+]

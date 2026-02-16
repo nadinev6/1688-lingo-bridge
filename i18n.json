@@ -1,0 +1,19 @@
+{
+  "$schema": "https://lingo.dev/schema/i18n.json",
+  "version": "1.10",
+  "locale": {
+    "source": "zh-CN",
+    "targets": ["en-GB"]
+  },
+  "provider": {
+    "id": "lingo.dev",
+    "prompt": "You are a specialist in UK B2B wholesale. Translate 1688 product data into professional UK English. Maintain technical accuracy for GaN electronics, Mulberry silk textiles, and Energy Storage systems."
+  },
+  "glossary": [
+    { "src": "氮化镓", "tgt": "Gallium Nitride (GaN)" },
+    { "src": "桑蚕丝", "tgt": "Mulberry Silk" },
+    { "src": "户外电源", "tgt": "Portable Power Station" },
+    { "src": "起订量", "tgt": "MOQ" },
+    { "src": "包邮", "tgt": "Free UK Delivery (Equivalent)" }
+  ]
+}

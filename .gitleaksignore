@@ -1,0 +1,19 @@
+# Gitleaks Ignore File
+# Add fingerprints of false positives or fake/test secrets here
+#
+# HOW TO USE:
+# 1. Run: git commit (gitleaks will catch the fake secret and show a fingerprint)
+# 2. Copy the fingerprint from the error message
+# 3. Add it below with a comment explaining why it's safe
+#
+# EXAMPLE:
+# abc123def456:path/to/file.js:generic-api-key:12
+# (This is a fake API key used for testing)
+#
+# INLINE BYPASS:
+# You can also add a comment in your code:
+# const fakeKey = "sk-1234567890"; // gitleaks:allow
+#
+# WARNING: Only add fake/test secrets here. NEVER add real secrets!
+
+# Add your ignored fingerprints below:

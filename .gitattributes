@@ -1,0 +1,13 @@
+# Auto-normalize line endings for all text files
+* text=auto
+
+# Force LF line endings for YAML files (yamllint requirement)
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Force LF for shell scripts and makefiles
+*.sh text eol=lf
+Makefile text eol=lf
+
+# Force CRLF for Windows batch files
+*.bat text eol=crlf

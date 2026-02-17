@@ -108,3 +108,7 @@ htmlcov/
 # Misc
 *.log
 logs/
+
+# Plans
+
+plans/

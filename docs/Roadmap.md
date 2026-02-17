@@ -25,23 +25,62 @@ The translated results in [`artifacts/localized_products.json`](artifacts/locali
 
 ---
 
-## Phase 2 (Tomorrow): The Semantic Bridge
+## Phase 2 (In Progress): The Semantic Bridge
 
-**Status:** 🔜 Planned
+**Status:** 🔄 In Progress
 
 **Description:**
-Use an LLM (via Lingo.dev or similar) to translate the **intent** of the query into native Chinese keywords **before** the scraper even starts.
+Use Lingo.dev SDK to translate the **intent** of the query into native Chinese keywords **before** the scraper even starts.
 
 **Goal:**
 Transform "outdoor power supply energy storage" → "户外便携式电源" (outdoor portable power station) or similar terms that Chinese suppliers actually use.
 
+**Implementation:**
+- [`lib/queryProcessor.js`](../lib/queryProcessor.js) - Intent-to-Native logic
+- [`i18n.json`](../i18n.json) - Single Source of Truth (glossary, negative keywords, synonyms)
+
 **Approach:**
-1. Pre-processing layer for search queries
-2. Semantic understanding of product categories
-3. Cultural/contextual keyword mapping
+1. ✅ Pre-processing layer for search queries (`generateSearchBundle`)
+2. ✅ Glossary lookup for known terms (zero drift)
+3. ✅ SDK `localizeText` for unknown terms
+4. ✅ Negative keywords to filter irrelevant results
+5. ✅ Synonym generation for broader search coverage
+
+**Input/Output Example:**
+```javascript
+// Input
+{
+  query: "outdoor power supply energy storage",
+  context: "consumer electronics, camping gear, high-capacity batteries",
+  market: "UK B2B"
+}
+
+// Output
+{
+  primary: "户外电源",
+  technical: "户外电源 储能",
+  synonyms: ["便携式储能", "露营电源"],
+  negative_keywords: ["模具", "餐垫", "硅胶", "烘焙"],
+  original_query: "outdoor power supply energy storage"
+}
+```
 
 **Expected Outcome:**
-Search results that actually match the buyer's intent.
+Search results that actually match the buyer's intent, with:
+
+1. **Semantic Precision**: The `primary` field returns the most relevant Chinese term (e.g., "户外电源储能" instead of literal "户外电源 储能")
+
+2. **1688 SEO Optimization**: The `technical` field uses proper spacing (acts as AND operator) for better search matching: `氮化镓 GaN 充电器快充`
+
+3. **Negative Keyword Shield**: Automatically excludes irrelevant categories:
+   - Electronics queries exclude: 模具, 餐垫, 硅胶, 烘焙, 厨房, 蛋糕, 餐具
+   - This prevents "Cake Mould" results when searching for "Power Supplies"
+
+4. **Synonym Expansion**: Broadens search coverage with alternative terms:
+   - 户外电源储能 → [便携式储能, 露营电源, 移动储能]
+   - 氮化镓 → [GaN充电器, GaN, 氮化镓充电器]
+
+5. **Zero Drift for Known Terms**: Glossary terms (e.g., "Mulberry Silk" → "桑蚕丝") are always translated consistently
 
 ---
 

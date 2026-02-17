@@ -13,7 +13,26 @@
     { "src": "氮化镓", "tgt": "Gallium Nitride (GaN)" },
     { "src": "桑蚕丝", "tgt": "Mulberry Silk" },
     { "src": "户外电源", "tgt": "Portable Power Station" },
+    { "src": "储能电源", "tgt": "Energy Storage Power" },
     { "src": "起订量", "tgt": "MOQ" },
     { "src": "包邮", "tgt": "Free UK Delivery (Equivalent)" }
-  ]
+  ],
+  "negative_keywords": {
+    "electronics": ["模具", "餐垫", "硅胶", "烘焙", "厨房", "蛋糕", "餐具"],
+    "textiles": ["电子", "电池", "充电", "电源", "储能"],
+    "power": ["模具", "餐垫", "硅胶", "烘焙", "厨房", "蛋糕", "餐具", "纺织", "服装"]
+  },
+  "synonyms": {
+    "户外电源": ["便携式储能", "露营电源", "移动电源"],
+    "储能电源": ["储能", "蓄电", "备用电源"],
+    "氮化镓": ["GaN充电器", "GaN", "氮化镓充电器"],
+    "桑蚕丝": ["真丝", "丝绸", "蚕丝"]
+  },
+  "category_hints": {
+    "consumer electronics": "消费电子",
+    "camping gear": "露营装备",
+    "high-capacity batteries": "大容量电池",
+    "portable power": "便携电源",
+    "energy storage": "储能"
+  }
 }

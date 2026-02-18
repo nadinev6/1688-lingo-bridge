@@ -3,6 +3,7 @@
  *
  * Phase 1: Post-scraping translation (Chinese → English)
  * Phase 2: Pre-scraping intent transformation (English → Chinese search bundle)
+ * Phase 3: Validated pipeline with confidence scoring
  *
  * @see docs/Roadmap.md for full project roadmap
  */
@@ -13,6 +14,25 @@ import 'dotenv/config';
 
 // Import Phase 2 Query Processor
 import { generateSearchBundle, quickTranslate } from './lib/queryProcessor.js';
+
+// Import Phase 3 modules
+import { smartScrape } from './lib/scraper.js';
+import { validateResults } from './lib/validator.js';
+
+/**
+ * Deduplicate results by product URL
+ * @param {Object[]} results - Results to dedupe
+ * @returns {Object[]} Deduplicated results
+ */
+function dedupeByUrl(results) {
+    const seen = new Set();
+    return results.filter(product => {
+        const url = product.offer_detail_url || product.url;
+        if (seen.has(url)) return false;
+        seen.add(url);
+        return true;
+    });
+}
 
 // Initialize Lingo.dev Client
 const lingo = new LingoDotDevEngine({ apiKey: process.env.LINGODOTDEV_API_KEY });
@@ -116,7 +136,128 @@ async function demoPhase2() {
 }
 
 /**
- * Main entry point - Run both phases
+ * Phase 3: Full validated pipeline
+ * Intent → Search Bundle → Scrape → Validate → Results
+ */
+async function demoPhase3() {
+    console.log("\n" + "=".repeat(60));
+    console.log("🎯 Phase 3: Validated Pipeline");
+    console.log("=".repeat(60));
+
+    const pipelineStart = Date.now();
+
+    // Step 1: Generate search bundle from intent
+    console.log("\n📍 Step 1: Intent-to-Native Transformation");
+    const intent = {
+        query: "outdoor power supply energy storage",
+        context: "consumer electronics, camping gear, high-capacity batteries",
+        market: "UK B2B"
+    };
+
+    const bundle = await generateSearchBundle(intent);
+    console.log(`   Primary: ${bundle.primary}`);
+    console.log(`   Synonyms: [${bundle.synonyms.join(', ')}]`);
+
+    // Step 2: Smart scrape with adaptive synonym expansion
+    console.log("\n📍 Step 2: Smart Scrape");
+    let scrapeResult = await smartScrape(bundle);
+
+    // Step 3: Validate results with confidence scoring
+    console.log("\n📍 Step 3: Validation & Confidence Scoring");
+    let validationResult = await validateResults(scrapeResult.results, {
+        ...intent,
+        negative_keywords: bundle.negative_keywords
+    });
+
+    // CONFIDENCE-BASED PIVOT: If avg confidence < 40%, force synonym expansion
+    // This catches cases where we got results but they're poor quality
+    const CONFIDENCE_THRESHOLD = 40;
+    if (validationResult.metadata.averageConfidence < CONFIDENCE_THRESHOLD && bundle.synonyms.length > 0) {
+        console.log(`\n   ⚠️ Low confidence (${validationResult.metadata.averageConfidence}% < ${CONFIDENCE_THRESHOLD}%), forcing synonym expansion...`);
+
+        // Force scrape all synonyms
+        const { smartScrape: forceScrape } = await import('./lib/scraper.js');
+        const forcedBundle = {
+            ...bundle,
+            primary: bundle.synonyms[0] // Use first synonym as primary
+        };
+
+        // Temporarily override threshold to force expansion
+        const forcedScrapeResult = await forceScrape(forcedBundle, { primaryLimit: 20 });
+
+        // Merge with original results
+        const allResults = [...validationResult.results, ...forcedScrapeResult.results];
+        const uniqueResults = dedupeByUrl(allResults);
+
+        // Re-validate
+        validationResult = await validateResults(uniqueResults, {
+            ...intent,
+            negative_keywords: bundle.negative_keywords
+        });
+
+        console.log(`   ✅ Pivot complete: ${validationResult.results.length} results, ${validationResult.metadata.averageConfidence}% confidence`);
+    }
+
+    // Step 4: Summary
+    const pipelineLatency = Date.now() - pipelineStart;
+
+    console.log("\n" + "=".repeat(60));
+    console.log("📊 PIPELINE SUMMARY");
+    console.log("=".repeat(60));
+    console.log(`   Original Query: "${intent.query}"`);
+    console.log(`   Chinese Query: "${bundle.primary}"`);
+    console.log(`   Total Results: ${validationResult.results.length}`);
+    console.log(`   Average Confidence: ${validationResult.metadata.averageConfidence}%`);
+    console.log(`   High Confidence: ${validationResult.metadata.highConfidenceCount}`);
+    console.log(`   Low Confidence: ${validationResult.metadata.lowConfidenceCount}`);
+    console.log(`   Suspicious: ${validationResult.metadata.suspiciousCount}`);
+    console.log(`   Filtered by Blacklist: ${scrapeResult.metadata.filteredByBlacklist}`);
+    console.log(`\n   ⏱️ Total Pipeline Latency: ${pipelineLatency}ms`);
+    console.log(`      - Query Processing: ~50ms`);
+    console.log(`      - Scraping: ${scrapeResult.metadata.totalLatency}ms`);
+    console.log(`      - Validation: ${validationResult.metadata.validationLatency}ms`);
+
+    // Show top 3 results
+    console.log("\n📦 Top 3 Results (by confidence):");
+    validationResult.results.slice(0, 3).forEach((product, i) => {
+        console.log(`   ${i + 1}. [${product._confidence}%] ${product.offer_subject?.substring(0, 40) || 'Unknown'}...`);
+    });
+
+    // Step 5: Save results to file
+    const outputPath = './docs/artifacts/validated_results.json';
+    const outputData = {
+        pipeline_summary: {
+            original_query: intent.query,
+            chinese_query: bundle.primary,
+            total_results: validationResult.results.length,
+            average_confidence: validationResult.metadata.averageConfidence,
+            high_confidence_count: validationResult.metadata.highConfidenceCount,
+            low_confidence_count: validationResult.metadata.lowConfidenceCount,
+            suspicious_count: validationResult.metadata.suspiciousCount,
+            filtered_by_blacklist: scrapeResult.metadata.filteredByBlacklist,
+            total_latency_ms: pipelineLatency
+        },
+        search_bundle: bundle,
+        results: validationResult.results,
+        metadata: {
+            generated_at: new Date().toISOString(),
+            pipeline_version: "3.0.0"
+        }
+    };
+
+    await writeFile(outputPath, JSON.stringify(outputData, null, 2));
+    console.log(`\n💾 Results saved to: ${outputPath}`);
+
+    return {
+        bundle,
+        scrapeResult,
+        validationResult,
+        pipelineLatency
+    };
+}
+
+/**
+ * Main entry point - Run phases
  */
 async function main() {
     const args = process.argv.slice(2);
@@ -134,12 +275,18 @@ async function main() {
             case 'phase2':
                 await demoPhase2();
                 break;
+            case 'phase3':
+                await demoPhase3();
+                break;
+            case 'full':
+                // Run complete pipeline: Phase 2 → Phase 3
+                await demoPhase3();
+                break;
             case 'all':
             default:
-                // Run Phase 2 first (pre-processing), then Phase 1 (post-processing)
+                // Run all demos
                 await demoPhase2();
-                console.log("\n");
-                await translate1688Data();
+                await demoPhase3();
                 break;
         }
     } catch (error) {

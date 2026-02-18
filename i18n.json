@@ -34,5 +34,16 @@
     "high-capacity batteries": "大容量电池",
     "portable power": "便携电源",
     "energy storage": "储能"
+  },
+  "suspicious_terms": {
+    "electronics": ["二手", "配件", "维修", "拆机", "翻新"],
+    "textiles": ["次品", "尾货", "库存", "瑕疵"],
+    "general": ["样品", "试用"]
+  },
+  "category_mappings": {
+    "consumer electronics": ["消费电子", "数码", "电子产品", "电子"],
+    "camping gear": ["露营装备", "户外用品", "户外"],
+    "power": ["电源", "储能", "充电", "电池"],
+    "textiles": ["纺织品", "面料", "家纺", "丝绸"]
   }
 }

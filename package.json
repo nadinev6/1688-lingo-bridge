@@ -4,6 +4,9 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +26,14 @@
     "dotenv": "^17.3.1",
     "lingo.dev": "^0.131.2",
     "openai": "^4.104.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.0",
+    "@types/papaparse": "^5.5.2",
+    "@vitejs/plugin-legacy": "^7.2.1",
+    "papaparse": "^5.5.3",
+    "tailwindcss": "^4.2.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
   }
 }

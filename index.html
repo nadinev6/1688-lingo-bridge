@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1688 Lingo Bridge &mdash; UK Procurement Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="min-h-screen bg-[#f8f9fa]">
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!--  LOADER OVERLAY                                         -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div id="loader-overlay">
+        <div class="loader-bridge-wrap">
+            <img src="/src/components/bridge.svg" alt="Bridge" />
+        </div>
+
+        <div class="text-center mb-8">
+            <h1 class="text-white text-2xl font-black tracking-tight mb-1">1688 LINGO BRIDGE</h1>
+            <p class="text-slate-400 text-sm font-medium">UK Industrial Procurement Intelligence</p>
+        </div>
+
+        <div id="main-loading-msg" class="text-slate-300 text-sm font-semibold mb-6 h-5">
+            Initialising Pipeline
+        </div>
+
+        <div class="flex gap-3 mb-6">
+            <span id="load-status-1" class="px-3 py-1 bg-slate-800 border border-slate-700 text-slate-400 text-[10px] font-bold uppercase rounded-full tracking-widest">
+                Connecting
+            </span>
+            <span id="load-status-2" class="px-3 py-1 bg-slate-800 border border-slate-700 text-slate-400 text-[10px] font-bold uppercase rounded-full tracking-widest">
+                Vision Standby
+            </span>
+        </div>
+
+        <div class="flex gap-2">
+            <div class="loader-pulse"></div>
+            <div class="loader-pulse"></div>
+            <div class="loader-pulse"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!--  HEADER                                                 -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <header class="bg-white border-b border-[#e2e5ea] sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-[#1a1d23] rounded-lg flex items-center justify-center">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M2 9 C4 4 14 4 16 9" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                        <line x1="2" y1="9" x2="16" y2="9" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="5" y1="7" x2="5" y2="9" stroke="white" stroke-width="1" stroke-linecap="round"/>
+                        <line x1="9" y1="5.5" x2="9" y2="9" stroke="white" stroke-width="1" stroke-linecap="round"/>
+                        <line x1="13" y1="7" x2="13" y2="9" stroke="white" stroke-width="1" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-black text-[15px] tracking-tight text-[#1a1d23]">1688 LINGO BRIDGE</span>
+                    <span class="hidden sm:inline text-slate-400 text-xs ml-2">UK Procurement Intelligence</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="px-3 py-1 bg-amber-50 border border-amber-200 text-amber-700 text-[10px] font-bold uppercase rounded-full tracking-widest">
+                    Demo Mode
+                </span>
+                <button id="howItWorksToggle" class="filter-btn text-xs">
+                    How it works
+                </button>
+                <button id="exportBtn" class="export-btn">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M7 1v8M4 6l3 3 3-3M2 10v2a1 1 0 001 1h8a1 1 0 001-1v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Export CSV
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!--  HOW IT WORKS PANEL                                     -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div id="how-it-works" class="bg-[#0f1117] text-white border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <h2 class="text-lg font-black mb-6 text-white tracking-tight">Pipeline Architecture</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-black text-slate-400 uppercase tracking-widest">Phase 1</span>
+                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Post-Scrape Translation</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Raw Chinese product data from 1688.com is localised to UK English using Lingo.dev's AI engine with a custom B2B glossary.</p>
+                </div>
+                <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-black text-slate-400 uppercase tracking-widest">Phase 2</span>
+                        <span class="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Semantic Bridge</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">English procurement intent is transformed into native Chinese search bundles — primary query + synonyms + negative keywords — before scraping begins.</p>
+                </div>
+                <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-black text-slate-400 uppercase tracking-widest">Phase 3</span>
+                        <span class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Validation Layer</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Confidence scoring with Jaro-Winkler fuzzy matching, blacklist filtering, duplicate detection, and adaptive synonym expansion when confidence is low.</p>
+                </div>
+                <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-black text-slate-400 uppercase tracking-widest">Phase 4</span>
+                        <span class="w-1.5 h-1.5 bg-rose-400 rounded-full"></span>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Vision Validation</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">GPT-4V image analysis cross-checks product images against the listing text, catching "bait and switch" listings that pass text filtering.</p>
+                </div>
+            </div>
+            <p class="text-slate-500 text-xs mt-6">
+                Powered by <span class="text-slate-300 font-semibold">Lingo.dev</span> &middot; Built for the Lingo.dev Multilingual Hackathon 2.0 &middot; Feb 2026
+            </p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!--  MAIN CONTENT                                           -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <main class="max-w-7xl mx-auto px-6 py-8">
+
+        <!-- Query headline -->
+        <div class="mb-8">
+            <div class="flex items-center gap-3 mb-2 flex-wrap">
+                <h2 class="text-2xl font-black text-[#1a1d23] tracking-tight">Procurement Results</h2>
+                <span id="totalBadge" class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full">Loading...</span>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-slate-400 text-sm">Query:</span>
+                <span id="originalQuery" class="text-sm font-semibold text-[#1a1d23] bg-white border border-[#e2e5ea] px-3 py-1 rounded-lg"></span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="text-slate-300">
+                    <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span id="chineseQuery" class="text-sm font-semibold text-[#1a1d23] bg-white border border-[#e2e5ea] px-3 py-1 rounded-lg font-mono"></span>
+            </div>
+        </div>
+
+        <!-- Pipeline stats -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+            <div class="stat-card">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-1">Total Results</p>
+                <p id="statTotal" class="text-2xl font-black text-[#1a1d23]">—</p>
+            </div>
+            <div class="stat-card">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-1">Avg Confidence</p>
+                <p id="statAvgConf" class="text-2xl font-black text-[#1a1d23]">—</p>
+            </div>
+            <div class="stat-card">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-1">High Confidence</p>
+                <p id="statHighConf" class="text-2xl font-black text-emerald-600">—</p>
+            </div>
+            <div class="stat-card">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-1">Pipeline Latency</p>
+                <p id="statLatency" class="text-2xl font-black text-[#1a1d23]">—</p>
+            </div>
+        </div>
+
+        <!-- Semantic synonyms tags -->
+        <div class="mb-6">
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Lingo.dev Search Bundle</p>
+            <div id="synonymTags" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <!-- Search + Filters -->
+        <div class="flex flex-col sm:flex-row gap-4 mb-6 items-start sm:items-center">
+            <div class="relative flex-1 max-w-md">
+                <input
+                    type="text"
+                    id="procurementSearch"
+                    class="search-input pr-10"
+                    placeholder="Search products in English or Chinese..."
+                />
+                <button id="clearSearch" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="flex gap-2 flex-wrap">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="high">High Confidence</button>
+                <button class="filter-btn" data-filter="low">Low Confidence</button>
+            </div>
+
+            <div class="flex gap-2 flex-wrap">
+                <button class="filter-btn" data-sort="confidence">Sort: Confidence</button>
+                <button class="filter-btn" data-sort="price-asc">Price &uarr;</button>
+                <button class="filter-btn" data-sort="price-desc">Price &darr;</button>
+            </div>
+        </div>
+
+        <!-- No results -->
+        <div id="noResults" class="hidden py-16 text-center">
+            <p class="text-slate-400 text-sm font-medium">No products match your search.</p>
+        </div>
+
+        <!-- Card Grid -->
+        <div id="cardGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        </div>
+
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!--  FOOTER                                                 -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <footer class="mt-16 border-t border-[#e2e5ea] bg-white">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p class="text-slate-400 text-xs">
+                1688 Lingo Bridge &mdash; Lingo.dev Multilingual Hackathon 2.0 &middot; Feb 2026
+            </p>
+            <p class="text-slate-400 text-xs">
+                Data sourced from <a href="https://1688.com" class="underline hover:text-slate-600" target="_blank" rel="noopener">1688.com</a> via Apify &middot; Translated by <span class="font-semibold text-slate-500">Lingo.dev</span>
+            </p>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/components/loading.tsx"></script>
+    <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

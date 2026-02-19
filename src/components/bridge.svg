@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 72" width="100%" height="72" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <style>
+      line, path, polygon { fill: none; stroke-linecap="round"; stroke-linejoin="round"; }
+    </style>
+  </defs>
+
+  <!-- ─── DECK LINE ─── -->
+  <line x1="0" y1="48" x2="1200" y2="48" stroke="#a8adb5" stroke-width="1.5"/>
+
+  <!-- ─── LEFT TRUSS SECTION (0–340) ─── -->
+  <!-- top chord -->
+  <line x1="60"  y1="48" x2="60"  y2="22" stroke="#9aa0a8" stroke-width="1.2"/>
+  <line x1="60"  y1="22" x2="340" y2="22" stroke="#9aa0a8" stroke-width="1.2"/>
+  <line x1="340" y1="22" x2="340" y2="48" stroke="#9aa0a8" stroke-width="1.2"/>
+
+  <!-- verticals -->
+  <line x1="130" y1="22" x2="130" y2="48" stroke="#b4b9c0" stroke-width="1"/>
+  <line x1="200" y1="22" x2="200" y2="48" stroke="#b4b9c0" stroke-width="1"/>
+  <line x1="270" y1="22" x2="270" y2="48" stroke="#b4b9c0" stroke-width="1"/>
+
+  <!-- diagonals (lean right → compression members) -->
+  <line x1="60"  y1="22" x2="130" y2="48" stroke="#c2c6cc" stroke-width="1"/>
+  <line x1="130" y1="22" x2="200" y2="48" stroke="#c2c6cc" stroke-width="1"/>
+  <line x1="200" y1="22" x2="270" y2="48" stroke="#c2c6cc" stroke-width="1"/>
+  <line x1="270" y1="22" x2="340" y2="48" stroke="#c2c6cc" stroke-width="1"/>
+
+  <!-- ─── CENTER SPAN — open arch skeleton (340–860) ─── -->
+  <!-- arch rib -->
+  <path d="M 340,48 C 430,4 770,4 860,48" stroke="#8b9099" stroke-width="1.5" fill="none"/>
+
+  <!-- sparse hangers dropping from arch to deck -->
+  <!-- computed approximate y positions along the arch for visual balance -->
+  <line x1="400" y1="33" x2="400" y2="48" stroke="#c2c6cc" stroke-width="1"/>
+  <line x1="460" y1="20" x2="460" y2="48" stroke="#c2c6cc" stroke-width="1"/>
+  <line x1="530" y1="11" x2="530" y2="48" stroke="#c2c6cc" stroke-width="1"/>
+  <line x1="600" y1="8"  x2="600" y2="48" stroke="#c2c6cc" stroke-width="1"/>
+  <line x1="670" y1="11" x2="670" y2="48" stroke="#c2c6cc" stroke-width="1"/>
+  <line x1="740" y1="20" x2="740" y2="48" stroke="#c2c6cc" stroke-width="1"/>
+  <line x1="800" y1="33" x2="800" y2="48" stroke="#c2c6cc" stroke-width="1"/>
+
+  <!-- tiny node dots at hanger-arch intersections -->
+  <circle cx="400" cy="33" r="1.8" fill="#9aa0a8"/>
+  <circle cx="460" cy="20" r="1.8" fill="#9aa0a8"/>
+  <circle cx="530" cy="11" r="1.8" fill="#9aa0a8"/>
+  <circle cx="600" cy="8"  r="1.8" fill="#9aa0a8"/>
+  <circle cx="670" cy="11" r="1.8" fill="#9aa0a8"/>
+  <circle cx="740" cy="20" r="1.8" fill="#9aa0a8"/>
+  <circle cx="800" cy="33" r="1.8" fill="#9aa0a8"/>
+
+  <!-- arch spring nodes -->
+  <circle cx="340" cy="48" r="2.2" fill="#8b9099"/>
+  <circle cx="860" cy="48" r="2.2" fill="#8b9099"/>
+
+  <!-- ─── RIGHT TRUSS SECTION (860–1140) ─── -->
+  <!-- top chord -->
+  <line x1="860"  y1="48" x2="860"  y2="22" stroke="#9aa0a8" stroke-width="1.2"/>
+  <line x1="860"  y1="22" x2="1140" y2="22" stroke="#9aa0a8" stroke-width="1.2"/>
+  <line x1="1140" y1="22" x2="1140" y2="48" stroke="#9aa0a8" stroke-width="1.2"/>
+
+  <!-- verticals -->
+  <line x1="930"  y1="22" x2="930"  y2="48" stroke="#b4b9c0" stroke-width="1"/>
+  <line x1="1000" y1="22" x2="1000" y2="48" stroke="#b4b9c0" stroke-width="1"/>
+  <line x1="1070" y1="22" x2="1070" y2="48" stroke="#b4b9c0" stroke-width="1"/>
+
+  <!-- diagonals -->
+  <line x1="860"  y1="22" x2="930"  y2="48" stroke="#c2c6cc" stroke-width="1"/>
+  <line x1="930"  y1="22" x2="1000" y2="48" stroke="#c2c6cc" stroke-width="1"/>
+  <line x1="1000" y1="22" x2="1070" y2="48" stroke="#c2c6cc" stroke-width="1"/>
+  <line x1="1070" y1="22" x2="1140" y2="48" stroke="#c2c6cc" stroke-width="1"/>
+
+  <!-- ─── ABUTMENT TICKS ─── -->
+  <line x1="60"   y1="48" x2="60"   y2="56" stroke="#9aa0a8" stroke-width="1.5"/>
+  <line x1="1140" y1="48" x2="1140" y2="56" stroke="#9aa0a8" stroke-width="1.5"/>
+
+  <!-- ─── FAINT GROUND LINE ─── -->
+  <line x1="0" y1="56" x2="1200" y2="56" stroke="#d0d4da" stroke-width="0.8" opacity="0.45"/>
+
+</svg>

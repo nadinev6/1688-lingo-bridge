@@ -112,7 +112,12 @@ Validated pipeline with confidence scoring, smart scraping, and duplicate detect
    - Passing blacklist bonus (30 points)
    - Suspicious term penalty (-30 points)
 
-4. ✅ **Latency Transparency**
+4. 🔄 **Algorithm Calibration (New)**
+   - **Issue:** Technical categories (e.g., "Power & Energy Storage") currently score lower (46%) than generic categories (70%).
+   - **Fix:** Adjust weights in `lib/validator.js` to prioritize specialized B2B categories over general B2C categories.
+   - **Price Guard:** Flag results that are <10% of the median price to prevent "Accessory Bait" listings.
+
+5. ✅ **Latency Transparency**
    ```
    ⏱️ Primary scrape: 294ms (16 results)
    ⏱️ Synonym "便携式储能": 406ms (+0 unique, 3 dupes)

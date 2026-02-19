@@ -43,6 +43,8 @@
   "category_mappings": {
     "consumer electronics": ["消费电子", "数码", "电子产品", "电子"],
     "camping gear": ["露营装备", "户外用品", "户外"],
+    "batteries": ["电池", "电源", "储能"],
+    "high-capacity batteries": ["电池", "电源", "储能"],
     "power": ["电源", "储能", "充电", "电池"],
     "textiles": ["纺织品", "面料", "家纺", "丝绸"]
   },

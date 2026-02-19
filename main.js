@@ -4,6 +4,7 @@
  * Phase 1: Post-scraping translation (Chinese → English)
  * Phase 2: Pre-scraping intent transformation (English → Chinese search bundle)
  * Phase 3: Validated pipeline with confidence scoring
+ * Phase 4: Image-to-image validation with GPT-4V
  *
  * @see docs/Roadmap.md for full project roadmap
  */
@@ -18,6 +19,9 @@ import { generateSearchBundle, quickTranslate } from './lib/queryProcessor.js';
 // Import Phase 3 modules
 import { smartScrape } from './lib/scraper.js';
 import { validateResults } from './lib/validator.js';
+
+// Import Phase 4 Vision Validator
+import { validateWithVision } from './lib/visionValidator.js';
 
 /**
  * Deduplicate results by product URL
@@ -257,6 +261,169 @@ async function demoPhase3() {
 }
 
 /**
+ * Phase 4: Full validated pipeline with Vision
+ * Intent → Search Bundle → Scrape → Validate → Vision Validate → Results
+ */
+async function demoPhase4() {
+    console.log("\n" + "=".repeat(60));
+    console.log("🎯 Phase 4: Validated Pipeline with Vision");
+    console.log("=".repeat(60));
+
+    const pipelineStart = Date.now();
+
+    // Step 1: Generate search bundle from intent
+    console.log("\n📍 Step 1: Intent-to-Native Transformation");
+    const intent = {
+        query: "outdoor power supply energy storage",
+        context: "consumer electronics, camping gear, high-capacity batteries",
+        market: "UK B2B"
+    };
+
+    const bundle = await generateSearchBundle(intent);
+    console.log(`   Primary: ${bundle.primary}`);
+    console.log(`   Synonyms: [${bundle.synonyms.join(', ')}]`);
+
+    // Step 2: Smart scrape with adaptive synonym expansion
+    console.log("\n📍 Step 2: Smart Scrape");
+    let scrapeResult = await smartScrape(bundle);
+
+    // Step 3: Validate results with confidence scoring
+    console.log("\n📍 Step 3: Text Validation & Confidence Scoring");
+    let validationResult = await validateResults(scrapeResult.results, {
+        ...intent,
+        negative_keywords: bundle.negative_keywords
+    });
+
+    // CONFIDENCE-BASED PIVOT: If avg confidence < 40%, force synonym expansion
+    // This catches cases where we got results but they're poor quality
+    const CONFIDENCE_THRESHOLD = 40;
+    if (validationResult.metadata.averageConfidence < CONFIDENCE_THRESHOLD && bundle.synonyms.length > 0) {
+        console.log(`\n   ⚠️ Low confidence (${validationResult.metadata.averageConfidence}% < ${CONFIDENCE_THRESHOLD}%), forcing synonym expansion...`);
+
+        // Force scrape all synonyms
+        const forcedBundle = {
+            ...bundle,
+            primary: bundle.synonyms[0] // Use first synonym as primary
+        };
+
+        // Temporarily override threshold to force expansion
+        const forcedScrapeResult = await smartScrape(forcedBundle, { primaryLimit: 20 });
+
+        // Merge with original results
+        const allResults = [...validationResult.results, ...forcedScrapeResult.results];
+        const uniqueResults = dedupeByUrl(allResults);
+
+        // Re-validate
+        validationResult = await validateResults(uniqueResults, {
+            ...intent,
+            negative_keywords: bundle.negative_keywords
+        });
+
+        console.log(`   ✅ Pivot complete: ${validationResult.results.length} results, ${validationResult.metadata.averageConfidence}% confidence`);
+    }
+
+    // Step 4: Vision Validation (Phase 4)
+    console.log("\n📍 Step 4: Vision Validation (GPT-4V)");
+    const visionResult = await validateWithVision(validationResult.results, intent);
+
+    // Step 5: Summary
+    const pipelineLatency = Date.now() - pipelineStart;
+
+    console.log("\n" + "=".repeat(60));
+    console.log("📊 PIPELINE SUMMARY (Phase 4 with Vision)");
+    console.log("=".repeat(60));
+    console.log(`   Original Query: "${intent.query}"`);
+    console.log(`   Chinese Query: "${bundle.primary}"`);
+    console.log(`   Total Results: ${validationResult.results.length}`);
+    console.log(`   Average Confidence: ${validationResult.metadata.averageConfidence}%`);
+    console.log(`   High Confidence: ${validationResult.metadata.highConfidenceCount}`);
+    console.log(`   Low Confidence: ${validationResult.metadata.lowConfidenceCount}`);
+    console.log(`   Suspicious: ${validationResult.metadata.suspiciousCount}`);
+    console.log(`   Filtered by Blacklist: ${scrapeResult.metadata.filteredByBlacklist}`);
+
+    // Vision-specific stats
+    if (visionResult.metadata) {
+        console.log(`\n👁️ Vision Validation:`);
+        console.log(`   Checked: ${visionResult.metadata.visionChecks} products`);
+        console.log(`   Mismatches Detected: ${visionResult.metadata.mismatches}`);
+        console.log(`   Vision Latency: ${visionResult.metadata.visionLatency}ms`);
+    }
+
+    console.log(`\n   ⏱️ Total Pipeline Latency: ${pipelineLatency}ms`);
+    console.log(`      - Query Processing: ~50ms`);
+    console.log(`      - Scraping: ${scrapeResult.metadata.totalLatency}ms`);
+    console.log(`      - Text Validation: ${validationResult.metadata.validationLatency}ms`);
+    if (visionResult.metadata?.visionLatency) {
+        console.log(`      - Vision Validation: ${visionResult.metadata.visionLatency}ms`);
+    }
+
+    // Show top 3 results with visual confidence
+    console.log("\n📦 Top 3 Results (by confidence):");
+    visionResult.results.slice(0, 3).forEach((product, i) => {
+        const visualTag = product._visualConfidence !== undefined
+            ? ` | 👁️ ${product._visualConfidence}%`
+            : '';
+        const mismatchTag = product._visualConfidence !== null &&
+            product._visualConfidence < 50 &&
+            product._confidence >= 70
+            ? ' ⚠️ MISMATCH'
+            : '';
+        console.log(`   ${i + 1}. [${product._confidence}%${visualTag}] ${product.offer_subject?.substring(0, 40) || 'Unknown'}...${mismatchTag}`);
+    });
+
+    // Show mismatches if any
+    const mismatches = visionResult.results.filter(p =>
+        p._visualConfidence !== null &&
+        p._visualConfidence < 50 &&
+        p._confidence >= 70
+    );
+
+    if (mismatches.length > 0) {
+        console.log("\n🚨 Vision Mismatches (potential 'bait and switch'):");
+        mismatches.forEach((product, i) => {
+            console.log(`   ${i + 1}. "${product.offer_subject?.substring(0, 40)}..."`);
+            console.log(`      Text: ${product._confidence}% | Visual: ${product._visualConfidence}%`);
+            console.log(`      Reason: ${product._visionReason || 'N/A'}`);
+        });
+    }
+
+    // Step 6: Save results to file
+    const outputPath = './docs/artifacts/validated_results.json';
+    const outputData = {
+        pipeline_summary: {
+            original_query: intent.query,
+            chinese_query: bundle.primary,
+            total_results: visionResult.results.length,
+            average_confidence: validationResult.metadata.averageConfidence,
+            high_confidence_count: validationResult.metadata.highConfidenceCount,
+            low_confidence_count: validationResult.metadata.lowConfidenceCount,
+            suspicious_count: validationResult.metadata.suspiciousCount,
+            filtered_by_blacklist: scrapeResult.metadata.filteredByBlacklist,
+            vision_checks: visionResult.metadata?.visionChecks || 0,
+            vision_mismatches: visionResult.metadata?.mismatches || 0,
+            total_latency_ms: pipelineLatency
+        },
+        search_bundle: bundle,
+        results: visionResult.results,
+        metadata: {
+            generated_at: new Date().toISOString(),
+            pipeline_version: "4.0.0"
+        }
+    };
+
+    await writeFile(outputPath, JSON.stringify(outputData, null, 2));
+    console.log(`\n💾 Results saved to: ${outputPath}`);
+
+    return {
+        bundle,
+        scrapeResult,
+        validationResult,
+        visionResult,
+        pipelineLatency
+    };
+}
+
+/**
  * Main entry point - Run phases
  */
 async function main() {
@@ -278,15 +445,19 @@ async function main() {
             case 'phase3':
                 await demoPhase3();
                 break;
+            case 'phase4':
+                await demoPhase4();
+                break;
             case 'full':
-                // Run complete pipeline: Phase 2 → Phase 3
-                await demoPhase3();
+                // Run complete pipeline with vision: Phase 4
+                await demoPhase4();
                 break;
             case 'all':
             default:
                 // Run all demos
                 await demoPhase2();
                 await demoPhase3();
+                await demoPhase4();
                 break;
         }
     } catch (error) {

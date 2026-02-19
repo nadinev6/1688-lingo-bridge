@@ -150,20 +150,33 @@ Quality-assured results with confidence scores, filtered blacklist, and full lat
 
 ## Phase 4: Image-to-Image Validation
 
-**Status:** 🔮 Future
+**Status:** 🔄 In Progress
 
 **Description:**
-Use AI vision to validate that product images actually match the search intent. A secondary check that verifies the70% confidence results look like the target object.
+Use AI vision to validate that product images actually match the search intent. A secondary check that verifies the 70% confidence results look like the target object.
 
 **Goal:**
 Prevent "bait and switch" listings where the title says "Power Station" but the image shows "Cake Mould".
 
+**Implementation:**
+- [`lib/visionValidator.js`](../lib/visionValidator.js) - AI vision validation module
+- [`main.js`](../main.js) - Phase4 demo function with vision integration
+- [`i18n.json`](../i18n.json) - Added `vision_prompts` and `vision_categories`
+
+**Latency-Conscious Design:**
+1. ✅ **Selective Vision Checking** - Only validate products with ≥70% text confidence
+2. ✅ **Hard Limit** - Maximum 10 products per run to control latency
+3. ✅ **Batch Processing** - Process multiple images in single API call
+4. ✅ **Image Hash Caching** - Skip re-processing identical images (~0ms for cache hits)
+5. ✅ **Timeout Protection** - 3 second max per batch, fallback to text-only
+6. ✅ **Graceful Degradation** - Works without OPENAI_API_KEY (skips vision)
+
 **Approach:**
-1. Extract product image URLs from scrape results
-2. Use **OpenAI GPT-4o / GPT-4V** for image analysis
-3. Compare image content against original English intent
-4. Generate visual confidence score (0-100%)
-5. Filter products where text confidence ≠ visual confidence
+1. ✅ Extract product image URLs from scrape results
+2. ✅ Use **OpenAI GPT-4o** for image analysis
+3. ✅ Compare image content against original English intent
+4. ✅ Generate visual confidence score (0-100%)
+5. ✅ Detect mismatches where text confidence ≠ visual confidence
 
 **Example Flow:**
 ```
@@ -178,11 +191,27 @@ Vision Check: "Does this image show a portable power station?"
 Result: ❌ NO (shows silicone placemats, 5% visual confidence)
 ```
 
-**Implementation Ideas:**
-- [`lib/visionValidator.js`] - AI vision validation module
-- Batch processing for efficiency (check top 10 results only)
-- Cache vision results to avoid re-processing same images
-- Fallback to text-only validation if vision API unavailable
+**Configuration (`.env`):**
+```bash
+# Required for Phase4 Vision Validation
+OPENAI_API_KEY=sk-...
+
+# Optional configuration
+VISION_ENABLED=true
+VISION_MAX_PRODUCTS=10
+VISION_TIMEOUT_MS=3000
+VISION_CACHE_ENABLED=true
+```
+
+**Latency Budget:**
+| Step | Target Latency |
+|------|---------------|
+| Text Validation | <100ms |
+| Vision Candidate Selection | <10ms |
+| Cache Lookup | <50ms |
+| GPT-4V API (batch of 10) | <2000ms |
+| Result Parsing | <50ms |
+| **Total Vision Overhead** | **<2500ms** |
 
 **Expected Outcome:**
 Visual verification that eliminates "keyword stuffing" products and ensures buyers see what they're searching for.

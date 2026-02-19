@@ -45,5 +45,26 @@
     "camping gear": ["露营装备", "户外用品", "户外"],
     "power": ["电源", "储能", "充电", "电池"],
     "textiles": ["纺织品", "面料", "家纺", "丝绸"]
+  },
+  "vision_prompts": {
+    "default": "Does this product image match the buyer's search intent?",
+    "electronics": "Does this image show an electronic device or component? Look for circuit boards, screens, charging ports, or electronic housings.",
+    "power": "Does this image show a power station, battery, or energy storage device? Look for battery packs, power outlets, LED displays showing capacity, or solar panels.",
+    "textiles": "Does this image show a textile product? Look for fabric, pillows, bedding, or clothing items.",
+    "silk": "Does this image show silk fabric or silk products? Look for the characteristic sheen, smooth texture, and luxury appearance of silk."
+  },
+  "vision_categories": {
+    "portable power station": {
+      "must_have": ["battery", "power outlet", "display", "enclosure"],
+      "must_not_have": ["fabric", "food", "kitchen utensils", "molds"]
+    },
+    "gan charger": {
+      "must_have": ["charging port", "plug", "compact design"],
+      "must_not_have": ["fabric", "food", "kitchen utensils"]
+    },
+    "silk pillowcase": {
+      "must_have": ["fabric", "pillow shape", "smooth texture"],
+      "must_not_have": ["electronics", "plastic", "metal"]
+    }
   }
 }

@@ -173,37 +173,37 @@ function renderDashboard(): void {
                     ${factory ? `<span class="px-2 py-0.5 text-[10px] font-black uppercase rounded-full ${factory.cssClass}" style="width:fit-content">${factory.label}</span>` : ''}
                     ${location ? `<span class="text-[10px] text-slate-400 font-medium">${location}</span>` : ''}
                 </div>
-                <span class="px-3 py-1 text-[10px] font-black uppercase rounded-full ${confClass}" style="white-space:nowrap">
-                    ${item.confidence}
+                <span class="px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-full ${confClass}" style="white-space:nowrap">
+                    ${item.confidence === 'High' ? 'HIGH CONFIDENCE' : item.confidence === 'Mismatch' ? 'INTENT MISMATCH' : 'LOW CONFIDENCE'}
                 </span>
             </div>
 
             ${item.systemNote ? `
-                <div class="bg-red-50 border-l-4 border-red-300 p-3 text-[11px] text-red-700 mb-3 rounded-r-lg">
-                    <strong>System Note:</strong> ${item.systemNote}
+                <div class="bg-slate-50 border-l-4 border-slate-300 p-3 text-[11px] text-slate-600 mb-3">
+                    System Note: Semantic Drift detected. ${item.systemNote}
                 </div>
             ` : ''}
 
             ${item.visionVerified ? `
                 <div class="flex gap-2 mb-3">
-                    <span class="glass-seal px-2 py-1 rounded-lg text-[10px] text-blue-700 font-bold">&#128065; VISION VERIFIED</span>
+                    <span class="glass-seal px-2 py-1 text-[10px] text-indigo-700 font-bold uppercase tracking-widest">&#9679; Vision Verified</span>
                 </div>
             ` : ''}
 
             ${item.detailUrl ? `
                 <a href="${item.detailUrl}" target="_blank" rel="noopener" class="block group">
-                    <h2 class="text-[14px] font-bold leading-snug mb-1 text-[#1a1d23] group-hover:text-blue-600 transition-colors line-clamp-2">${item.title}</h2>
+                    <h2 class="text-[15px] font-bold leading-snug mb-1 text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 uppercase tracking-tight">${item.title}</h2>
                 </a>
-            ` : `<h2 class="text-[14px] font-bold leading-snug mb-1 text-[#1a1d23] line-clamp-2">${item.title}</h2>`}
+            ` : `<h2 class="text-[15px] font-bold leading-snug mb-1 text-slate-900 line-clamp-2 uppercase tracking-tight">${item.title}</h2>`}
 
             ${item.companyName ? `<p class="text-[11px] font-medium text-slate-400 mb-3 truncate">${item.companyName}</p>` : ''}
 
-            <div class="mt-auto pt-3 border-t border-[#e2e5ea] flex justify-between items-end">
+            <div class="mt-auto pt-3 border-t border-slate-100 flex justify-between items-end">
                 <div>
-                    <span class="text-xl font-black text-[#1a1d23]">£${item.price.toFixed(2)}</span>
+                    <span class="text-xl font-black text-slate-900">£${item.price.toFixed(2)}</span>
                     <span class="text-[10px] text-slate-400 ml-1">GBP est.</span>
                 </div>
-                <span class="text-[10px] font-mono font-bold text-slate-400 uppercase">${item.specStatus}</span>
+                <span class="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest">${item.specStatus}</span>
             </div>
         </div>
         `;

@@ -4,6 +4,8 @@
 
 :root {
     --primary-indigo: #4f46e5;
+    --bridge-orange: #ff6600;
+    --bridge-orange-shadow: rgba(255, 102, 0, 0.4);
     --error-rose: #fda4af;
     --success-emerald: #10b981;
     --slate-border: #e2e8f0;
@@ -22,10 +24,30 @@
         margin: 0;
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
+        padding-top: 20px;
     }
 }
 
 @layer components {
+    #top-guardrail-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(4px);
+        color: #94a3b8;
+        font-size: 8px;
+        font-family: 'Fira Code', monospace;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
     /* ── Hybrid Card ─────────────────────────────────────────── */
     .hybrid-card {
         position: relative;
@@ -37,7 +59,7 @@
         border-right: 2px solid var(--slate-border);
         border-bottom: 2px solid var(--slate-border);
         border-radius: 24px;
-        box-shadow: 4px 4px 0px var(--slate-shadow);
+        box-shadow: 4px 4px 0px var(--bridge-orange-shadow);
         transition: all 0.2s ease-in-out;
         overflow: visible;
     }
@@ -65,27 +87,89 @@
     }
 
     .hybrid-card:not(.flagged)::after {
-        content: 'UK_SPEC_OK';
+        content: 'UK_SPEC_CONFORMANT';
         position: absolute;
         bottom: 12px;
         right: 12px;
-        font-size: 32px;
+        font-size: 24px;
         font-weight: 900;
         color: var(--success-emerald);
-        opacity: 0.04;
+        opacity: 0.1;
         transform: rotate(-10deg);
         pointer-events: none;
     }
 
     /* ── Image Container ─────────────────────────────────────── */
     .img-container {
-        width: 8rem;
-        height: 8rem;
+        width: 100%;
+        height: 12rem;
         background-color: #f1f5f9;
         border-radius: 1rem;
         overflow: hidden;
         border: 1px solid var(--slate-border);
-        flex-shrink: 0;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        mix-blend-multiply: multiply;
+    }
+
+    /* ── Vision Guard Eye Icon ──────────────────────────────── */
+    .vision-guard {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(4px);
+        border-radius: 50%;
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        box-shadow: 0 2px 8px rgba(79, 70, 229, 0.15);
+    }
+
+    .vision-eye-icon {
+        animation: pulse-eye 2s ease-in-out infinite;
+    }
+
+    @media (hover: hover) {
+        /* Only apply hover states on devices with hover capability */
+    }
+
+    @keyframes pulse-eye {
+        0%, 100% {
+            opacity: 0.7;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+    }
+
+    /* ── Search Suggestions ──────────────────────────────────── */
+    .suggestion-tag {
+        font-family: 'Fira Code', monospace;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border: 1px solid var(--slate-border);
+        background: white;
+        color: #64748b;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        text-transform: uppercase;
+    }
+
+    .suggestion-tag:hover {
+        border-color: var(--primary-indigo);
+        color: var(--primary-indigo);
+        background: #f1f5f9;
     }
 
     /* ── Glass Seal ──────────────────────────────────────────── */
@@ -96,6 +180,12 @@
         display: inline-flex;
         align-items: center;
         gap: 4px;
+    }
+
+    /* ── Industrial Layout ─────────────────────────────────────── */
+    .industrial-container {
+        max-width: 1000px;
+        margin: 0 auto;
     }
 
     /* ── Status Bar (Skewed Pipeline) ────────────────────────── */
@@ -134,29 +224,34 @@
         transform: skewX(-15deg);
     }
 
-    /* ── Dark Industrial Footer ──────────────────────────────── */
+    /* ── Compact Industrial Footer ───────────────────────────── */
     .control-panel {
-        position: fixed;
-        bottom: 0;
-        left: 0;
+        position: static;
         width: 100%;
+        margin-top: 4rem;
         background: #0f172a;
         color: #94a3b8;
-        border-top: 6px solid #334155;
-        padding: 30px 60px;
+        border-top: 2px solid #334155;
+        padding: 24px;
         box-sizing: border-box;
         font-family: 'Fira Code', monospace;
         display: flex;
         justify-content: space-between;
-        gap: 2rem;
-        font-size: 11px;
+        align-items: center;
+        gap: 1.5rem;
+        font-size: 10px;
         z-index: 50;
     }
 
     .panel-col {
         flex: 1;
-        border-left: 2px solid #1e293b;
-        padding-left: 20px;
+        border-right: 1px solid #1e293b;
+        padding-right: 20px;
+    }
+
+    .panel-col:last-child {
+        border-right: none;
+        text-align: right;
     }
 
     .dot {

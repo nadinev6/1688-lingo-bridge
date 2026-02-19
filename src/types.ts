@@ -3,6 +3,7 @@ export interface ProcurementItem {
     title: string;
     chineseTitle: string;
     price: number;
+    imageUrl: string;
     isFlagged: boolean;
     systemNote?: string;
     confidence: 'High' | 'Low' | 'Mismatch';
@@ -14,6 +15,9 @@ export interface ProcurementItem {
     province?: string;
     city?: string;
     searchQuery?: string;
+    specTags: string[];
+    imageError?: boolean;
+    visionConfidence?: number | null;
 }
 
 export interface PipelineSummary {

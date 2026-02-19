@@ -10,7 +10,8 @@
  */
 
 import { LingoDotDevEngine } from "lingo.dev/sdk";
-import { readFile, writeFile } from 'fs/promises';
+import { readFile, writeFile, mkdir } from 'fs/promises';
+import { existsSync } from 'fs';
 import 'dotenv/config';
 
 // Import Phase 2 Query Processor
@@ -36,6 +37,77 @@ function dedupeByUrl(results) {
         seen.add(url);
         return true;
     });
+}
+
+/**
+ * Generate ISO timestamp for file naming
+ * @returns {string} Timestamp in format YYYY-MM-DD_HH-MM-SS
+ */
+function getTimestamp() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    return `${year}-${month}-${day}_${hours}-${minutes}-${seconds}`;
+}
+
+/**
+ * Save pipeline results with timestamped archiving
+ * Always preserves old results, updates latest copy
+ * @param {Object} outputData - Complete pipeline output
+ * @param {string} query - Original search query
+ */
+async function saveResultsWithArchive(outputData, query) {
+    const archiveDir = './docs/artifacts/results-archive';
+    const timestamp = getTimestamp();
+    const timestampedFile = `${archiveDir}/run_${timestamp}.json`;
+    const latestFile = './docs/artifacts/validated_results.json';
+    const indexFile = './docs/artifacts/results-archive-index.json';
+
+    // Ensure archive directory exists
+    if (!existsSync(archiveDir)) {
+        await mkdir(archiveDir, { recursive: true });
+    }
+
+    // Save timestamped archive
+    await writeFile(timestampedFile, JSON.stringify(outputData, null, 2));
+    console.log(`✅ Archived: ${timestampedFile}`);
+
+    // Save as latest (for backward compatibility with frontend)
+    await writeFile(latestFile, JSON.stringify(outputData, null, 2));
+    console.log(`✅ Updated latest: ${latestFile}`);
+
+    // Update index
+    let index = { total_runs: 0, runs: [] };
+    if (existsSync(indexFile)) {
+        try {
+            const existingIndex = JSON.parse(await readFile(indexFile, 'utf-8'));
+            index = existingIndex;
+        } catch (e) {
+            console.warn('⚠️ Could not read existing index, creating new one');
+        }
+    }
+
+    const runEntry = {
+        run_id: `run_${timestamp}`,
+        timestamp: new Date().toISOString(),
+        query: query,
+        total_results: outputData.results.length,
+        high_confidence: outputData.pipeline_summary.high_confidence_count,
+        low_confidence: outputData.pipeline_summary.low_confidence_count,
+        file: `results-archive/run_${timestamp}.json`
+    };
+
+    index.runs.unshift(runEntry); // Add to beginning (most recent first)
+    index.total_runs = index.runs.length;
+
+    await writeFile(indexFile, JSON.stringify(index, null, 2));
+    console.log(`✅ Updated index: ${indexFile}`);
+
+    return { timestampedFile, latestFile, indexFile };
 }
 
 // Initialize Lingo.dev Client
@@ -170,6 +242,7 @@ async function demoPhase3() {
     console.log("\n📍 Step 3: Validation & Confidence Scoring");
     let validationResult = await validateResults(scrapeResult.results, {
         ...intent,
+        chinese_query: bundle.primary,
         negative_keywords: bundle.negative_keywords
     });
 
@@ -227,8 +300,7 @@ async function demoPhase3() {
         console.log(`   ${i + 1}. [${product._confidence}%] ${product.offer_subject?.substring(0, 40) || 'Unknown'}...`);
     });
 
-    // Step 5: Save results to file
-    const outputPath = './docs/artifacts/validated_results.json';
+    // Step 5: Save results to file (with timestamped archiving)
     const outputData = {
         pipeline_summary: {
             original_query: intent.query,
@@ -249,8 +321,8 @@ async function demoPhase3() {
         }
     };
 
-    await writeFile(outputPath, JSON.stringify(outputData, null, 2));
-    console.log(`\n💾 Results saved to: ${outputPath}`);
+    const savedPaths = await saveResultsWithArchive(outputData, intent.query);
+    console.log(`\n💾 Results saved (old results preserved in archive)`);
 
     return {
         bundle,
@@ -264,7 +336,7 @@ async function demoPhase3() {
  * Phase 4: Full validated pipeline with Vision
  * Intent → Search Bundle → Scrape → Validate → Vision Validate → Results
  */
-async function demoPhase4() {
+async function demoPhase4(customQuery = null) {
     console.log("\n" + "=".repeat(60));
     console.log("🎯 Phase 4: Validated Pipeline with Vision");
     console.log("=".repeat(60));
@@ -273,9 +345,15 @@ async function demoPhase4() {
 
     // Step 1: Generate search bundle from intent
     console.log("\n📍 Step 1: Intent-to-Native Transformation");
+
+    // Default intent or specialized for industrial leads
     const intent = {
-        query: "outdoor power supply energy storage",
-        context: "consumer electronics, camping gear, high-capacity batteries",
+        query: customQuery || "outdoor power supply energy storage",
+        context: customQuery?.includes("industrial")
+            ? "heavy industry, manufacturing, power cables, electrical infrastructure"
+            : customQuery?.includes("mill")
+            ? "metalworking, CNC machining, industrial cutting tools, precision engineering"
+            : "consumer electronics, camping gear, high-capacity batteries",
         market: "UK B2B"
     };
 
@@ -291,6 +369,7 @@ async function demoPhase4() {
     console.log("\n📍 Step 3: Text Validation & Confidence Scoring");
     let validationResult = await validateResults(scrapeResult.results, {
         ...intent,
+        chinese_query: bundle.primary,
         negative_keywords: bundle.negative_keywords
     });
 
@@ -387,8 +466,7 @@ async function demoPhase4() {
         });
     }
 
-    // Step 6: Save results to file
-    const outputPath = './docs/artifacts/validated_results.json';
+    // Step 6: Save results to file (with timestamped archiving)
     const outputData = {
         pipeline_summary: {
             original_query: intent.query,
@@ -411,8 +489,8 @@ async function demoPhase4() {
         }
     };
 
-    await writeFile(outputPath, JSON.stringify(outputData, null, 2));
-    console.log(`\n💾 Results saved to: ${outputPath}`);
+    const savedPaths = await saveResultsWithArchive(outputData, intent.query);
+    console.log(`\n💾 Results saved (old results preserved in archive)`);
 
     return {
         bundle,
@@ -429,10 +507,13 @@ async function demoPhase4() {
 async function main() {
     const args = process.argv.slice(2);
     const runPhase = args[0] || 'all';
+    const customQuery = args[1] || null;
 
     console.log("🌐 1688 Lingo Bridge");
     console.log("=".repeat(40));
-    console.log(`Running: ${runPhase}\n`);
+    console.log(`Running: ${runPhase}`);
+    if (customQuery) console.log(`Query: "${customQuery}"`);
+    console.log("");
 
     try {
         switch (runPhase) {
@@ -446,18 +527,16 @@ async function main() {
                 await demoPhase3();
                 break;
             case 'phase4':
-                await demoPhase4();
-                break;
             case 'full':
                 // Run complete pipeline with vision: Phase 4
-                await demoPhase4();
+                await demoPhase4(customQuery);
                 break;
             case 'all':
             default:
                 // Run all demos
                 await demoPhase2();
                 await demoPhase3();
-                await demoPhase4();
+                await demoPhase4(customQuery);
                 break;
         }
     } catch (error) {

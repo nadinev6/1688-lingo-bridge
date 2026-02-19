@@ -8,7 +8,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="/src/style.css" />
 </head>
-<body class="min-h-screen" style="padding-bottom: 120px;">
+<body class="min-h-screen">
+    <div id="top-guardrail-bar">
+        <span>ESTABLISHING SECURE LINGUA-BRIDGE... [OK]</span>
+        <span class="mx-4 text-indigo-400">|</span>
+        <span>CATEGORY CALIBRATION: ACTIVE</span>
+        <span class="mx-4 text-indigo-400">|</span>
+        <span>GUARDRAILS: PRICE_GUARD (1.5x) + BULK_VERIFY</span>
+    </div>
 
     <!-- ═══════════════════════════════════════════════════════ -->
     <!--  LOADER OVERLAY                                         -->
@@ -25,15 +32,6 @@
 
         <div id="main-loading-msg" class="text-slate-300 text-sm font-semibold mb-6 h-5">
             Initialising Pipeline
-        </div>
-
-        <div class="flex gap-3 mb-6">
-            <span id="load-status-1" class="px-3 py-1 bg-slate-800 border border-slate-700 text-slate-400 text-[10px] font-bold uppercase rounded-full tracking-widest">
-                Connecting
-            </span>
-            <span id="load-status-2" class="px-3 py-1 bg-slate-800 border border-slate-700 text-slate-400 text-[10px] font-bold uppercase rounded-full tracking-widest">
-                Vision Standby
-            </span>
         </div>
 
         <div class="flex gap-2">
@@ -92,7 +90,7 @@
     <!-- ═══════════════════════════════════════════════════════ -->
     <!--  MAIN CONTENT                                           -->
     <!-- ═══════════════════════════════════════════════════════ -->
-    <main class="px-6 py-8">
+    <main class="px-6 py-8 industrial-container">
         <div class="max-w-7xl mx-auto">
             <header class="flex flex-col gap-6 mb-12">
                 <div class="flex justify-between items-end">
@@ -107,19 +105,24 @@
                     </div>
                 </div>
 
-                <!-- Search Bar -->
-                <div class="relative">
-                    <input
-                        type="text"
-                        id="procurementSearch"
-                        class="search-input pr-10"
-                        placeholder="Search UK English intent (e.g. 'Heavy Duty')..."
-                    />
-                    <button id="clearSearch" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
-                    </button>
+                <!-- Search Bar & Suggestions -->
+                <div class="w-full">
+                    <div class="relative">
+                        <input type="text"
+                               id="procurementSearch"
+                               placeholder="SEARCH UK ENGLISH INTENT (E.G. 'HEAVY DUTY')..."
+                               class="w-full p-6 bg-white rounded-2xl border-2 border-slate-200 border-t-4 border-t-slate-300 text-2xl font-bold uppercase tracking-tight focus:border-indigo-600 outline-none transition-all shadow-sm pr-16"/>
+
+                        <button id="clearSearch"
+                                class="hidden absolute right-6 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-slate-600 transition-colors flex items-center justify-center font-bold text-lg">
+                            &times;
+                        </button>
+                    </div>
+
+                    <div class="flex gap-2 mt-3">
+                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">Suggestions:</span>
+                        <div id="searchSuggestions" class="flex flex-wrap gap-2"></div>
+                    </div>
                 </div>
 
                 <!-- Pipeline Status Bar -->
@@ -207,24 +210,9 @@
         </div>
     </main>
 
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!--  FOOTER                                                 -->
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <footer class="control-panel">
-        <div class="panel-col">
-            <span class="dot">&bull;</span> System Health: All Bridges Operational.
-        </div>
-
-        <div class="panel-col" style="flex: 2">
-            GUARDRAILS: Anti-Drift, Multi-Modal Vision Sync, Negative Filtering (Blacklist: &#27169;&#20855;, &#34507;&#31958;)
-        </div>
-
-        <div class="panel-col">
-            <span class="verify-pill">Auth: 1000% Verified</span>
-            <div style="font-size: 10px; margin-top: 8px">
-                &copy; 2026 1688 Lingo Bridge | UK IPP
-            </div>
-        </div>
+    <!-- Industrial Bottom Panel -->
+    <footer class="text-center p-4 text-slate-400 font-bold text-xs uppercase">
+        2026 1688 Lingo Bridge
     </footer>
 
     <script type="module" src="/src/components/loading.tsx"></script>

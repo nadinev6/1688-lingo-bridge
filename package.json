@@ -23,7 +23,9 @@
   "homepage": "https://github.com/nadinev6/1688-lingo-bridge#readme",
   "dependencies": {
     "apify-client": "^2.22.1",
+    "cors": "^2.8.6",
     "dotenv": "^17.3.1",
+    "express": "^5.2.1",
     "lingo.dev": "^0.131.2",
     "openai": "^4.104.0"
   },

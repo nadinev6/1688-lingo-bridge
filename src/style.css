@@ -87,7 +87,7 @@
     }
 
     .hybrid-card:not(.flagged)::after {
-        content: 'UK_SPEC_CONFORMANT';
+        content: 'INTL_SPEC_VERIFIED';
         position: absolute;
         bottom: 12px;
         right: 12px;

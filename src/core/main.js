@@ -15,14 +15,14 @@ import { existsSync } from 'fs';
 import 'dotenv/config';
 
 // Import Phase 2 Query Processor
-import { generateSearchBundle, quickTranslate } from './lib/queryProcessor.js';
+import { generateSearchBundle, quickTranslate } from './queryProcessor.js';
 
 // Import Phase 3 modules
-import { smartScrape } from './lib/scraper.js';
-import { validateResults } from './lib/validator.js';
+import { smartScrape } from './scraper.js';
+import { validateResults } from './validator.js';
 
 // Import Phase 4 Vision Validator
-import { validateWithVision } from './lib/visionValidator.js';
+import { validateWithVision } from './visionValidator.js';
 
 /**
  * Deduplicate results by product URL
@@ -122,7 +122,7 @@ async function translate1688Data() {
         console.log("🚀 Starting 1688 Global Bridge - Phase 1 (Post-Scraping Translation)...\n");
 
         // Read data from local sample_data.json
-        const rawData = await readFile('./sample_data.json', 'utf-8');
+        const rawData = await readFile('./src/data/sample_data.json', 'utf-8');
         const rawChineseData = JSON.parse(rawData);
 
         if (rawChineseData.length === 0) {
@@ -145,7 +145,7 @@ async function translate1688Data() {
         );
 
         // Save the English data locally
-        const outputPath = './localized_products.json';
+        const outputPath = './src/data/localized_products.json';
         await writeFile(outputPath, JSON.stringify(translatedData, null, 2));
 
         console.log(`\n✅ Success! Localised data saved to: ${outputPath}`);
@@ -179,7 +179,7 @@ async function demoPhase2() {
     const intent1 = {
         query: "outdoor power supply energy storage",
         context: "consumer electronics, camping gear, high-capacity batteries",
-        market: "UK B2B"
+        market: "Export B2B"
     };
 
     console.log("📝 Example 1: Outdoor Power Equipment\n");
@@ -193,7 +193,7 @@ async function demoPhase2() {
     const intent2 = {
         query: "Gallium Nitride GaN charger fast charging",
         context: "consumer electronics, phone accessories",
-        market: "UK B2B"
+        market: "Export B2B"
     };
 
     console.log("📝 Example 2: GaN Charger\n");
@@ -227,7 +227,7 @@ async function demoPhase3() {
     const intent = {
         query: "outdoor power supply energy storage",
         context: "consumer electronics, camping gear, high-capacity batteries",
-        market: "UK B2B"
+        market: "Export B2B"
     };
 
     const bundle = await generateSearchBundle(intent);
@@ -354,7 +354,7 @@ async function demoPhase4(customQuery = null) {
             : customQuery?.includes("mill")
             ? "metalworking, CNC machining, industrial cutting tools, precision engineering"
             : "consumer electronics, camping gear, high-capacity batteries",
-        market: "UK B2B"
+        market: "Export B2B"
     };
 
     const bundle = await generateSearchBundle(intent);
@@ -502,6 +502,167 @@ async function demoPhase4(customQuery = null) {
 }
 
 /**
+ * Phase 4 Append: Run pipeline and MERGE with existing results
+ * Preserves existing results while adding new ones (deduplicated by URL)
+ */
+async function demoPhase4Append(customQuery = null) {
+    console.log("\n" + "=".repeat(60));
+    console.log("🎯 Phase 4 Append: Validated Pipeline with Vision (Merge Mode)");
+    console.log("=".repeat(60));
+
+    const latestFile = './docs/artifacts/validated_results.json';
+
+    // Step 1: Load existing results
+    console.log("\n📍 Step 1: Loading Existing Results");
+    let existingData = { results: [], pipeline_summary: {}, search_bundle: {}, metadata: {} };
+    let existingUrls = new Set();
+
+    if (existsSync(latestFile)) {
+        try {
+            const rawExisting = await readFile(latestFile, 'utf-8');
+            existingData = JSON.parse(rawExisting);
+            existingData.results.forEach(product => {
+                const url = product.offer_detail_url || product.url;
+                if (url) existingUrls.add(url);
+            });
+            console.log(`   ✅ Loaded ${existingData.results.length} existing results`);
+        } catch (e) {
+            console.log(`   ⚠️ Could not parse existing file, starting fresh`);
+        }
+    } else {
+        console.log(`   ℹ️ No existing results file, will create new one`);
+    }
+
+    // Step 2: Run the Phase 4 pipeline
+    console.log("\n📍 Step 2: Running Phase 4 Pipeline");
+    const pipelineStart = Date.now();
+
+    const intent = {
+        query: customQuery || "outdoor power supply energy storage",
+        context: customQuery?.includes("industrial")
+            ? "heavy industry, manufacturing, power cables, electrical infrastructure"
+            : customQuery?.includes("mill")
+            ? "metalworking, CNC machining, industrial cutting tools, precision engineering"
+            : "consumer electronics, camping gear, high-capacity batteries",
+        market: "Export B2B"
+    };
+
+    const bundle = await generateSearchBundle(intent);
+    console.log(`   Primary: ${bundle.primary}`);
+    console.log(`   Synonyms: [${bundle.synonyms.join(', ')}]`);
+
+    let scrapeResult = await smartScrape(bundle);
+    let validationResult = await validateResults(scrapeResult.results, {
+        ...intent,
+        chinese_query: bundle.primary,
+        negative_keywords: bundle.negative_keywords
+    });
+
+    // Confidence-based pivot if needed
+    const CONFIDENCE_THRESHOLD = 40;
+    if (validationResult.metadata.averageConfidence < CONFIDENCE_THRESHOLD && bundle.synonyms.length > 0) {
+        console.log(`   ⚠️ Low confidence, forcing synonym expansion...`);
+        const forcedBundle = { ...bundle, primary: bundle.synonyms[0] };
+        const forcedScrapeResult = await smartScrape(forcedBundle, { primaryLimit: 20 });
+        const allResults = [...validationResult.results, ...forcedScrapeResult.results];
+        const uniqueResults = dedupeByUrl(allResults);
+        validationResult = await validateResults(uniqueResults, {
+            ...intent,
+            negative_keywords: bundle.negative_keywords
+        });
+    }
+
+    // Vision validation
+    console.log("\n📍 Step 3: Vision Validation (GPT-4V)");
+    const visionResult = await validateWithVision(validationResult.results, intent);
+
+    const pipelineLatency = Date.now() - pipelineStart;
+
+    // Step 3: Merge new results with existing (deduplicated)
+    console.log("\n📍 Step 4: Merging Results");
+    let newCount = 0;
+    let dupeCount = 0;
+
+    visionResult.results.forEach(product => {
+        const url = product.offer_detail_url || product.url;
+        if (url && !existingUrls.has(url)) {
+            existingData.results.push(product);
+            existingUrls.add(url);
+            newCount++;
+        } else {
+            dupeCount++;
+        }
+    });
+
+    console.log(`   ✅ Added ${newCount} new results`);
+    console.log(`   ⏭️ Skipped ${dupeCount} duplicates`);
+
+    // Step 4: Calculate combined summary
+    const totalResults = existingData.results.length;
+    const avgConfidence = Math.round(
+        existingData.results.reduce((sum, p) => sum + (p._confidence || 0), 0) / totalResults
+    );
+    const highConfidence = existingData.results.filter(p => (p._confidence || 0) >= 70).length;
+    const lowConfidence = existingData.results.filter(p => (p._confidence || 0) < 50).length;
+    const suspicious = existingData.results.filter(p =>
+        p._visualConfidence !== null &&
+        p._visualConfidence < 50 &&
+        p._confidence >= 70
+    ).length;
+
+    // Step 5: Save merged results
+    const outputData = {
+        pipeline_summary: {
+            original_query: intent.query,
+            chinese_query: bundle.primary,
+            total_results: totalResults,
+            average_confidence: avgConfidence,
+            high_confidence_count: highConfidence,
+            low_confidence_count: lowConfidence,
+            suspicious_count: suspicious,
+            filtered_by_blacklist: scrapeResult.metadata.filteredByBlacklist,
+            vision_checks: visionResult.metadata?.visionChecks || 0,
+            vision_mismatches: visionResult.metadata?.mismatches || 0,
+            total_latency_ms: pipelineLatency,
+            append_mode: true,
+            new_results_added: newCount
+        },
+        search_bundle: bundle,
+        results: existingData.results,
+        metadata: {
+            generated_at: new Date().toISOString(),
+            pipeline_version: "4.0.0-append"
+        }
+    };
+
+    // Save with archive
+    const savedPaths = await saveResultsWithArchive(outputData, intent.query);
+
+    // Final summary
+    console.log("\n" + "=".repeat(60));
+    console.log("📊 APPEND SUMMARY");
+    console.log("=".repeat(60));
+    console.log(`   New Query: "${intent.query}"`);
+    console.log(`   New Results Added: ${newCount}`);
+    console.log(`   Duplicates Skipped: ${dupeCount}`);
+    console.log(`   Total Results Now: ${totalResults}`);
+    console.log(`   Average Confidence: ${avgConfidence}%`);
+    console.log(`   High Confidence: ${highConfidence}`);
+    console.log(`   ⏱️ Pipeline Latency: ${pipelineLatency}ms`);
+    console.log(`\n💾 Merged results saved to validated_results.json`);
+
+    return {
+        bundle,
+        scrapeResult,
+        validationResult,
+        visionResult,
+        newCount,
+        totalResults,
+        pipelineLatency
+    };
+}
+
+/**
  * Main entry point - Run phases
  */
 async function main() {
@@ -530,6 +691,10 @@ async function main() {
             case 'full':
                 // Run complete pipeline with vision: Phase 4
                 await demoPhase4(customQuery);
+                break;
+            case 'phase4-append':
+                // Run Phase 4 and MERGE with existing results
+                await demoPhase4Append(customQuery);
                 break;
             case 'all':
             default:

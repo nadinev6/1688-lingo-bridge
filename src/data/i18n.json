@@ -3,11 +3,11 @@
   "version": "1.10",
   "locale": {
     "source": "zh-CN",
-    "targets": ["en-GB"]
+    "targets": ["en"]
   },
   "provider": {
     "id": "lingo.dev",
-    "prompt": "You are a specialist in UK B2B wholesale. Translate 1688 product data into professional UK English. Maintain technical accuracy for GaN electronics, Mulberry silk textiles, and Energy Storage systems."
+    "prompt": "You are a specialist in international B2B wholesale. Translate 1688 product data into professional English for international buyers. Maintain technical accuracy for GaN electronics, Mulberry silk textiles, and Energy Storage systems."
   },
   "glossary": [
     { "src": "氮化镓", "tgt": "Gallium Nitride (GaN)" },
@@ -15,7 +15,7 @@
     { "src": "户外电源", "tgt": "Portable Power Station" },
     { "src": "储能电源", "tgt": "Energy Storage Power" },
     { "src": "起订量", "tgt": "MOQ" },
-    { "src": "包邮", "tgt": "Free UK Delivery (Equivalent)" }
+    { "src": "包邮", "tgt": "Free Delivery (Equivalent)" }
   ],
   "negative_keywords": {
     "electronics": ["模具", "餐垫", "硅胶", "烘焙", "厨房", "蛋糕", "餐具"],

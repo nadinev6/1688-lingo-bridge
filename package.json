@@ -1,9 +1,9 @@
 {
   "name": "1688-lingo-bridge",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "src/core/main.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "node src/core/main.js",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",

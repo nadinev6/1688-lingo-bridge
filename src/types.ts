@@ -16,6 +16,8 @@ export interface ProcurementItem {
     city?: string;
     searchQuery?: string;
     specTags: string[];
+    productSpecs?: string[];   // Translated key-value spec strings e.g. "Material: ABS"
+    serviceTags?: string[];    // Translated trust/service tags e.g. "Free return shipping"
     imageError?: boolean;
     visionConfidence?: number | null;
 }

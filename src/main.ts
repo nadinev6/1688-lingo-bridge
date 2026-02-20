@@ -1,8 +1,104 @@
 import Papa from 'papaparse';
 import type { ProcurementItem, PipelineData, ConfidenceFilter, SortMode, RawProduct } from './types';
-import pipelineData from '../docs/artifacts/validated_results.json';
 
-const data = pipelineData as PipelineData;
+// Dynamic data loading - fetch at runtime instead of static import
+let data: PipelineData = { pipeline_summary: {} as any, search_bundle: {} as any, results: [], metadata: {} as any };
+let allItems: ProcurementItem[] = [];
+
+// Fetch pipeline data from JSON file
+async function loadPipelineData(): Promise<void> {
+    try {
+        const response = await fetch('/docs/artifacts/validated_results.json');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const jsonData = await response.json();
+
+        // Handle both array and single object formats
+        const pipelineArray = Array.isArray(jsonData) ? jsonData : [jsonData];
+
+        // Merge all results, summaries, and bundles from all pipelines
+        let mergedResults: RawProduct[] = [];
+        let mergedMetadata = pipelineArray[0]?.metadata || {};
+
+        // Combine all primary queries, synonyms, and negative keywords
+        const allPrimaries: string[] = [];
+        const allSynonyms: string[] = [];
+        const allNegatives: string[] = [];
+        const allOriginalQueries: string[] = [];
+        const allChineseQueries: string[] = [];
+
+        // Initialize summary accumulators
+        let totalResults = 0;
+        let totalHighConfidence = 0;
+        let totalLatency = 0;
+
+        for (const pipeline of pipelineArray) {
+            if (pipeline.results?.length) {
+                mergedResults = mergedResults.concat(pipeline.results);
+            }
+            if (pipeline.search_bundle) {
+                if (pipeline.search_bundle.primary) allPrimaries.push(pipeline.search_bundle.primary);
+                if (pipeline.search_bundle.original_query) allOriginalQueries.push(pipeline.search_bundle.original_query);
+                if (pipeline.search_bundle.synonyms?.length) {
+                    allSynonyms.push(...pipeline.search_bundle.synonyms);
+                }
+                if (pipeline.search_bundle.negative_keywords?.length) {
+                    allNegatives.push(...pipeline.search_bundle.negative_keywords);
+                }
+            }
+            // Accumulate summary stats from all pipelines
+            if (pipeline.pipeline_summary) {
+                if (pipeline.pipeline_summary.original_query) {
+                    allOriginalQueries.push(pipeline.pipeline_summary.original_query);
+                }
+                if (pipeline.pipeline_summary.chinese_query) {
+                    allChineseQueries.push(pipeline.pipeline_summary.chinese_query);
+                }
+                totalResults += pipeline.pipeline_summary.total_results || 0;
+                totalHighConfidence += pipeline.pipeline_summary.high_confidence_count || 0;
+                totalLatency += pipeline.pipeline_summary.total_latency_ms || 0;
+            }
+        }
+
+        // Create merged summary from first pipeline as template, then update totals
+        const mergedSummary = {
+            ...pipelineArray[0]?.pipeline_summary,
+            original_query: [...new Set(allOriginalQueries)].join(' + '),
+            chinese_query: [...new Set(allChineseQueries)].join(' + '),
+            total_results: totalResults,
+            high_confidence_count: totalHighConfidence,
+            total_latency_ms: totalLatency,
+        };
+
+        // Combine search bundle from all pipelines
+        const mergedBundle = {
+            ...pipelineArray[0]?.search_bundle,
+            primary: [...new Set(allPrimaries)].join(' + '),
+            original_query: [...new Set(allOriginalQueries)].join(' + '),
+            synonyms: [...new Set(allSynonyms)], // Remove duplicates
+            negative_keywords: [...new Set(allNegatives)]
+        };
+
+        data = {
+            pipeline_summary: mergedSummary,
+            search_bundle: mergedBundle,
+            results: mergedResults,
+            metadata: mergedMetadata
+        } as PipelineData;
+
+        allItems = deduplicateItems(data.results.map((raw, i) => mapRawToItem(raw, i)));
+        console.log(`✅ Loaded ${allItems.length} products from validated_results.json`);
+    } catch (error) {
+        console.error('❌ Failed to load pipeline data:', error);
+        // Show error in UI
+        const cardGrid = document.getElementById('cardGrid');
+        if (cardGrid) {
+            cardGrid.innerHTML = `<div class="col-span-full text-center py-12 text-red-500">
+                <p>Failed to load data. Make sure validated_results.json exists.</p>
+                <p class="text-sm text-slate-400 mt-2">Run: node main.js phase4 "your query"</p>
+            </div>`;
+        }
+    }
+}
 
 // ─── DOM Elements ─────────────────────────────────────────────────────────────
 const searchInput = document.getElementById('procurementSearch') as HTMLInputElement;
@@ -25,6 +121,7 @@ const synonymTagsEl = document.getElementById('synonymTags') as HTMLDivElement;
 let currentFilter: ConfidenceFilter = 'all';
 let currentSort: SortMode = 'confidence';
 let currentSearch = '';
+let currentLanguage: 'cn' | 'en' = 'cn';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function parsePriceCny(priceStr: string): number {
@@ -114,17 +211,21 @@ function deduplicateItems(items: ProcurementItem[]): ProcurementItem[] {
 }
 
 // ─── All items from pipeline data ────────────────────────────────────────────
-const allItems: ProcurementItem[] = deduplicateItems(
-    data.results.map((raw, i) => mapRawToItem(raw, i))
-);
+// allItems is now populated dynamically in loadPipelineData()
 
 // ─── Populate Pipeline Summary ───────────────────────────────────────────────
 function populateSummary(items: ProcurementItem[] = allItems): void {
     const s = data.pipeline_summary;
 
-    // Always update static properties
-    if (originalQueryEl) originalQueryEl.textContent = s.original_query;
-    if (chineseQueryEl) chineseQueryEl.textContent = s.chinese_query;
+    // Show current search term if active, otherwise show pipeline queries
+    if (currentSearch) {
+        if (originalQueryEl) originalQueryEl.textContent = currentSearch;
+        if (chineseQueryEl) chineseQueryEl.textContent = `(Searching: ${currentSearch})`;
+    } else {
+        if (originalQueryEl) originalQueryEl.textContent = s.original_query;
+        if (chineseQueryEl) chineseQueryEl.textContent = s.chinese_query;
+    }
+
     if (statLatency) statLatency.textContent = `${s.total_latency_ms}ms`;
 
     // Calculate dynamic stats from filtered items
@@ -148,32 +249,57 @@ function populateSummary(items: ProcurementItem[] = allItems): void {
 // ─── Populate Synonym Tags ────────────────────────────────────────────────────
 function populateSynonymTags(): void {
     const bundle = data.search_bundle;
-    const tags: { text: string; type: 'primary' | 'synonym' | 'negative' }[] = [
-        { text: bundle.primary, type: 'primary' },
-        ...bundle.synonyms.map(s => ({ text: s, type: 'synonym' as const })),
-        ...bundle.negative_keywords.slice(0, 4).map(k => ({ text: `-${k}`, type: 'negative' as const })),
+    const tags: { text: string; type: 'primary' | 'synonym' | 'negative'; originalText: string }[] = [
+        { text: bundle.primary, type: 'primary', originalText: bundle.primary },
+        ...bundle.synonyms.map(s => ({ text: s, type: 'synonym' as const, originalText: s })),
+        ...bundle.negative_keywords.slice(0, 4).map(k => ({ text: `-${k}`, type: 'negative' as const, originalText: k })),
     ];
 
     synonymTagsEl.innerHTML = tags.map(tag => {
-        const base = 'px-3 py-1 rounded-full text-[11px] font-bold border font-mono';
+        const base = 'px-3 py-1 rounded-full text-[11px] font-bold border font-mono cursor-pointer hover:opacity-80 transition-opacity';
         if (tag.type === 'primary') {
-            return `<span class="${base} bg-[#1a1d23] text-white border-[#1a1d23]" title="Primary Chinese query">${tag.text}</span>`;
+            return `<span class="${base} bg-[#1a1d23] text-white border-[#1a1d23]" title="Primary Chinese query" data-query="${tag.originalText}">${tag.text}</span>`;
         }
         if (tag.type === 'synonym') {
-            return `<span class="${base} bg-blue-50 text-blue-700 border-blue-200" title="Synonym expansion">${tag.text}</span>`;
+            return `<span class="${base} bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100" title="Synonym expansion - click to search" data-query="${tag.originalText}">${tag.text}</span>`;
         }
-        return `<span class="${base} bg-red-50 text-red-600 border-red-200" title="Negative keyword">${tag.text}</span>`;
+        return `<span class="${base} bg-red-50 text-red-600 border-red-200 hover:bg-red-100" title="Negative keyword" data-query="${tag.originalText}">${tag.text}</span>`;
     }).join('');
+
+    // Add event listeners to synonym tags
+    synonymTagsEl.querySelectorAll('span').forEach(tag => {
+        tag.addEventListener('click', () => {
+            const query = (tag as HTMLElement).dataset.query || '';
+            if (query && searchInput) {
+                searchInput.value = query;
+                currentSearch = query;
+                clearBtn?.classList.remove('hidden');
+                renderDashboard();
+            }
+        });
+    });
 }
 
 // ─── Render Dashboard ─────────────────────────────────────────────────────────
 function renderDashboard(): void {
     let filtered = allItems.filter(item => {
-        const query = currentSearch.toLowerCase();
-        const matchesSearch = !query ||
-            item.title.toLowerCase().includes(query) ||
-            item.chineseTitle.toLowerCase().includes(query) ||
-            (item.companyName?.toLowerCase().includes(query) ?? false);
+        const query = currentSearch.trim();
+
+        // For empty search, match all
+        if (!query) return true;
+
+        // Search in: title, company name, category, and search query
+        const searchableText = [
+            item.title,
+            item.chineseTitle,
+            item.companyName || '',
+            item.searchQuery || '',
+            item.factoryLevel || ''
+        ].join(' ');
+
+        // Case-insensitive search that works with Chinese characters
+        const matchesSearch = searchableText.includes(query) ||
+            searchableText.toLowerCase().includes(query.toLowerCase());
 
         const matchesFilter =
             currentFilter === 'all' ||
@@ -254,9 +380,17 @@ function renderDashboard(): void {
 
             ${item.detailUrl ? `
                 <a href="${item.detailUrl}" target="_blank" rel="noopener" class="block group">
-                    <h2 class="text-[14px] font-bold leading-tight mb-0.5 text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 uppercase tracking-tight">${item.title}</h2>
+                    <h2 class="text-[14px] font-bold leading-tight mb-0.5 text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 uppercase tracking-tight">${
+                        currentLanguage === 'en' && (item as any)._en?.offer_subject
+                            ? (item as any)._en.offer_subject
+                            : item.title
+                    }</h2>
                 </a>
-            ` : `<h2 class="text-[14px] font-bold leading-tight mb-0.5 text-slate-900 line-clamp-2 uppercase tracking-tight">${item.title}</h2>`}
+            ` : `<h2 class="text-[14px] font-bold leading-tight mb-0.5 text-slate-900 line-clamp-2 uppercase tracking-tight">${
+                currentLanguage === 'en' && (item as any)._en?.offer_subject
+                    ? (item as any)._en.offer_subject
+                    : item.title
+            }</h2>`}
 
             <p class="text-[10px] font-medium text-slate-400 mb-3 uppercase tracking-wider">${item.chineseTitle}</p>
 
@@ -342,6 +476,18 @@ document.querySelectorAll('[data-sort]').forEach(btn => {
 
 exportBtn?.addEventListener('click', exportCSV);
 
+// ─── Language Toggle ─────────────────────────────────────────────────────────
+const langToggle = document.getElementById('langToggle') as HTMLButtonElement;
+const langIndicator = document.querySelector('.lang-indicator') as HTMLElement;
+
+langToggle?.addEventListener('click', () => {
+    currentLanguage = currentLanguage === 'cn' ? 'en' : 'cn';
+    if (langIndicator) {
+        langIndicator.textContent = currentLanguage === 'cn' ? 'CN' : 'EN';
+    }
+    renderDashboard();
+});
+
 // ─── Search Suggestions ──────────────────────────────────────────────────────
 function populateSuggestions(): void {
     const suggestionsEl = document.getElementById('searchSuggestions');
@@ -384,7 +530,26 @@ howItWorksToggle?.addEventListener('click', () => {
 });
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
-populateSummary();
-populateSynonymTags();
-populateSuggestions();
-renderDashboard();
+async function init() {
+    await loadPipelineData();
+    populateSummary();
+    populateSynonymTags();
+    populateSuggestions();
+    renderDashboard();
+}
+
+// Refresh data without page reload (call after running phase4-append)
+async function refreshData(): Promise<void> {
+    console.log('🔄 Refreshing pipeline data...');
+    await loadPipelineData();
+    populateSummary();
+    populateSynonymTags();
+    populateSuggestions();
+    renderDashboard();
+    console.log('✅ Dashboard refreshed!');
+}
+
+// Expose refresh function globally for console access
+(window as any).refreshData = refreshData;
+
+init();

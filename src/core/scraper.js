@@ -112,17 +112,19 @@ function mergeUnique(existing, newResults) {
 }
 
 /**
- * Filter out products containing blacklisted terms
- * These are COMPLETELY IRRELEVANT results (e.g., cake moulds in electronics search)
+ * Mark products containing blacklisted terms (but don't remove them)
+ * This allows frontend filtering for transparency
  *
- * @param {Object[]} results - Products to filter
- * @param {string[]} blacklist - Terms that trigger removal
- * @returns {Object[]} Filtered results
+ * @param {Object[]} results - Products to mark
+ * @param {string[]} blacklist - Terms that trigger flagging
+ * @returns {Object[]} Marked results (same count as input)
  */
 function filterByBlacklist(results, blacklist) {
   if (!blacklist || blacklist.length === 0) return results;
 
-  return results.filter(product => {
+  let flaggedCount = 0;
+
+  results.forEach(product => {
     const searchText = [
       product.offer_subject,
       product.main_category,
@@ -135,12 +137,13 @@ function filterByBlacklist(results, blacklist) {
       if (searchText.includes(term.toLowerCase())) {
         product._blacklisted = true;
         product._blacklistReason = term;
-        return false; // Remove from results
+        flaggedCount++;
+        break; // Only mark once
       }
     }
-
-    return true;
   });
+
+  console.log(`   🚫 Flagged ${flaggedCount} irrelevant results (visible but marked)`);  return results;
 }
 
 /**
@@ -163,17 +166,25 @@ export async function scrape1688(query, options = {}) {
         const input = {
             "queries": [query],
             "maxItems": limit,
-            "proxy": { "useApifyProxy": true },
+            "proxy": {
+                "useApifyProxy": true,
+                "apifyProxyGroups": ["RESIDENTIAL"]  // Use residential proxies to avoid blocking
+            },
             "pageCount": 1
         };
 
-        // Call the Apify actor (using the most popular 1688 scraper)
-        // Note: Use a valid Apify Actor ID here.
-        // Example: "compass/1688-scraper" or "epctex/1688-scraper"
-        const run = await client.actor("devcake/1688-supplier-scraper").call(input);
+        // Call the Apify actor (devcake/1688-com-products-scraper)
+        // Note: Residential proxies are required to avoid 1688 blocking
+        const run = await client.actor("devcake/1688-com-products-scraper").call(input);
 
         // Fetch results from the run's dataset
         const { items } = await client.dataset(run.defaultDatasetId).listItems();
+
+        // Debug: Log the first item to see the structure
+        if (items.length > 0) {
+            console.log(`   📦 Sample result fields:`, Object.keys(items[0]).join(', '));
+            console.log(`   📦 Sample item:`, JSON.stringify(items[0]).substring(0, 200));
+        }
 
         // Demo fallback: if live results are empty for "industrial" or "mill" related queries
         if (items.length === 0 && (query.includes('铣刀') || query.includes('线') || query.includes('合金') || query.includes('电缆'))) {

@@ -1,6 +1,6 @@
 {
   "$schema": "https://lingo.dev/schema/i18n.json",
-  "version": "1.10",
+  "version": "1.11",
   "locale": {
     "source": "zh-CN",
     "targets": ["en"]
@@ -8,6 +8,30 @@
   "provider": {
     "id": "lingo.dev",
     "prompt": "You are a specialist in international B2B wholesale. Translate 1688 product data into professional English for international buyers. Maintain technical accuracy for GaN electronics, Mulberry silk textiles, and Energy Storage systems."
+  },
+  "tag_translations": {
+    "_comment": "Static lookup tables for service tags and badges - see src/data/translations.ts for implementation",
+    "service_tags": {
+      "退货包运费": "Free return shipping",
+      "先采后付": "Buy now, pay later",
+      "7天无理由": "7-day no-reason returns",
+      "24小时发货": "Ships within 24h",
+      "48小时发货": "Ships within 48h",
+      "现货": "In stock",
+      "包邮": "Free shipping"
+    },
+    "badges": {
+      "运费险": "Shipping insurance",
+      "深度验商": "Verified supplier",
+      "深度验厂": "Verified factory",
+      "金牌供应商": "Gold medal supplier",
+      "超级工厂": "Super factory"
+    },
+    "dynamic_patterns": [
+      { "pattern": "^回头率(\\d+%?)$", "template": "Repurchase rate: $1" },
+      { "pattern": "^(\\d+)天无理由$", "template": "$1-day no-reason returns" },
+      { "pattern": "^(\\d+)小时发货$", "template": "Ships within $1h" }
+    ]
   },
   "glossary": [
     { "src": "氮化镓", "tgt": "Gallium Nitride (GaN)" },

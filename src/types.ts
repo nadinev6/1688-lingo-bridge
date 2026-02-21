@@ -20,6 +20,11 @@ export interface ProcurementItem {
     serviceTags?: string[];    // Translated trust/service tags e.g. "Free return shipping"
     imageError?: boolean;
     visionConfidence?: number | null;
+    blacklisted?: boolean;      // Marked by blacklist filter
+    blacklistReason?: string;   // Reason for blacklisting
+    _en?: {                    // English translation data for language toggle
+        offer_subject: string;
+    };
 }
 
 export interface PipelineSummary {
@@ -70,6 +75,8 @@ export interface RawProduct {
     _confidence: number;
     _visualConfidence?: number | null;
     _visionReason?: string;
+    _blacklisted?: boolean;
+    _blacklistReason?: string;
 }
 
 export interface PipelineData {

@@ -1,5 +1,6 @@
 import Papa from 'papaparse';
 import type { ProcurementItem, PipelineData, ConfidenceFilter, SortMode, RawProduct } from './types';
+import { translateTag, translateTags } from './data/translations';
 
 // Dynamic data loading - fetch at runtime instead of static import
 let data: PipelineData = { pipeline_summary: {} as any, search_bundle: {} as any, results: [], metadata: {} as any };
@@ -167,6 +168,33 @@ function extractSpecTags(title: string): string[] {
     return [...new Set(filtered)]; // Remove duplicates
 }
 
+// ─── Extract and Translate Service Tags from Title ─────────────────────────────
+// Known Chinese service tag patterns to extract from product titles
+const SERVICE_TAG_PATTERNS_IN_TITLE = [
+    /退货包运费/g,           // Free return shipping
+    /先采后付/g,             // Buy now, pay later
+    /\d+天无理由/g,          // X-day no-reason returns
+    /\d+小时发货/g,          // Ships within X hours
+    /包邮/g,                 // Free shipping
+    /现货/g,                 // In stock
+    /支持定制/g,             // Customization available
+    /回头率\d+%?/g,          // Repurchase rate
+];
+
+function extractAndTranslateServiceTags(title: string): string[] {
+    const foundTags: string[] = [];
+
+    for (const pattern of SERVICE_TAG_PATTERNS_IN_TITLE) {
+        const matches = title.match(pattern);
+        if (matches) {
+            foundTags.push(...matches);
+        }
+    }
+
+    // Translate all found tags using the hybrid lookup system
+    return translateTags(foundTags);
+}
+
 function mapRawToItem(raw: RawProduct, index: number): ProcurementItem {
     const cny = parsePriceCny(raw.offer_price);
     const hasVisionMismatch =
@@ -174,15 +202,18 @@ function mapRawToItem(raw: RawProduct, index: number): ProcurementItem {
         raw._visualConfidence !== null &&
         raw._visualConfidence < 50 &&
         raw._confidence >= 70;
+    const isBlacklisted = raw._blacklisted ?? false;
 
     return {
         id: String(index + 1),
         title: raw.offer_subject,
         chineseTitle: raw.offer_subject,
         price: cnyToGbp(cny),
-        isFlagged: hasVisionMismatch || raw._confidence < 50,
+        isFlagged: hasVisionMismatch || raw._confidence < 50 || isBlacklisted,
         systemNote: hasVisionMismatch
             ? `Vision mismatch detected. Image confidence: ${raw._visualConfidence}%. ${raw._visionReason ?? ''}`
+            : isBlacklisted
+            ? `Blacklisted: contains "${raw._blacklistReason}" - likely irrelevant result`
             : undefined,
         confidence: mapConfidence(raw._confidence, hasVisionMismatch),
         visionVerified: raw._visualConfidence !== undefined && raw._visualConfidence !== null && raw._visualConfidence >= 70,
@@ -195,7 +226,11 @@ function mapRawToItem(raw: RawProduct, index: number): ProcurementItem {
         city: raw.city,
         searchQuery: raw._search_query,
         specTags: extractSpecTags(raw.offer_subject),
+        serviceTags: extractAndTranslateServiceTags(raw.offer_subject),
         visionConfidence: raw._visualConfidence ?? undefined,
+        blacklisted: isBlacklisted,
+        blacklistReason: raw._blacklistReason,
+        _en: (raw as any)._en,  // Preserve English translation for language toggle
     };
 }
 
@@ -381,14 +416,14 @@ function renderDashboard(): void {
             ${item.detailUrl ? `
                 <a href="${item.detailUrl}" target="_blank" rel="noopener" class="block group">
                     <h2 class="text-[14px] font-bold leading-tight mb-0.5 text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 uppercase tracking-tight">${
-                        currentLanguage === 'en' && (item as any)._en?.offer_subject
-                            ? (item as any)._en.offer_subject
+                        currentLanguage === 'en' && item._en?.offer_subject
+                            ? item._en.offer_subject
                             : item.title
                     }</h2>
                 </a>
             ` : `<h2 class="text-[14px] font-bold leading-tight mb-0.5 text-slate-900 line-clamp-2 uppercase tracking-tight">${
-                currentLanguage === 'en' && (item as any)._en?.offer_subject
-                    ? (item as any)._en.offer_subject
+                currentLanguage === 'en' && item._en?.offer_subject
+                    ? item._en.offer_subject
                     : item.title
             }</h2>`}
 
@@ -485,6 +520,7 @@ langToggle?.addEventListener('click', () => {
     if (langIndicator) {
         langIndicator.textContent = currentLanguage === 'cn' ? 'CN' : 'EN';
     }
+    console.log(`🌐 Language toggled to: ${currentLanguage}`);
     renderDashboard();
 });
 
@@ -548,6 +584,91 @@ async function refreshData(): Promise<void> {
     renderDashboard();
     console.log('✅ Dashboard refreshed!');
 }
+
+// ─── API Search Integration ────────────────────────────────────────────────────
+const runSearchBtn = document.getElementById('runSearchBtn') as HTMLButtonElement;
+const searchIcon = document.getElementById('searchIcon') as Element;
+const searchSpinner = document.getElementById('searchSpinner') as Element;
+const searchBtnText = document.getElementById('searchBtnText') as HTMLElement;
+const loaderOverlay = document.getElementById('loader-overlay') as HTMLDivElement;
+const mainLoadingMsg = document.getElementById('main-loading-msg') as HTMLElement;
+
+function setLoadingState(isLoading: boolean): void {
+    if (isLoading) {
+        runSearchBtn.disabled = true;
+        searchIcon.classList.add('hidden');
+        searchSpinner.classList.remove('hidden');
+        searchBtnText.textContent = 'Searching...';
+        loaderOverlay.style.display = 'flex';
+        mainLoadingMsg.textContent = 'Running pipeline...';
+    } else {
+        runSearchBtn.disabled = false;
+        searchIcon.classList.remove('hidden');
+        searchSpinner.classList.add('hidden');
+        searchBtnText.textContent = 'Search 1688';
+        loaderOverlay.style.display = 'none';
+    }
+}
+
+async function runApiSearch(query: string): Promise<void> {
+    if (!query.trim()) {
+        alert('Please enter a search term');
+        return;
+    }
+
+    setLoadingState(true);
+    console.log(`🔍 Starting API search for: "${query}"`);
+
+    try {
+        const response = await fetch('/api/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                query: query.trim(),
+                enableVision: true
+            }),
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || 'Search failed');
+        }
+
+        const result = await response.json();
+        console.log(`✅ Search complete: ${result.results?.length || 0} results`);
+
+        // Refresh the dashboard with new data
+        await refreshData();
+
+        // Update the search input to show the query
+        if (searchInput) {
+            searchInput.value = '';
+            currentSearch = '';
+        }
+
+    } catch (error) {
+        console.error('❌ Search failed:', error);
+        alert(`Search failed: ${(error as Error).message}`);
+    } finally {
+        setLoadingState(false);
+    }
+}
+
+// Add click handler for search button
+runSearchBtn?.addEventListener('click', () => {
+    const query = searchInput?.value || '';
+    runApiSearch(query);
+});
+
+// Add Enter key handler for search input
+searchInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        const query = searchInput.value;
+        runApiSearch(query);
+    }
+});
 
 // Expose refresh function globally for console access
 (window as any).refreshData = refreshData;

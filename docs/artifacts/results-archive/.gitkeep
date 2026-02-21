@@ -1,0 +1,3 @@
+# Archive directory for timestamped pipeline results
+# Each run is saved with a timestamp: run_YYYY-MM-DD_HH-MM-SS.json
+# Never deleted or overwritten - complete history preserved.

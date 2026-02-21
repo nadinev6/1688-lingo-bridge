@@ -466,12 +466,49 @@ async function demoPhase4(customQuery = null) {
         });
     }
 
-    // Step 6: Save results to file (with timestamped archiving)
+    // Step 6: Translate product titles to English (for frontend toggle)
+    console.log("\n📍 Step 5: English Translation (for frontend toggle)");
+    const translationStart = Date.now();
+
+    const resultsWithEnglish = await Promise.all(
+        visionResult.results.map(async (product, index) => {
+            if (!product.offer_subject) {
+                return product;
+            }
+
+            try {
+                const translatedTitle = await lingo.localizeText(product.offer_subject, {
+                    sourceLocale: "zh-CN",
+                    targetLocale: "en-GB",
+                });
+
+                if ((index + 1) % 10 === 0 || index === 0) {
+                    console.log(`   ✓ Translated ${index + 1}/${visionResult.results.length} products`);
+                }
+
+                return {
+                    ...product,
+                    _en: {
+                        offer_subject: translatedTitle
+                    }
+                };
+            } catch (error) {
+                console.warn(`   ⚠️ Failed to translate product ${index + 1}: ${error.message}`);
+                return product;
+            }
+        })
+    );
+
+    const translationLatency = Date.now() - translationStart;
+    const translatedCount = resultsWithEnglish.filter(p => p._en).length;
+    console.log(`   ✅ Translated ${translatedCount}/${visionResult.results.length} products in ${translationLatency}ms`);
+
+    // Step 7: Save results to file (with timestamped archiving)
     const outputData = {
         pipeline_summary: {
             original_query: intent.query,
             chinese_query: bundle.primary,
-            total_results: visionResult.results.length,
+            total_results: resultsWithEnglish.length,
             average_confidence: validationResult.metadata.averageConfidence,
             high_confidence_count: validationResult.metadata.highConfidenceCount,
             low_confidence_count: validationResult.metadata.lowConfidenceCount,
@@ -479,13 +516,14 @@ async function demoPhase4(customQuery = null) {
             filtered_by_blacklist: scrapeResult.metadata.filteredByBlacklist,
             vision_checks: visionResult.metadata?.visionChecks || 0,
             vision_mismatches: visionResult.metadata?.mismatches || 0,
-            total_latency_ms: pipelineLatency
+            total_latency_ms: pipelineLatency,
+            english_translations: translatedCount
         },
         search_bundle: bundle,
-        results: visionResult.results,
+        results: resultsWithEnglish,  // Use translated results
         metadata: {
             generated_at: new Date().toISOString(),
-            pipeline_version: "4.0.0"
+            pipeline_version: "4.1.0"  // Bumped version for English translation feature
         }
     };
 
@@ -576,14 +614,51 @@ async function demoPhase4Append(customQuery = null) {
     console.log("\n📍 Step 3: Vision Validation (GPT-4V)");
     const visionResult = await validateWithVision(validationResult.results, intent);
 
+    // English translation for new results
+    console.log("\n📍 Step 3b: English Translation (for frontend toggle)");
+    const translationStart = Date.now();
+
+    const resultsWithEnglish = await Promise.all(
+        visionResult.results.map(async (product, index) => {
+            if (!product.offer_subject) {
+                return product;
+            }
+
+            try {
+                const translatedTitle = await lingo.localizeText(product.offer_subject, {
+                    sourceLocale: "zh-CN",
+                    targetLocale: "en-GB",
+                });
+
+                if ((index + 1) % 10 === 0 || index === 0) {
+                    console.log(`   ✓ Translated ${index + 1}/${visionResult.results.length} products`);
+                }
+
+                return {
+                    ...product,
+                    _en: {
+                        offer_subject: translatedTitle
+                    }
+                };
+            } catch (error) {
+                console.warn(`   ⚠️ Failed to translate product ${index + 1}: ${error.message}`);
+                return product;
+            }
+        })
+    );
+
+    const translationLatency = Date.now() - translationStart;
+    const translatedCount = resultsWithEnglish.filter(p => p._en).length;
+    console.log(`   ✅ Translated ${translatedCount}/${visionResult.results.length} products in ${translationLatency}ms`);
+
     const pipelineLatency = Date.now() - pipelineStart;
 
-    // Step 3: Merge new results with existing (deduplicated)
+    // Step 4: Merge new results with existing (deduplicated)
     console.log("\n📍 Step 4: Merging Results");
     let newCount = 0;
     let dupeCount = 0;
 
-    visionResult.results.forEach(product => {
+    resultsWithEnglish.forEach(product => {
         const url = product.offer_detail_url || product.url;
         if (url && !existingUrls.has(url)) {
             existingData.results.push(product);
@@ -624,6 +699,7 @@ async function demoPhase4Append(customQuery = null) {
             vision_checks: visionResult.metadata?.visionChecks || 0,
             vision_mismatches: visionResult.metadata?.mismatches || 0,
             total_latency_ms: pipelineLatency,
+            english_translations: translatedCount,
             append_mode: true,
             new_results_added: newCount
         },
@@ -631,7 +707,7 @@ async function demoPhase4Append(customQuery = null) {
         results: existingData.results,
         metadata: {
             generated_at: new Date().toISOString(),
-            pipeline_version: "4.0.0-append"
+            pipeline_version: "4.1.0-append"
         }
     };
 

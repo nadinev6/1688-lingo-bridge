@@ -1,6 +1,6 @@
 import Papa from 'papaparse';
-import type { ProcurementItem, PipelineData, ConfidenceFilter, SortMode, RawProduct } from './types';
-import { translateTag, translateTags } from './data/translations';
+import type { ProcurementItem, PipelineData, ConfidenceFilter, SortMode, RawProduct, SearchBundle } from './types';
+import { translateTags, translateBundleTag, translateStaticText } from './data/translations';
 
 // Dynamic data loading - fetch at runtime instead of static import
 let data: PipelineData = { pipeline_summary: {} as any, search_bundle: {} as any, results: [], metadata: {} as any };
@@ -31,11 +31,23 @@ async function loadPipelineData(): Promise<void> {
         let totalResults = 0;
         let totalHighConfidence = 0;
         let totalLatency = 0;
+        const mergedBundles: Record<string, SearchBundle> = {};
 
         for (const pipeline of pipelineArray) {
+            // Merge results
             if (pipeline.results?.length) {
                 mergedResults = mergedResults.concat(pipeline.results);
             }
+
+            // Merge search bundles
+            if (pipeline.search_bundles) {
+                Object.assign(mergedBundles, pipeline.search_bundles);
+            }
+            if (pipeline.search_bundle) {
+                const q = pipeline.search_bundle.original_query || pipeline.search_bundle.primary;
+                if (q) mergedBundles[q] = pipeline.search_bundle;
+            }
+
             if (pipeline.search_bundle) {
                 if (pipeline.search_bundle.primary) allPrimaries.push(pipeline.search_bundle.primary);
                 if (pipeline.search_bundle.original_query) allOriginalQueries.push(pipeline.search_bundle.original_query);
@@ -82,6 +94,7 @@ async function loadPipelineData(): Promise<void> {
         data = {
             pipeline_summary: mergedSummary,
             search_bundle: mergedBundle,
+            search_bundles: mergedBundles,
             results: mergedResults,
             metadata: mergedMetadata
         } as PipelineData;
@@ -123,6 +136,8 @@ let currentFilter: ConfidenceFilter = 'all';
 let currentSort: SortMode = 'confidence';
 let currentSearch = '';
 let currentLanguage: 'cn' | 'en' = 'cn';
+let currentPage = 1;
+const itemsPerPage = 10;
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function parsePriceCny(priceStr: string): number {
@@ -130,8 +145,8 @@ function parsePriceCny(priceStr: string): number {
     return match ? parseFloat(match[0]) : 0;
 }
 
-function cnyToGbp(cny: number): number {
-    return parseFloat((cny * 0.11).toFixed(2));
+function cnyToUsd(cny: number): number {
+    return parseFloat((cny * 0.14).toFixed(2));
 }
 
 function mapFactoryLevel(level: string): { label: string; cssClass: string } {
@@ -208,17 +223,17 @@ function mapRawToItem(raw: RawProduct, index: number): ProcurementItem {
         id: String(index + 1),
         title: raw.offer_subject,
         chineseTitle: raw.offer_subject,
-        price: cnyToGbp(cny),
+        price: cnyToUsd(cny),
         isFlagged: hasVisionMismatch || raw._confidence < 50 || isBlacklisted,
         systemNote: hasVisionMismatch
             ? `Vision mismatch detected. Image confidence: ${raw._visualConfidence}%. ${raw._visionReason ?? ''}`
             : isBlacklisted
-            ? `Blacklisted: contains "${raw._blacklistReason}" - likely irrelevant result`
-            : undefined,
+                ? `Blacklisted: contains "${raw._blacklistReason}" - likely irrelevant result`
+                : undefined,
         confidence: mapConfidence(raw._confidence, hasVisionMismatch),
         visionVerified: raw._visualConfidence !== undefined && raw._visualConfidence !== null && raw._visualConfidence >= 70,
         specStatus: `${raw._confidence}% CONF`,
-        imageUrl: raw.offer_pic_url,
+        imageUrl: raw.image_url || raw.offer_pic_url,
         detailUrl: raw.offer_detail_url,
         companyName: raw.company_name,
         factoryLevel: raw.factory_level,
@@ -252,16 +267,25 @@ function deduplicateItems(items: ProcurementItem[]): ProcurementItem[] {
 function populateSummary(items: ProcurementItem[] = allItems): void {
     const s = data.pipeline_summary;
 
+    // Translate all elements with data-i18n attribute
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = (el as HTMLElement).dataset.i18n || '';
+        if (key) el.textContent = translateStaticText(key, currentLanguage);
+    });
+
     // Show current search term if active, otherwise show pipeline queries
     if (currentSearch) {
-        if (originalQueryEl) originalQueryEl.textContent = currentSearch;
+        if (originalQueryEl) originalQueryEl.textContent = currentLanguage === 'en' ? (translateBundleTag(currentSearch) || currentSearch) : currentSearch;
         if (chineseQueryEl) chineseQueryEl.textContent = `(Searching: ${currentSearch})`;
     } else {
-        if (originalQueryEl) originalQueryEl.textContent = s.original_query;
+        if (originalQueryEl) {
+            const display = currentLanguage === 'en' ? (translateBundleTag(s.original_query) || s.original_query) : s.original_query;
+            originalQueryEl.textContent = display;
+        }
         if (chineseQueryEl) chineseQueryEl.textContent = s.chinese_query;
     }
 
-    if (statLatency) statLatency.textContent = `${s.total_latency_ms}ms`;
+    if (statLatency) statLatency.textContent = `${(s.total_latency_ms / 1000).toFixed(1)}s`;
 
     // Calculate dynamic stats from filtered items
     const total = items.length;
@@ -283,7 +307,27 @@ function populateSummary(items: ProcurementItem[] = allItems): void {
 
 // ─── Populate Synonym Tags ────────────────────────────────────────────────────
 function populateSynonymTags(): void {
-    const bundle = data.search_bundle;
+    // Try to find a bundle matching the current search query or part of it
+    let bundle = data.search_bundle;
+    const searchBundles = data.search_bundles || {};
+
+    if (currentSearch) {
+        const sLower = currentSearch.toLowerCase();
+        // Match by Chinese key OR by English original_query
+        const matchKey = Object.keys(searchBundles).find(k => {
+            const b = searchBundles[k];
+            return k.toLowerCase().includes(sLower) ||
+                sLower.includes(k.toLowerCase()) ||
+                b.original_query?.toLowerCase().includes(sLower) ||
+                sLower.includes(b.original_query?.toLowerCase() || '');
+        });
+        if (matchKey) {
+            bundle = searchBundles[matchKey];
+        }
+    }
+
+    if (!bundle) return;
+
     const tags: { text: string; type: 'primary' | 'synonym' | 'negative'; originalText: string }[] = [
         { text: bundle.primary, type: 'primary', originalText: bundle.primary },
         ...bundle.synonyms.map(s => ({ text: s, type: 'synonym' as const, originalText: s })),
@@ -292,13 +336,15 @@ function populateSynonymTags(): void {
 
     synonymTagsEl.innerHTML = tags.map(tag => {
         const base = 'px-3 py-1 rounded-full text-[11px] font-bold border font-mono cursor-pointer hover:opacity-80 transition-opacity';
+        const displayText = currentLanguage === 'en' ? translateBundleTag(tag.text) : tag.text;
+
         if (tag.type === 'primary') {
-            return `<span class="${base} bg-[#1a1d23] text-white border-[#1a1d23]" title="Primary Chinese query" data-query="${tag.originalText}">${tag.text}</span>`;
+            return `<span class="${base} bg-[#1a1d23] text-white border-[#1a1d23]" title="Primary Chinese query" data-query="${tag.originalText}">${displayText}</span>`;
         }
         if (tag.type === 'synonym') {
-            return `<span class="${base} bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100" title="Synonym expansion - click to search" data-query="${tag.originalText}">${tag.text}</span>`;
+            return `<span class="${base} bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100" title="Synonym expansion - click to search" data-query="${tag.originalText}">${displayText}</span>`;
         }
-        return `<span class="${base} bg-red-50 text-red-600 border-red-200 hover:bg-red-100" title="Negative keyword" data-query="${tag.originalText}">${tag.text}</span>`;
+        return `<span class="${base} bg-red-50 text-red-600 border-red-200 hover:bg-red-100" title="Negative keyword" data-query="${tag.originalText}">${displayText}</span>`;
     }).join('');
 
     // Add event listeners to synonym tags
@@ -358,7 +404,29 @@ function renderDashboard(): void {
     // Update dynamic stats
     populateSummary(filtered);
 
-    cardGrid.innerHTML = filtered.map(item => {
+    // Calculate Pagination
+    const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
+    if (currentPage > totalPages) currentPage = totalPages;
+
+    const pageIndicator = document.getElementById('pageIndicator');
+    const prevPageBtn = document.getElementById('prevPageBtn') as HTMLButtonElement | null;
+    const nextPageBtn = document.getElementById('nextPageBtn') as HTMLButtonElement | null;
+    const paginationControls = document.getElementById('paginationControls');
+
+    if (paginationControls) {
+        paginationControls.classList.toggle('hidden', filtered.length <= itemsPerPage);
+    }
+    if (pageIndicator) {
+        pageIndicator.textContent = `Page ${currentPage} of ${totalPages}`;
+    }
+    if (prevPageBtn && nextPageBtn) {
+        prevPageBtn.disabled = currentPage === 1;
+        nextPageBtn.disabled = currentPage === totalPages;
+    }
+
+    const paginatedItems = filtered.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+    cardGrid.innerHTML = paginatedItems.map(item => {
         const factory = item.factoryLevel ? mapFactoryLevel(item.factoryLevel) : null;
         const confClass = confidenceBadgeClass(item.confidence);
         const location = [item.city, item.province].filter(Boolean).join(', ');
@@ -415,16 +483,14 @@ function renderDashboard(): void {
 
             ${item.detailUrl ? `
                 <a href="${item.detailUrl}" target="_blank" rel="noopener" class="block group">
-                    <h2 class="text-[14px] font-bold leading-tight mb-0.5 text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2 uppercase tracking-tight">${
-                        currentLanguage === 'en' && item._en?.offer_subject
-                            ? item._en.offer_subject
-                            : item.title
-                    }</h2>
-                </a>
-            ` : `<h2 class="text-[14px] font-bold leading-tight mb-0.5 text-slate-900 line-clamp-2 uppercase tracking-tight">${
-                currentLanguage === 'en' && item._en?.offer_subject
+                    <h2 class="text-[14px] font-bold leading-tight mb-0.5 text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-3 uppercase tracking-tight">${currentLanguage === 'en' && item._en?.offer_subject
                     ? item._en.offer_subject
                     : item.title
+                }</h2>
+                </a>
+            ` : `<h2 class="text-[14px] font-bold leading-tight mb-0.5 text-slate-900 line-clamp-3 uppercase tracking-tight">${currentLanguage === 'en' && item._en?.offer_subject
+                ? item._en.offer_subject
+                : item.title
             }</h2>`}
 
             <p class="text-[10px] font-medium text-slate-400 mb-3 uppercase tracking-wider">${item.chineseTitle}</p>
@@ -433,14 +499,17 @@ function renderDashboard(): void {
 
             <div class="mt-auto pt-3 border-t border-slate-100 flex justify-between items-end">
                 <div>
-                    <span class="text-xl font-black text-slate-900">£${item.price.toFixed(2)}</span>
-                    <span class="text-[10px] text-slate-400 ml-1">GBP est.</span>
+                    <span class="text-xl font-black text-slate-900">$${item.price.toFixed(2)}</span>
+                    <span class="text-[10px] text-slate-400 ml-1">USD est.</span>
                 </div>
                 <span class="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest">${item.specStatus}</span>
             </div>
         </div>
         `;
     }).join('');
+
+    // Update the Search Bundle UI (synonyms, technical terms) for the active query
+    populateSynonymTags();
 }
 
 // ─── Export CSV ───────────────────────────────────────────────────────────────
@@ -454,7 +523,7 @@ function exportCSV(): void {
         .map(item => ({
             'English Title': item.title,
             'Chinese Title': item.chineseTitle,
-            'Price (GBP est.)': item.price.toFixed(2),
+            'Price (USD est.)': item.price.toFixed(2),
             'Confidence': item.confidence,
             'Spec Status': item.specStatus,
             'Company': item.companyName ?? '',
@@ -479,6 +548,7 @@ function exportCSV(): void {
 searchInput?.addEventListener('input', (e: Event) => {
     const value = (e.target as HTMLInputElement).value;
     currentSearch = value;
+    currentPage = 1;
     clearBtn.classList.toggle('hidden', value.length === 0);
     renderDashboard();
 });
@@ -486,6 +556,7 @@ searchInput?.addEventListener('input', (e: Event) => {
 clearBtn?.addEventListener('click', () => {
     searchInput.value = '';
     currentSearch = '';
+    currentPage = 1;
     clearBtn.classList.add('hidden');
     renderDashboard();
     searchInput.focus();
@@ -496,6 +567,7 @@ document.querySelectorAll('[data-filter]').forEach(btn => {
         currentFilter = (btn as HTMLElement).dataset.filter as ConfidenceFilter;
         document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        currentPage = 1;
         renderDashboard();
     });
 });
@@ -505,6 +577,7 @@ document.querySelectorAll('[data-sort]').forEach(btn => {
         currentSort = (btn as HTMLElement).dataset.sort as SortMode;
         document.querySelectorAll('[data-sort]').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        currentPage = 1;
         renderDashboard();
     });
 });
@@ -512,15 +585,16 @@ document.querySelectorAll('[data-sort]').forEach(btn => {
 exportBtn?.addEventListener('click', exportCSV);
 
 // ─── Language Toggle ─────────────────────────────────────────────────────────
-const langToggle = document.getElementById('langToggle') as HTMLButtonElement;
-const langIndicator = document.querySelector('.lang-indicator') as HTMLElement;
+const langToggleInput = document.getElementById('dashboard-lang-toggle') as HTMLInputElement;
 
-langToggle?.addEventListener('click', () => {
-    currentLanguage = currentLanguage === 'cn' ? 'en' : 'cn';
-    if (langIndicator) {
-        langIndicator.textContent = currentLanguage === 'cn' ? 'CN' : 'EN';
-    }
+langToggleInput?.addEventListener('change', (e) => {
+    // Checkbox checked = ZH (CN), unchecked = EN
+    currentLanguage = (e.target as HTMLInputElement).checked ? 'cn' : 'en';
+
     console.log(`🌐 Language toggled to: ${currentLanguage}`);
+    populateSuggestions();
+    populateSynonymTags();
+    populateSummary();
     renderDashboard();
 });
 
@@ -529,20 +603,35 @@ function populateSuggestions(): void {
     const suggestionsEl = document.getElementById('searchSuggestions');
     if (!suggestionsEl) return;
 
-    // Count title frequencies
-    const counts: Record<string, number> = {};
+    // Count queries frequencies
+    const queryCounts: Record<string, number> = {};
     allItems.forEach(item => {
-        const title = item.title;
-        counts[title] = (counts[title] || 0) + 1;
+        const sq = item.searchQuery || data.pipeline_summary?.chinese_query || 'Unknown';
+        if (!queryCounts[sq]) {
+            queryCounts[sq] = 0;
+        }
+        queryCounts[sq] += 1;
     });
 
     // Sort by frequency and take top 4 unique
-    const uniqueTitles = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
-    const top4 = uniqueTitles.slice(0, 4);
+    const uniqueQueries = Object.keys(queryCounts).sort((a, b) => queryCounts[b] - queryCounts[a]);
+    const top4 = uniqueQueries.slice(0, 4);
 
-    suggestionsEl.innerHTML = top4.map(title =>
-        `<span class="suggestion-tag cursor-pointer bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 px-3 py-1 rounded-full text-[11px] font-bold border border-slate-200 transition-colors" data-query="${title}">${title}</span>`
-    ).join('');
+    suggestionsEl.innerHTML = top4.map(query => {
+        let displayTitle = query;
+
+        // Try to find the English name from bundles first
+        const bundle = data.search_bundles?.[query];
+        if (currentLanguage === 'en') {
+            if (bundle?.original_query) {
+                displayTitle = bundle.original_query;
+            } else {
+                displayTitle = translateBundleTag(query);
+            }
+        }
+
+        return `<span class="suggestion-tag cursor-pointer bg-slate-100 hover:bg-indigo-50 hover:text-indigo-600 px-3 py-1 rounded-full text-[11px] font-bold border border-slate-200 transition-colors truncate max-w-[200px]" data-query="${query}" title="${displayTitle}">${displayTitle}</span>`;
+    }).join('');
 
     // Add listeners to new elements
     suggestionsEl.querySelectorAll('.suggestion-tag').forEach(tag => {
@@ -551,6 +640,7 @@ function populateSuggestions(): void {
             if (searchInput) {
                 searchInput.value = query;
                 currentSearch = query;
+                currentPage = 1;
                 clearBtn?.classList.remove('hidden');
                 renderDashboard();
             }
@@ -598,14 +688,14 @@ function setLoadingState(isLoading: boolean): void {
         runSearchBtn.disabled = true;
         searchIcon.classList.add('hidden');
         searchSpinner.classList.remove('hidden');
-        searchBtnText.textContent = 'Searching...';
+        if (searchBtnText) searchBtnText.textContent = 'Searching...';
         loaderOverlay.style.display = 'flex';
         mainLoadingMsg.textContent = 'Running pipeline...';
     } else {
         runSearchBtn.disabled = false;
         searchIcon.classList.remove('hidden');
         searchSpinner.classList.add('hidden');
-        searchBtnText.textContent = 'Search 1688';
+        if (searchBtnText) searchBtnText.textContent = 'Search 1688';
         loaderOverlay.style.display = 'none';
     }
 }
@@ -650,7 +740,7 @@ async function runApiSearch(query: string): Promise<void> {
 
     } catch (error) {
         console.error('❌ Search failed:', error);
-        alert(`Search failed: ${(error as Error).message}`);
+        alert(`Search failed: ${(error as Error).message} `);
     } finally {
         setLoadingState(false);
     }
@@ -668,6 +758,20 @@ searchInput?.addEventListener('keydown', (e) => {
         const query = searchInput.value;
         runApiSearch(query);
     }
+});
+
+// Pagination event handlers
+document.getElementById('prevPageBtn')?.addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        renderDashboard();
+        cardGrid.scrollIntoView({ behavior: 'smooth' });
+    }
+});
+document.getElementById('nextPageBtn')?.addEventListener('click', () => {
+    currentPage++;
+    renderDashboard();
+    cardGrid.scrollIntoView({ behavior: 'smooth' });
 });
 
 // Expose refresh function globally for console access

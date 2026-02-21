@@ -25,8 +25,8 @@ async function runPipeline(query, options = {}) {
         context: query.includes("industrial")
             ? "heavy industry, manufacturing, power cables, electrical infrastructure"
             : query.includes("mill")
-            ? "metalworking, CNC machining, industrial cutting tools, precision engineering"
-            : "consumer electronics, camping gear, high-capacity batteries",
+                ? "metalworking, CNC machining, industrial cutting tools, precision engineering"
+                : "consumer electronics, camping gear, high-capacity batteries",
         market: "Export B2B"
     };
 
@@ -39,7 +39,8 @@ async function runPipeline(query, options = {}) {
     let validationResult = await validateResults(scrapeResult.results, {
         ...intent,
         chinese_query: bundle.primary,
-        negative_keywords: bundle.negative_keywords
+        negative_keywords: bundle.negative_keywords,
+        scoring_signals: bundle.scoring_signals
     });
 
     // Confidence-based pivot if needed
@@ -51,7 +52,8 @@ async function runPipeline(query, options = {}) {
         const uniqueResults = dedupeByUrl(allResults);
         validationResult = await validateResults(uniqueResults, {
             ...intent,
-            negative_keywords: bundle.negative_keywords
+            negative_keywords: bundle.negative_keywords,
+            scoring_signals: bundle.scoring_signals
         });
     }
 

@@ -353,7 +353,7 @@ function buildVisionPrompt(query, batch) {
             type: "text",
             text: `BUYER INTENT: "${query}"
 
-You are validating product images from 1688.com. The buyer is a UK B2B wholesaler who cannot afford to receive wrong items.
+You are validating product images from 1688.com. The buyer is an International B2B wholesaler who cannot afford to receive wrong items.
 
 PRODUCTS TO VALIDATE:
 ${productDescriptions}

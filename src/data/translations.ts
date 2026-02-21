@@ -302,3 +302,108 @@ export function clearUnknownTagsLog(): void {
 export function getUnknownTags(): string[] {
   return Array.from(unknownTagsLogged);
 }
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SEARCH BUNDLE TAGS - Translations for Lingo.dev search bundle synonyms
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export const BUNDLE_TAG_MAP: Record<string, string> = {
+  // Primary / Equivalents
+  "户外电源": "Portable Power Station",
+  "储能电源": "Energy Storage Power",
+  "氮化镓": "Gallium Nitride (GaN)",
+  "桑蚕丝": "Mulberry Silk",
+
+  // Synonyms
+  "便携式储能": "Portable Storage",
+  "露营电源": "Camping Power",
+  "移动电源": "Mobile Power",
+  "蓄电": "Storage Battery",
+  "备用电源": "Backup Power",
+  "GaN充电器": "GaN Charger",
+  "GaN": "GaN",
+  "氮化镓充电器": "GaN Charger",
+  "真丝": "Real Silk",
+  "丝绸": "Silk",
+  "蚕丝": "Silk",
+
+  // Negatives
+  "模具": "Molds",
+  "餐垫": "Placemats",
+  "硅胶": "Silicone",
+  "烘焙": "Baking",
+  "厨房": "Kitchen",
+  "蛋糕": "Cake",
+  "餐具": "Tableware",
+  "电子": "Electronics",
+  "电池": "Battery",
+  "充电": "Charging",
+  "电源": "Power Supply",
+  "储能": "Energy Storage",
+  "服装": "Clothing",
+  "纺织": "Textile",
+  "硬质合金": "Tungsten Carbide",
+  "立铣刀": "End Mill",
+  "钨钢": "Tungsten Steel",
+  "数控": "CNC",
+  "配件": "Accessories",
+  "玩具": "Toys"
+};
+
+// ─── Static UI Labels ───────────────────────────────────────────────────────────
+export const STATIC_UI_MAP: Record<string, Record<string, string>> = {
+  "Procurement Results": {
+    "cn": "采购搜索结果",
+    "en": "Procurement Results"
+  },
+  "Lingo.dev Search Bundle": {
+    "cn": "Lingo.dev 搜索捆绑包",
+    "en": "Lingo.dev Search Bundle"
+  },
+  "Total Results": {
+    "cn": "总计结果",
+    "en": "Total Results"
+  },
+  "Avg Confidence": {
+    "cn": "平均置信度",
+    "en": "Avg Confidence"
+  },
+  "High Confidence": {
+    "cn": "高置信度",
+    "en": "High Confidence"
+  },
+  "Pipeline Latency": {
+    "cn": "管道延迟",
+    "en": "Pipeline Latency"
+  },
+  "Query:": {
+    "cn": "搜索查询:",
+    "en": "Query:"
+  },
+  "Suggestions:": {
+    "cn": "建议:",
+    "en": "Suggestions:"
+  }
+};
+
+/**
+ * Translate static UI text
+ */
+export function translateStaticText(text: string, lang: 'cn' | 'en'): string {
+  const entry = STATIC_UI_MAP[text];
+  if (!entry) return text;
+  return entry[lang] || text;
+}
+
+
+/**
+ * Translate a search bundle tag (primary, synonym, or negative keyword)
+ */
+export function translateBundleTag(tag: string): string {
+  if (!tag) return tag;
+  const isNegative = tag.startsWith('-');
+  const cleanTag = isNegative ? tag.substring(1) : tag;
+
+  const translated = BUNDLE_TAG_MAP[cleanTag] || cleanTag;
+  return isNegative ? `-${translated}` : translated;
+}

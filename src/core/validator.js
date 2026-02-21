@@ -1,6 +1,9 @@
 /**
- * Validator - Confidence Scoring with Fuzzy Matching
+ * Validator - Signal-Based Confidence Scoring
  * Phase 3 of 1688 Lingo Bridge
+ *
+ * Scores products using domain-specific signals:
+ * category keywords, wattage, capacity, price, supplier badges
  *
  * @module lib/validator
  * @see plans/phase3-validation-layer-plan.md
@@ -98,65 +101,153 @@ export async function validateResults(results, originalIntent) {
 }
 
 /**
- * Calculate confidence score for a single product
+ * Calculate confidence score for a single product using signal-based scoring.
+ * Each signal contributes points based on domain-specific indicators.
  *
  * @param {Object} product - Product to score
  * @param {Object} intent - Original intent
- * @param {number} medianPrice - Median price of all results
+ * @param {number} medianPrice - Median price of all results (unused, kept for API compat)
  * @returns {number} Confidence score 0-100
  */
 function calculateConfidence(product, intent, medianPrice) {
+  const signals = intent.scoring_signals;
   let score = 0;
+  const title = (product.offer_subject || product.title || '').toLowerCase();
 
-  // 1. Category match with DOMAIN INTELLIGENCE (40 points max)
-  // Technical categories get a boost over generic ones
-  const categoryScore = fuzzyCategoryMatch(
-    product.main_category || product.categoryName,
-    intent.context
-  );
-  score += categoryScore * 0.4;
+  // If we have dynamic signals from GPT, use them
+  if (signals) {
+    // 1. Keyword Signals (Dynamic)
+    (signals.positive_keywords || []).forEach(k => {
+      if (fuzzyMatchKeyword(title, k)) score += 20;
+    });
+    (signals.moderate_keywords || []).forEach(k => {
+      if (fuzzyMatchKeyword(title, k)) score += 10;
+    });
+    (signals.weak_keywords || []).forEach(k => {
+      if (fuzzyMatchKeyword(title, k)) score += 3;
+    });
+    (signals.negative_keywords || []).forEach(k => {
+      if (title.includes(k.toLowerCase())) score -= 20;
+    });
 
-  // 2. Title relevance (30 points max)
-  // Use Chinese query if available, otherwise fallback to English terms
-  const titleScore = calculateTitleRelevance(
+    // 1b. Extra bonus for any term from the search bundle (ensures synonyms are covered)
+    const bundleTerms = [intent.chinese_query, ...(intent.synonyms || [])].filter(Boolean);
+    bundleTerms.forEach(term => {
+      if (fuzzyMatchKeyword(title, term)) score += 20;
+    });
+
+    // 2. Spec Patterns (Dynamic)
+    (signals.spec_patterns || []).forEach(pattern => {
+      const match = title.match(new RegExp(pattern.regex, 'i'));
+      if (match) {
+        const val = parseInt(match[1]);
+        if (!isNaN(val)) {
+          if (pattern.high_threshold && val >= pattern.high_threshold) score += 15;
+          else if (pattern.mid_threshold && val >= pattern.mid_threshold) score += 10;
+          else if (!pattern.high_threshold) score += 15; // Simple match if no thresholds
+        } else {
+          score += 10; // Regex matched but no number extracted (simple keyword-spec match)
+        }
+      }
+    });
+
+    // 3. Price Signals (Dynamic & Median-Based Price Guard)
+    const tiers = signals.price_tiers || { high: 500, mid: 200, low: 50 };
+    const price = parseFloat(product.price || 0);
+
+    // Static tiers (GPT-generated or fallback)
+    if (price >= tiers.high) score += 10;
+    else if (price >= tiers.mid) score += 5;
+    else if (price < tiers.low && price > 0) score -= 10;
+
+    // Price Guard (Relative to Median)
+    // described in README: detect <10% of median (accessory bait)
+    if (medianPrice > 0 && price > 0) {
+      if (price < medianPrice * 0.1) {
+        score -= 30; // Heavy penalty for bait
+        product._suspicious = true;
+        product._suspiciousReason = 'Price Guard: Possible accessory bait (<10% median)';
+      } else if (price > medianPrice * 1.5) {
+        // Also flag outliers > 1.5x median as per dashboard guardrail bar
+        product._suspicious = true;
+        product._suspiciousReason = 'Price Guard: Outlier price (>1.5x median)';
+      }
+    }
+
+    // ── SUSPICIOUS TERMS PENALTY ──
+    if (containsSuspiciousTerms(product)) {
+      score -= 30;
+      product._suspicious = true;
+      product._suspiciousReason = (product._suspiciousReason ? product._suspiciousReason + ' + ' : '') + getSuspiciousReason(product);
+    }
+
+    // Normalization
+    // A "perfect" title usually matches: Primary Term (20) + 1 High Spec (15) + 2 Positive Keywords (40) = 75
+    // Plus maybe a bonus from bundleTerms (20) = 95.
+    // Setting max to 90 makes 63 points (70%) achievable for strong matches.
+    const theoreticalMax = signals.theoretical_max || 90;
+    const normalized = Math.round((score / theoreticalMax) * 100);
+    return Math.max(0, Math.min(100, normalized));
+  }
+
+  // FALLBACK: Hardcoded rubric for Outdoor Power Supply (if GPT signals missing)
+  // ═══════════════════════════════════════════════════════════════
+  //  CATEGORY SIGNALS
+  // ═══════════════════════════════════════════════════════════════
+  if (title.includes('储能')) score += 20;
+  if (/220v|110v/i.test(title)) score += 15;
+  if (title.includes('正弦波') || title.includes('逆变')) score += 15;
+  if (title.includes('户外电源') || (title.includes('户外') && title.includes('电源')))
+    score += 10;
+  if (title.includes('露营')) score += 10;
+  if (title.includes('充电宝') || title.includes('移动电源')) score += 3;
+  if (/磁吸|迷你|礼品/.test(title)) score -= 20;
+
+  // ═══════════════════════════════════════════════════════════════
+  //  SPECS SIGNALS
+  // ═══════════════════════════════════════════════════════════════
+  const kwhMatch = title.match(/(\d+)\s*度电/);
+  if (kwhMatch && parseInt(kwhMatch[1]) >= 1) score += 15;
+
+  const whMatch = title.match(/(\d+)\s*[wW]h/i);
+  if (whMatch && parseInt(whMatch[1]) >= 300) score += 10;
+
+  const wattMatch = title.match(/(\d+)\s*[wW](?!h)/i);
+  if (wattMatch) {
+    const watts = parseInt(wattMatch[1]);
+    if (watts >= 1000) score += 15;
+    else if (watts >= 200) score += 10;
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  //  SUPPLIER TRUST & RELEVANCE
+  // ═══════════════════════════════════════════════════════════════
+  const price = parseFloat(product.price || 0);
+  if (price >= 500) score += 10;
+  else if (price >= 200) score += 5;
+  else if (price < 50 && price > 0) score -= 10;
+
+  const badges = product.product_badges || [];
+  if (badges.includes('深度验厂')) score += 5;
+  if (badges.includes('深度验商')) score += 5;
+
+  const coverageScore = calculateTitleRelevance(
     product.offer_subject,
     intent.chinese_query || intent.query
   );
-  score += titleScore * 0.3;
+  score += Math.round((coverageScore / 100) * 15);
 
-  // 3. Base score for passing blacklist (20 points)
-  // Reduced from 30 to make room for Price Guard
-  if (!product._blacklisted) {
-    score += 20;
-  }
-
-  // 4. PRICE GUARD (10 points max + Penalty)
-  // Check if price is within reasonable range of median
-  const price = parseFloat(product.price || 0);
-  if (medianPrice > 0 && price > 0) {
-    if (price < (medianPrice * 0.1)) {
-      // "Accessory Bait" detection: <10% of median price
-      // e.g., ¥50 cable for a ¥5000 power station
-      score -= 30;
-      product._suspicious = true;
-      product._suspiciousReason = 'abnormally_low_price';
-    } else {
-      score += 10; // Price is reasonable
-    }
-  } else {
-    score += 5; // Neutral if price missing
-  }
-
-  // 5. SUSPICIOUS terms penalty (LOWERS score, but keeps data)
-  // Examples: "二手" (used), "配件" (parts only), "维修" (repair)
+  // ── SUSPICIOUS TERMS PENALTY ──
   if (containsSuspiciousTerms(product)) {
     score -= 30;
     product._suspicious = true;
     product._suspiciousReason = getSuspiciousReason(product);
   }
 
-  // Clamp to 0-100
-  return Math.max(0, Math.min(100, Math.round(score)));
+  // Normalize: theoretical max ~130 → 0-100
+  const THEORETICAL_MAX = 130;
+  const normalized = Math.round((score / THEORETICAL_MAX) * 100);
+  return Math.max(0, Math.min(100, normalized));
 }
 
 /**
@@ -181,7 +272,7 @@ function fuzzyCategoryMatch(productCategory, intentContext) {
 
   for (const techCat of technicalCategories) {
     if (categoryMappings[techCat] && contextLower.includes(techCat)) {
-       for (const chineseVariant of categoryMappings[techCat]) {
+      for (const chineseVariant of categoryMappings[techCat]) {
         if (productCategory.includes(chineseVariant)) {
           return 100; // Perfect TECHNICAL match
         }
@@ -325,75 +416,36 @@ function getSuspiciousReason(product) {
   return 'unknown';
 }
 
+
 /**
- * Jaro-Winkler string similarity algorithm
- * Returns similarity score between 0 and 1
+ * Checks if a keyword matches a title, allowing for "fuzzy" phrase matching.
+ * Handles 1688 titles where keywords like "硬质合金铣刀" might be split
+ * into "硬质合金 ... 铣刀".
  *
- * @param {string} s1 - First string
- * @param {string} s2 - Second string
- * @returns {number} Similarity score 0-1
+ * @param {string} title - Product title
+ * @param {string} keyword - Keyword or phrase to match
+ * @returns {boolean} True if match found
  */
-function jaroWinkler(s1, s2) {
-  if (s1 === s2) return 1.0;
+function fuzzyMatchKeyword(title, keyword) {
+  const t = title.toLowerCase();
+  const k = keyword.toLowerCase();
 
-  if (!s1 || !s2) return 0.0;
+  // Direct sequence match
+  if (t.includes(k)) return true;
 
-  const len1 = s1.length;
-  const len2 = s2.length;
+  // Split into CJK characters or Latin tokens
+  const chars = k.length > 3 ? k.split('').filter(c => c.trim()) : [k];
 
-  // Maximum distance for matching characters
-  const matchDistance = Math.floor(Math.max(len1, len2) / 2) - 1;
-
-  // Arrays to track matching characters
-  const s1Matches = new Array(len1).fill(false);
-  const s2Matches = new Array(len2).fill(false);
-
-  let matches = 0;
-  let transpositions = 0;
-
-  // Find matching characters
-  for (let i = 0; i < len1; i++) {
-    const start = Math.max(0, i - matchDistance);
-    const end = Math.min(i + matchDistance + 1, len2);
-
-    for (let j = start; j < end; j++) {
-      if (s2Matches[j] || s1[i] !== s2[j]) continue;
-
-      s1Matches[i] = true;
-      s2Matches[j] = true;
-      matches++;
-      break;
+  // For long technical phrases, ensure at least 70% characters are present
+  if (k.length > 5) {
+    let matches = 0;
+    for (const char of chars) {
+      if (t.includes(char)) matches++;
     }
+    return (matches / chars.length) >= 0.8;
   }
 
-  if (matches === 0) return 0.0;
-
-  // Count transpositions
-  let k = 0;
-  for (let i = 0; i < len1; i++) {
-    if (!s1Matches[i]) continue;
-
-    while (!s2Matches[k]) k++;
-
-    if (s1[i] !== s2[k]) transpositions++;
-    k++;
-  }
-
-  // Jaro similarity
-  const jaro = (
-    matches / len1 +
-    matches / len2 +
-    (matches - transpositions / 2) / matches
-  ) / 3;
-
-  // Jaro-Winkler adjustment (boost for common prefix)
-  let prefix = 0;
-  for (let i = 0; i < Math.min(len1, len2, 4); i++) {
-    if (s1[i] === s2[i]) prefix++;
-    else break;
-  }
-
-  return jaro + prefix * 0.1 * (1 - jaro);
+  return false;
 }
 
 /**

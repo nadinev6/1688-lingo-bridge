@@ -31,7 +31,7 @@ class BridgeLoader {
 
         // Stage 2: Verification
         this.updateStatus(2500, {
-            msg: "Applying UK Guardrails"
+            msg: "Applying International Guardrails"
         });
 
         // Stage 3: Reveal Dashboard

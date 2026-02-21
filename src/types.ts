@@ -64,6 +64,7 @@ export interface RawProduct {
     company_name: string;
     offer_price: string;
     offer_pic_url: string;
+    image_url?: string;
     offer_detail_url: string;
     company_url: string;
     province: string;
@@ -82,6 +83,7 @@ export interface RawProduct {
 export interface PipelineData {
     pipeline_summary: PipelineSummary;
     search_bundle: SearchBundle;
+    search_bundles?: Record<string, SearchBundle>; // NEW: Map of query -> bundle
     results: RawProduct[];
     metadata: {
         generated_at: string;

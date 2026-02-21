@@ -3,7 +3,9 @@
   "version": "1.11",
   "locale": {
     "source": "zh-CN",
-    "targets": ["en"]
+    "targets": [
+      "en"
+    ]
   },
   "provider": {
     "id": "lingo.dev",
@@ -28,29 +30,95 @@
       "超级工厂": "Super factory"
     },
     "dynamic_patterns": [
-      { "pattern": "^回头率(\\d+%?)$", "template": "Repurchase rate: $1" },
-      { "pattern": "^(\\d+)天无理由$", "template": "$1-day no-reason returns" },
-      { "pattern": "^(\\d+)小时发货$", "template": "Ships within $1h" }
+      {
+        "pattern": "^回头率(\\d+%?)$",
+        "template": "Repurchase rate: $1"
+      },
+      {
+        "pattern": "^(\\d+)天无理由$",
+        "template": "$1-day no-reason returns"
+      },
+      {
+        "pattern": "^(\\d+)小时发货$",
+        "template": "Ships within $1h"
+      }
     ]
   },
   "glossary": [
-    { "src": "氮化镓", "tgt": "Gallium Nitride (GaN)" },
-    { "src": "桑蚕丝", "tgt": "Mulberry Silk" },
-    { "src": "户外电源", "tgt": "Portable Power Station" },
-    { "src": "储能电源", "tgt": "Energy Storage Power" },
-    { "src": "起订量", "tgt": "MOQ" },
-    { "src": "包邮", "tgt": "Free Delivery (Equivalent)" }
+    {
+      "src": "氮化镓",
+      "tgt": "Gallium Nitride (GaN)"
+    },
+    {
+      "src": "桑蚕丝",
+      "tgt": "Mulberry Silk"
+    },
+    {
+      "src": "户外电源",
+      "tgt": "Portable Power Station"
+    },
+    {
+      "src": "储能电源",
+      "tgt": "Energy Storage Power"
+    },
+    {
+      "src": "起订量",
+      "tgt": "MOQ"
+    },
+    {
+      "src": "包邮",
+      "tgt": "Free Delivery (Equivalent)"
+    }
   ],
   "negative_keywords": {
-    "electronics": ["模具", "餐垫", "硅胶", "烘焙", "厨房", "蛋糕", "餐具"],
-    "textiles": ["电子", "电池", "充电", "电源", "储能"],
-    "power": ["模具", "餐垫", "硅胶", "烘焙", "厨房", "蛋糕", "餐具", "纺织", "服装"]
+    "electronics": [
+      "塑料外壳",
+      "手机壳",
+      "礼品",
+      "磁吸",
+      "低压",
+      "玩具",
+      "配件"
+    ],
+    "textiles": [
+      "电子",
+      "电池",
+      "充电",
+      "电源",
+      "储能"
+    ],
+    "power": [
+      "充电头",
+      "数据线",
+      "手机壳",
+      "磁吸",
+      "拼装",
+      "礼品",
+      "纺织",
+      "服装"
+    ]
   },
   "synonyms": {
-    "户外电源": ["便携式储能", "露营电源", "移动电源"],
-    "储能电源": ["储能", "蓄电", "备用电源"],
-    "氮化镓": ["GaN充电器", "GaN", "氮化镓充电器"],
-    "桑蚕丝": ["真丝", "丝绸", "蚕丝"]
+    "户外电源": [
+      "便携式储能",
+      "露营电源",
+      "移动电源"
+    ],
+    "储能电源": [
+      "储能",
+      "蓄电",
+      "备用电源"
+    ],
+    "氮化镓": [
+      "GaN充电器",
+      "GaN",
+      "氮化镓充电器"
+    ],
+    "桑蚕丝": [
+      "真丝",
+      "丝绸",
+      "蚕丝"
+    ]
   },
   "category_hints": {
     "consumer electronics": "消费电子",
@@ -60,17 +128,58 @@
     "energy storage": "储能"
   },
   "suspicious_terms": {
-    "electronics": ["二手", "配件", "维修", "拆机", "翻新"],
-    "textiles": ["次品", "尾货", "库存", "瑕疵"],
-    "general": ["样品", "试用"]
+    "electronics": [
+      "二手",
+      "配件",
+      "维修",
+      "拆机",
+      "翻新"
+    ],
+    "textiles": [
+      "次品",
+      "尾货",
+      "库存",
+      "瑕疵"
+    ],
+    "general": [
+      "样品",
+      "试用"
+    ]
   },
   "category_mappings": {
-    "consumer electronics": ["消费电子", "数码", "电子产品", "电子"],
-    "camping gear": ["露营装备", "户外用品", "户外"],
-    "batteries": ["电池", "电源", "储能"],
-    "high-capacity batteries": ["电池", "电源", "储能"],
-    "power": ["电源", "储能", "充电", "电池"],
-    "textiles": ["纺织品", "面料", "家纺", "丝绸"]
+    "consumer electronics": [
+      "消费电子",
+      "数码",
+      "电子产品",
+      "电子"
+    ],
+    "camping gear": [
+      "露营装备",
+      "户外用品",
+      "户外"
+    ],
+    "batteries": [
+      "电池",
+      "电源",
+      "储能"
+    ],
+    "high-capacity batteries": [
+      "电池",
+      "电源",
+      "储能"
+    ],
+    "power": [
+      "电源",
+      "储能",
+      "充电",
+      "电池"
+    ],
+    "textiles": [
+      "纺织品",
+      "面料",
+      "家纺",
+      "丝绸"
+    ]
   },
   "vision_prompts": {
     "default": "Does this product image match the buyer's search intent?",
@@ -81,16 +190,42 @@
   },
   "vision_categories": {
     "portable power station": {
-      "must_have": ["battery", "power outlet", "display", "enclosure"],
-      "must_not_have": ["fabric", "food", "kitchen utensils", "molds"]
+      "must_have": [
+        "battery",
+        "power outlet",
+        "display",
+        "enclosure"
+      ],
+      "must_not_have": [
+        "fabric",
+        "food",
+        "kitchen utensils",
+        "molds"
+      ]
     },
     "gan charger": {
-      "must_have": ["charging port", "plug", "compact design"],
-      "must_not_have": ["fabric", "food", "kitchen utensils"]
+      "must_have": [
+        "charging port",
+        "plug",
+        "compact design"
+      ],
+      "must_not_have": [
+        "fabric",
+        "food",
+        "kitchen utensils"
+      ]
     },
     "silk pillowcase": {
-      "must_have": ["fabric", "pillow shape", "smooth texture"],
-      "must_not_have": ["electronics", "plastic", "metal"]
+      "must_have": [
+        "fabric",
+        "pillow shape",
+        "smooth texture"
+      ],
+      "must_not_have": [
+        "electronics",
+        "plastic",
+        "metal"
+      ]
     }
   }
 }

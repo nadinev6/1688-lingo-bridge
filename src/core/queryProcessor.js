@@ -18,20 +18,23 @@ const reverseGlossary = new Map(
   glossaryData.glossary.map(g => [g.tgt.toLowerCase(), g.src])
 );
 
+// In-memory cache for Lingo.dev translations
+const translationCache = new Map();
+
 /**
  * Transforms English intent into a Chinese search bundle
  *
  * @param {Object} intentObject - The intent object
  * @param {string} intentObject.query - English search query (e.g., "outdoor power supply energy storage")
  * @param {string} [intentObject.context] - Context hints (e.g., "consumer electronics, camping gear")
- * @param {string} [intentObject.market] - Target market (e.g., "UK B2B")
+ * @param {string} [intentObject.market] - Target market (e.g., "International B2B")
  * @returns {Promise<Object>} Chinese search bundle
  *
  * @example
  * const bundle = await generateSearchBundle({
  *   query: "outdoor power supply energy storage",
  *   context: "consumer electronics, camping gear, high-capacity batteries",
- *   market: "UK B2B"
+ *   market: "International B2B"
  * });
  * // Returns:
  * // {
@@ -43,7 +46,7 @@ const reverseGlossary = new Map(
  * // }
  */
 export async function generateSearchBundle(intentObject) {
-  console.log(`🔍 Mapping intent: "${intentObject.query}"...`);
+  console.log(`\n🔍 Mapping intent: "${intentObject.query}"...`);
 
   const { query, context, market } = intentObject;
 
@@ -83,10 +86,17 @@ export async function generateSearchBundle(intentObject) {
     console.log(`  📡 Translating unknown terms: "${textToTranslate}"...`);
 
     try {
-      const translated = await lingo.localizeText(textToTranslate, {
-        sourceLocale: "en-GB",
-        targetLocale: "zh-CN"
-      });
+      let translated;
+      if (translationCache.has(textToTranslate)) {
+        console.log(`  ⚡ Using cached translation for: "${textToTranslate}"`);
+        translated = translationCache.get(textToTranslate);
+      } else {
+        translated = await lingo.localizeText(textToTranslate, {
+          sourceLocale: "en-GB",
+          targetLocale: "zh-CN"
+        });
+        translationCache.set(textToTranslate, translated);
+      }
 
       // Check if translation actually returned Chinese
       const hasChinese = /[\u4e00-\u9fff]/.test(translated);
@@ -129,31 +139,38 @@ export async function generateSearchBundle(intentObject) {
   // 7. Get negative keywords based on context
   const negativeKeywords = getNegativeKeywords(context);
 
-  // 8. Build and return the search bundle
+  // 8. Generate dynamic scoring signals via GPT
+  const scoringSignals = await generateScoringSignals(intentObject, primary);
+
+  // 9. Build and return the search bundle
   const bundle = {
     primary,
     technical,
     synonyms,
     negative_keywords: negativeKeywords,
     original_query: query,
+    scoring_signals: scoringSignals,
     _metadata: {
       knownTerms: knownTerms.length,
       translatedTerms: translatedTerms.length,
       synonymSource: synonyms._source || 'glossary',
+      signalsSource: scoringSignals._source || 'fallback',
       context: context || null,
       market: market || null,
       timestamp: new Date().toISOString()
     }
   };
 
-  // Remove internal tracking property
+  // Remove internal tracking properties
   delete bundle.synonyms._source;
+  delete bundle.scoring_signals._source;
 
   console.log(`✅ Generated search bundle:`);
   console.log(`   Primary: ${bundle.primary}`);
   console.log(`   Technical: ${bundle.technical}`);
   console.log(`   Synonyms: [${bundle.synonyms.join(', ')}]`);
   console.log(`   Negative: [${bundle.negative_keywords.join(', ')}]`);
+  console.log(`   Scoring signals: ${scoringSignals.positive_keywords?.length || 0} positive, ${scoringSignals.negative_keywords?.length || 0} negative keywords`);
 
   return bundle;
 }
@@ -310,6 +327,7 @@ async function getSynonyms(primaryTerm, context = '') {
   const synonymPatterns = {
     // Power/Energy related
     '户外电源': ['便携式储能', '露营电源', '移动电源'],
+    '便携式储能': ['户外电源', '移动电源', '储能电源', '备用电源'],
     '储能': ['蓄电', '储电', '备用电源'],
     '储能电源': ['蓄电', '储电', '备用电源'],
     '便携式电源': ['移动电源', '户外电源', '储能电源'],
@@ -398,4 +416,121 @@ function getNegativeKeywords(context) {
 export async function quickTranslate(englishQuery) {
   const bundle = await generateSearchBundle({ query: englishQuery });
   return bundle.primary;
+}
+
+/**
+ * Generate dynamic scoring signals for a query using GPT.
+ * Every query gets its own relevance model, generated on the fly.
+ *
+ * Falls back to a generic default if OpenAI is unavailable.
+ *
+ * @param {Object} intentObject - Full intent object (must have synonyms)
+ * @param {string} primaryChinese - Primary Chinese term
+ * @returns {Promise<Object>} Scoring signals
+ */
+async function generateScoringSignals(intentObject, primaryChinese) {
+  const { query, context } = intentObject;
+  const HAS_OPENAI_KEY = !!process.env.OPENAI_API_KEY;
+
+  if (!HAS_OPENAI_KEY) {
+    console.log(`   ⚡ Scoring signals: using fallback (no OPENAI_API_KEY)`);
+    const fb = getDefaultSignals(primaryChinese);
+    fb._source = 'fallback';
+    return fb;
+  }
+
+  try {
+    // Dynamic import for OpenAI (ESM)
+    const { default: OpenAI } = await import('openai');
+    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+    const prompt = `You are a 1688.com product relevance expert. Given a buyer's search query, generate scoring signals to rank products by relevance on 1688.com (China's largest B2B marketplace).
+
+Query (English): "${query}"
+Primary Chinese term: "${primaryChinese}"
+Related Synonyms: ${Array.isArray(intentObject?.synonyms) ? intentObject.synonyms.join(', ') : 'None'}
+Context: ${context || 'general'}
+
+Return ONLY valid JSON (no markdown, no explanation) with this exact structure:
+{
+  "positive_keywords": ["term1", "term2"],
+  "moderate_keywords": ["term1", "term2"],
+  "weak_keywords": ["term1", "term2"],
+  "negative_keywords": ["term1", "term2"],
+  "spec_patterns": [
+    { "regex": "\\\\d+[wW](?!h)", "label": "wattage", "high_threshold": 1000, "mid_threshold": 200 },
+    { "regex": "\\\\d+HRC", "label": "hardness" }
+  ],
+  "price_tiers": { "high": 500, "mid": 200, "low": 50 },
+  "theoretical_max": 130
+}
+
+Rules:
+- positive_keywords: 3-5 Chinese terms that STRONGLY indicate the product is what the buyer wants (+20 points each)
+- moderate_keywords: 2-4 Chinese terms that are related but less specific (+10 points each)
+- weak_keywords: 1-3 generic terms that partially match (+3 points each)
+- negative_keywords: 3-5 Chinese terms that indicate the product is WRONG (-20 points each)
+- spec_patterns: 1-3 regex patterns for extracting numerical specs from titles (like wattage, capacity, weight, hardness). Use double-escaped backslashes for JSON.
+- price_tiers: expected ¥CNY price ranges for genuine products in this category
+- theoretical_max: sum of all positive signals (used for normalization to 0-100)
+
+All keywords MUST be in Chinese. Think about what terms a real buyer on 1688.com would use to distinguish genuine products from irrelevant ones.`;
+
+    const response = await Promise.race([
+      openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [
+          { role: 'system', content: 'You are a 1688.com product scoring expert. Return ONLY valid JSON.' },
+          { role: 'user', content: prompt }
+        ],
+        max_tokens: 800,
+        temperature: 0.2
+      }),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('Scoring signals timeout')), 8000))
+    ]);
+
+    const content = response.choices[0]?.message?.content;
+    if (!content) throw new Error('Empty GPT response');
+
+    // Parse JSON (handle markdown code blocks)
+    let jsonStr = content;
+    const jsonMatch = content.match(/```(?:json)?\s*([\s\S]*?)```/);
+    if (jsonMatch) jsonStr = jsonMatch[1];
+
+    const signals = JSON.parse(jsonStr);
+
+    // Validate structure
+    if (!signals.positive_keywords || !Array.isArray(signals.positive_keywords)) {
+      throw new Error('Invalid signals structure');
+    }
+
+    console.log(`   🤖 Scoring signals generated by GPT (${signals.positive_keywords.length} positive, ${signals.negative_keywords?.length || 0} negative)`);
+    signals._source = 'gpt';
+    return signals;
+
+  } catch (error) {
+    console.warn(`   ⚠️ GPT scoring signals failed: ${error.message}, using fallback`);
+    const fb = getDefaultSignals(primaryChinese);
+    fb._source = 'fallback';
+    return fb;
+  }
+}
+
+/**
+ * Default fallback scoring signals when GPT is unavailable.
+ * Uses the primary Chinese term to generate basic signals.
+ *
+ * @param {string} primaryChinese - Primary Chinese term
+ * @returns {Object} Default scoring signals
+ */
+function getDefaultSignals(primaryChinese) {
+  return {
+    positive_keywords: [primaryChinese],
+    moderate_keywords: [],
+    weak_keywords: [],
+    negative_keywords: ['磁吸', '迷你', '礼品', '手机壳'],
+    spec_patterns: [],
+    price_tiers: { high: 500, mid: 200, low: 50 },
+    theoretical_max: 80
+  };
 }

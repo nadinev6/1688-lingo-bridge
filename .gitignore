@@ -116,6 +116,10 @@ plans/
 src/data/localized_products.json
 src/data/enrich-results.json
 
-# Scrape results - DO NOT TRACK (large JSON files)
-# These are generated locally and should never be committed
-docs/artifacts/
+# Scrape results - archive files are too large for Git
+# But keep validated_results.json for demo purposes
+docs/artifacts/results-archive/
+docs/artifacts/*.backup.json
+docs/artifacts/*_backup.json
+# Allow the main demo file
+!docs/artifacts/validated_results.json

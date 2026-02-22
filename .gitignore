@@ -115,6 +115,7 @@ plans/
 # Generated Artifacts
 src/data/localized_products.json
 src/data/enrich-results.json
-docs/artifacts/*.json
-docs/artifacts/*.csv
-docs/results-archive/
+
+# Scrape results - DO NOT TRACK (large JSON files)
+# These are generated locally and should never be committed
+docs/artifacts/

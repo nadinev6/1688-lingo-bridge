@@ -210,44 +210,6 @@ function extractAndTranslateServiceTags(title: string): string[] {
     return translateTags(foundTags);
 }
 
-function mapRawToItem(raw: RawProduct, index: number): ProcurementItem {
-    const cny = parsePriceCny(raw.offer_price);
-    const hasVisionMismatch =
-        raw._visualConfidence !== undefined &&
-        raw._visualConfidence !== null &&
-        raw._visualConfidence < 50 &&
-        raw._confidence >= 70;
-    const isBlacklisted = raw._blacklisted ?? false;
-
-    return {
-        id: String(index + 1),
-        title: raw.offer_subject,
-        chineseTitle: raw.offer_subject,
-        price: cnyToUsd(cny),
-        isFlagged: hasVisionMismatch || raw._confidence < 50 || isBlacklisted,
-        systemNote: hasVisionMismatch
-            ? `Vision mismatch detected. Image confidence: ${raw._visualConfidence}%. ${raw._visionReason ?? ''}`
-            : isBlacklisted
-                ? `Blacklisted: contains "${raw._blacklistReason}" - likely irrelevant result`
-                : undefined,
-        confidence: mapConfidence(raw._confidence, hasVisionMismatch),
-        visionVerified: raw._visualConfidence !== undefined && raw._visualConfidence !== null && raw._visualConfidence >= 70,
-        specStatus: `${raw._confidence}% CONF`,
-        imageUrl: raw.image_url || raw.offer_pic_url,
-        detailUrl: raw.offer_detail_url,
-        companyName: raw.company_name,
-        factoryLevel: raw.factory_level,
-        province: raw.province,
-        city: raw.city,
-        searchQuery: raw._search_query,
-        specTags: extractSpecTags(raw.offer_subject),
-        serviceTags: extractAndTranslateServiceTags(raw.offer_subject),
-        visionConfidence: raw._visualConfidence ?? undefined,
-        blacklisted: isBlacklisted,
-        blacklistReason: raw._blacklistReason,
-        _en: (raw as any)._en,  // Preserve English translation for language toggle
-    };
-}
 
 // ─── Deduplicate by detailUrl ────────────────────────────────────────────────
 function deduplicateItems(items: ProcurementItem[]): ProcurementItem[] {
@@ -258,6 +220,103 @@ function deduplicateItems(items: ProcurementItem[]): ProcurementItem[] {
         seen.add(key);
         return true;
     });
+}
+
+// ─── Create Score Tooltip HTML ───────────────────────────────────────────────
+function createScoreTooltip(item: ProcurementItem): string {
+    const score = parseInt(item.specStatus.match(/\d+/) ? item.specStatus.match(/\d+/)![0] : '0');
+    const visionScore = item.visionConfidence !== undefined && item.visionConfidence !== null
+        ? Math.round(item.visionConfidence)
+        : null;
+
+    const breakdown = item.scoreBreakdown;
+
+    // No real breakdown data — show honest "legacy" tooltip
+    if (!breakdown) {
+        return `
+            <div class="score-tooltip-content">
+                <div class="score-header">
+                    <span class="score-label">Confidence Score</span>
+                    <span class="score-value">${score}%</span>
+                </div>
+                ${visionScore !== null ? `
+                    <div class="vision-row">
+                        <span class="vision-label">Visual Confidence</span>
+                        <span class="vision-value">${visionScore}%</span>
+                    </div>
+                ` : ''}
+                <div class="signals-section">
+                    <div class="signals-title" style="opacity:0.6;">Signal Breakdown</div>
+                    <div class="signal-item" style="opacity:0.5; font-style:italic;">
+                        No detailed breakdown available for this product.<br/>
+                        Re-run the pipeline to generate full signal analysis.
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // Real breakdown exists — show all relevant signal groups
+    const signalGroups: { label: string; type: string; items: string[] }[] = [];
+
+    if (breakdown.positiveKeywords.length > 0) {
+        signalGroups.push({ label: 'Keyword Match', type: 'positive', items: breakdown.positiveKeywords });
+    }
+    if (breakdown.moderateKeywords.length > 0) {
+        signalGroups.push({ label: 'Partial Match', type: 'neutral', items: breakdown.moderateKeywords });
+    }
+    if (breakdown.specMatches.length > 0) {
+        signalGroups.push({ label: 'Spec / Vision', type: 'positive', items: breakdown.specMatches });
+    }
+    if (breakdown.priceSignals.length > 0) {
+        const isPriceConcern = breakdown.priceSignals.some(s => s.includes('concern') || s.includes('anomaly'));
+        signalGroups.push({ label: 'Price', type: isPriceConcern ? 'warning' : 'positive', items: breakdown.priceSignals });
+    }
+    if (breakdown.negativeKeywords.length > 0) {
+        signalGroups.push({ label: 'Mismatch', type: 'negative', items: breakdown.negativeKeywords });
+    }
+    if (breakdown.weakKeywords && breakdown.weakKeywords.length > 0) {
+        signalGroups.push({ label: 'Weak Match', type: 'neutral', items: breakdown.weakKeywords });
+    }
+    if (breakdown.suspiciousFlags.length > 0) {
+        signalGroups.push({ label: 'Flags', type: 'warning', items: breakdown.suspiciousFlags });
+    }
+
+    const iconMap: Record<string, string> = { positive: '+', negative: '−', warning: '⚠️', neutral: '~' };
+    const signalsList = signalGroups.map(g => {
+        const items = g.items.slice(0, 4).join(', ') + (g.items.length > 4 ? ` +${g.items.length - 4} more` : '');
+        return `<div class="signal-item ${g.type}">
+            <span style="opacity:0.6; font-size:9px; min-width:14px; display:inline-block;">${iconMap[g.type]}</span>
+            <strong>${g.label}:</strong>
+            <span style="margin-left:4px;">${items}</span>
+        </div>`;
+    }).join('');
+
+    return `
+        <div class="score-tooltip-content">
+            <div class="score-header">
+                <span class="score-label">Confidence Score</span>
+                <span class="score-value">${score}%</span>
+            </div>
+            ${visionScore !== null ? `
+                <div class="vision-row">
+                    <span class="vision-label">Visual Confidence</span>
+                    <span class="vision-value">${visionScore}%</span>
+                </div>
+            ` : ''}
+            <div class="signals-section">
+                <div class="signals-title">Contributing Signals:</div>
+                ${signalGroups.length > 0
+                    ? signalsList
+                    : '<div class="signal-item" style="opacity:0.5;">Pipeline returned no signal details</div>'}
+            </div>
+            ${breakdown.reason ? `
+                <div class="reason-section">
+                    <div class="reason-text">${breakdown.reason}</div>
+                </div>
+            ` : ''}
+        </div>
+    `;
 }
 
 // ─── All items from pipeline data ────────────────────────────────────────────
@@ -436,8 +495,11 @@ function renderDashboard(): void {
             <div class="img-container relative">
                 <img src="${item.imageUrl}" alt="${item.title}" loading="lazy" onerror="this.src='./src/components/bridge.svg'" />
                 <div class="absolute top-2 right-2 flex gap-1">
-                    <span class="px-2 py-0.5 text-[9px] font-black uppercase rounded-full ${confClass}" style="white-space:nowrap">
+                    <span class="score-tooltip-trigger px-2 py-0.5 text-[9px] font-black uppercase rounded-full ${confClass} cursor-help" style="white-space:nowrap" title="Click for score breakdown">
                         ${item.confidence === 'High' ? 'HIGH CONF' : item.confidence === 'Mismatch' ? 'MISMATCH' : 'LOW CONF'}
+                        <div class="score-tooltip hidden">
+                            ${createScoreTooltip(item)}
+                        </div>
                     </span>
                 </div>
                 ${item.visionVerified ? `
@@ -507,6 +569,99 @@ function renderDashboard(): void {
         </div>
         `;
     }).join('');
+
+    // Helper function to position tooltip at trigger element
+    function positionTooltip(trigger: Element, tooltip: HTMLElement): void {
+        const rect = trigger.getBoundingClientRect();
+
+        // Position tooltip offset from the trigger element
+        // Below and slightly to the right of the badge
+        const top = rect.bottom + 8; // 8px gap below trigger
+        const left = Math.max(16, Math.min(rect.right - 120, window.innerWidth - 300)); // Keep 16px margin from edges
+
+        tooltip.style.top = `${top}px`;
+        tooltip.style.left = `${left}px`;
+    }
+
+    // Add event listener for tooltip interactions with reliable click handling
+    // Using a singleton tooltip element attached to body to prevent z-index issues
+    let activeTooltip: HTMLElement | null = null;
+    let activeTrigger: Element | null = null;
+
+    const tooltipTriggers = cardGrid.querySelectorAll('.score-tooltip-trigger');
+    tooltipTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e: Event) => {
+            e.stopPropagation();
+
+            // Should we close the active tooltip?
+            if (activeTrigger === trigger) {
+                if (activeTooltip) {
+                    activeTooltip.remove();
+                    activeTooltip = null;
+                    activeTrigger = null;
+                }
+                return;
+            }
+
+            // Close existing tooltip if open
+            if (activeTooltip) {
+                activeTooltip.remove();
+                activeTooltip = null;
+            }
+
+            // Create new tooltip
+            const template = trigger.querySelector('.score-tooltip');
+            if (!template) return;
+
+            // Clone content to a new body-level element
+            const tooltip = document.createElement('div');
+            tooltip.className = 'score-tooltip fixed-tooltip';
+            tooltip.innerHTML = template.innerHTML;
+
+            // Style it
+            tooltip.style.display = 'block';
+            tooltip.style.visibility = 'visible';
+            tooltip.style.opacity = '0';
+            tooltip.style.zIndex = '99999';
+            tooltip.style.position = 'fixed';
+
+            document.body.appendChild(tooltip);
+
+            // Position it
+            positionTooltip(trigger, tooltip);
+
+            // Animate in
+            requestAnimationFrame(() => {
+                tooltip.style.opacity = '1';
+                tooltip.style.transform = 'translateY(0)';
+            });
+
+            activeTooltip = tooltip;
+            activeTrigger = trigger;
+        });
+    });
+
+    // Close tooltips when clicking outside
+    document.addEventListener('click', (e: Event) => {
+        const target = e.target as HTMLElement;
+        if (activeTooltip && !target.closest('.score-tooltip') && !target.closest('.score-tooltip-trigger')) {
+            activeTooltip.style.opacity = '0';
+            setTimeout(() => {
+                if (activeTooltip) {
+                    activeTooltip.remove();
+                    activeTooltip = null;
+                    activeTrigger = null;
+                }
+            }, 200);
+        }
+    });
+
+    // Reposition tooltips on window resize
+    window.addEventListener('resize', () => {
+        if (activeTooltip && activeTrigger) {
+            positionTooltip(activeTrigger, activeTooltip);
+        }
+    });
 
     // Update the Search Bundle UI (synonyms, technical terms) for the active query
     populateSynonymTags();

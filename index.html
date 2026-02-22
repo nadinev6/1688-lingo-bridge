@@ -197,14 +197,14 @@
             </header>
 
             <!-- Query headline -->
-            <div class="mb-8">
+            <div class="mb-6">
                 <div class="flex items-center gap-3 mb-2 flex-wrap">
                     <h2 class="text-2xl font-black text-slate-900 tracking-tight uppercase"
                         data-i18n="Procurement Results">Procurement Results</h2>
                     <span id="totalBadge"
                         class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold">Loading...</span>
                 </div>
-                <div class="flex items-center gap-2 flex-wrap">
+                <div class="flex items-center gap-2 flex-wrap mb-3">
                     <span class="text-slate-400 text-sm uppercase text-xs tracking-widest"
                         data-i18n="Query:">Query:</span>
                     <span id="originalQuery"
@@ -216,29 +216,26 @@
                     <span id="chineseQuery"
                         class="text-sm font-semibold text-slate-800 bg-white border border-slate-200 px-3 py-1 font-mono"></span>
                 </div>
-            </div>
-
-            <!-- Pipeline stats -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-                <div class="stat-card">
-                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-1"
-                        data-i18n="Total Results">Total Results</p>
-                    <p id="statTotal" class="text-2xl font-black text-slate-900">—</p>
-                </div>
-                <div class="stat-card">
-                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-1"
-                        data-i18n="Avg Confidence">Avg Confidence</p>
-                    <p id="statAvgConf" class="text-2xl font-black text-slate-900">—</p>
-                </div>
-                <div class="stat-card">
-                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-1"
-                        data-i18n="High Confidence">High Confidence</p>
-                    <p id="statHighConf" class="text-2xl font-black text-emerald-600">—</p>
-                </div>
-                <div class="stat-card">
-                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-1"
-                        data-i18n="Pipeline Latency">Pipeline Latency</p>
-                    <p id="statLatency" class="text-2xl font-black text-slate-900">—</p>
+                <!-- Inline pipeline stats bar -->
+                <div class="stats-bar">
+                    <div class="stats-bar-item">
+                        <span class="stats-bar-value" id="statTotal">—</span>
+                        <span class="stats-bar-label" data-i18n="suppliers">suppliers</span>
+                    </div>
+                    <span class="stats-bar-sep">│</span>
+                    <div class="stats-bar-item">
+                        <span class="stats-bar-label" data-i18n="Avg:">Avg:</span>
+                        <span class="stats-bar-value" id="statAvgConf">—</span>
+                    </div>
+                    <span class="stats-bar-sep">│</span>
+                    <div class="stats-bar-item">
+                        <span class="stats-bar-label" data-i18n="High:">High:</span>
+                        <span class="stats-bar-value stats-bar-value--high" id="statHighConf">—</span>
+                    </div>
+                    <span class="stats-bar-sep">│</span>
+                    <div class="stats-bar-item">
+                        <span class="stats-bar-value" id="statLatency">—</span>
+                    </div>
                 </div>
             </div>
 

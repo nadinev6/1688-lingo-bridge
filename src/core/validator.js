@@ -102,38 +102,63 @@ export async function validateResults(results, originalIntent) {
 
 /**
  * Calculate confidence score for a single product using signal-based scoring.
- * Each signal contributes points based on domain-specific indicators.
+ * Returns both the score and a breakdown of applied signals.
  *
  * @param {Object} product - Product to score
  * @param {Object} intent - Original intent
  * @param {number} medianPrice - Median price of all results (unused, kept for API compat)
- * @returns {number} Confidence score 0-100
+ * @returns {{score: number, breakdown: Object}} Confidence score 0-100 and signal breakdown
  */
 function calculateConfidence(product, intent, medianPrice) {
   const signals = intent.scoring_signals;
   let score = 0;
   const title = (product.offer_subject || product.title || '').toLowerCase();
+  const breakdown = {
+    positiveKeywords: [],
+    moderateKeywords: [],
+    weakKeywords: [],
+    negativeKeywords: [],
+    specMatches: [],
+    priceSignals: [],
+    suspiciousFlags: [],
+    reason: ''
+  };
 
   // If we have dynamic signals from GPT, use them
   if (signals) {
     // 1. Keyword Signals (Dynamic)
     (signals.positive_keywords || []).forEach(k => {
-      if (fuzzyMatchKeyword(title, k)) score += 20;
+      if (fuzzyMatchKeyword(title, k)) {
+        score += 20;
+        breakdown.positiveKeywords.push(k);
+      }
     });
     (signals.moderate_keywords || []).forEach(k => {
-      if (fuzzyMatchKeyword(title, k)) score += 10;
+      if (fuzzyMatchKeyword(title, k)) {
+        score += 10;
+        breakdown.moderateKeywords.push(k);
+      }
     });
     (signals.weak_keywords || []).forEach(k => {
-      if (fuzzyMatchKeyword(title, k)) score += 3;
+      if (fuzzyMatchKeyword(title, k)) {
+        score += 3;
+        breakdown.weakKeywords.push(k);
+      }
     });
     (signals.negative_keywords || []).forEach(k => {
-      if (title.includes(k.toLowerCase())) score -= 20;
+      if (title.includes(k.toLowerCase())) {
+        score -= 20;
+        breakdown.negativeKeywords.push(k);
+      }
     });
 
     // 1b. Extra bonus for any term from the search bundle (ensures synonyms are covered)
     const bundleTerms = [intent.chinese_query, ...(intent.synonyms || [])].filter(Boolean);
     bundleTerms.forEach(term => {
-      if (fuzzyMatchKeyword(title, term)) score += 20;
+      if (fuzzyMatchKeyword(title, term)) {
+        score += 20;
+        breakdown.positiveKeywords.push(`primary: ${term}`);
+      }
     });
 
     // 2. Spec Patterns (Dynamic)
@@ -142,11 +167,21 @@ function calculateConfidence(product, intent, medianPrice) {
       if (match) {
         const val = parseInt(match[1]);
         if (!isNaN(val)) {
-          if (pattern.high_threshold && val >= pattern.high_threshold) score += 15;
-          else if (pattern.mid_threshold && val >= pattern.mid_threshold) score += 10;
-          else if (!pattern.high_threshold) score += 15; // Simple match if no thresholds
+          if (pattern.high_threshold && val >= pattern.high_threshold) {
+            score += 15;
+            breakdown.specMatches.push(`${pattern.regex}: ${val} (high)`);
+          }
+          else if (pattern.mid_threshold && val >= pattern.mid_threshold) {
+            score += 10;
+            breakdown.specMatches.push(`${pattern.regex}: ${val} (mid)`);
+          }
+          else if (!pattern.high_threshold) {
+            score += 15;
+            breakdown.specMatches.push(`spec match: ${match[0]}`);
+          }
         } else {
-          score += 10; // Regex matched but no number extracted (simple keyword-spec match)
+          score += 10;
+          breakdown.specMatches.push(`spec pattern: ${match[0]}`);
         }
       }
     });
@@ -156,21 +191,32 @@ function calculateConfidence(product, intent, medianPrice) {
     const price = parseFloat(product.price || 0);
 
     // Static tiers (GPT-generated or fallback)
-    if (price >= tiers.high) score += 10;
-    else if (price >= tiers.mid) score += 5;
-    else if (price < tiers.low && price > 0) score -= 10;
+    if (price >= tiers.high) {
+      score += 10;
+      breakdown.priceSignals.push(`premium tier (≥${tiers.high})`);
+    }
+    else if (price >= tiers.mid) {
+      score += 5;
+      breakdown.priceSignals.push(`mid tier (≥${tiers.mid})`);
+    }
+    else if (price < tiers.low && price > 0) {
+      score -= 10;
+      breakdown.priceSignals.push(`budget tier (<${tiers.low})`);
+    }
 
     // Price Guard (Relative to Median)
     // described in README: detect <10% of median (accessory bait)
     if (medianPrice > 0 && price > 0) {
       if (price < medianPrice * 0.1) {
-        score -= 30; // Heavy penalty for bait
+        score -= 30;
         product._suspicious = true;
         product._suspiciousReason = 'Price Guard: Possible accessory bait (<10% median)';
+        breakdown.suspiciousFlags.push('accessory bait (<10% median): -30');
       } else if (price > medianPrice * 1.5) {
         // Also flag outliers > 1.5x median as per dashboard guardrail bar
         product._suspicious = true;
         product._suspiciousReason = 'Price Guard: Outlier price (>1.5x median)';
+        breakdown.suspiciousFlags.push('price outlier (>1.5x median): -30');
       }
     }
 
@@ -179,7 +225,14 @@ function calculateConfidence(product, intent, medianPrice) {
       score -= 30;
       product._suspicious = true;
       product._suspiciousReason = (product._suspiciousReason ? product._suspiciousReason + ' + ' : '') + getSuspiciousReason(product);
+      breakdown.suspiciousFlags.push(`suspicious term detected: -30`);
     }
+
+    // Build reason string
+    if (breakdown.positiveKeywords.length > 0) breakdown.reason += `Matched: ${breakdown.positiveKeywords.slice(0, 2).join(', ')}. `;
+    if (breakdown.specMatches.length > 0) breakdown.reason += `Specs verified. `;
+    if (breakdown.priceSignals.length > 0) breakdown.reason += `${breakdown.priceSignals[0]}. `;
+    if (breakdown.suspiciousFlags.length > 0) breakdown.reason = `⚠️ ${breakdown.suspiciousFlags[0]}`;
 
     // Normalization
     // A "perfect" title usually matches: Primary Term (20) + 1 High Spec (15) + 2 Positive Keywords (40) = 75
@@ -187,49 +240,99 @@ function calculateConfidence(product, intent, medianPrice) {
     // Setting max to 90 makes 63 points (70%) achievable for strong matches.
     const theoreticalMax = signals.theoretical_max || 90;
     const normalized = Math.round((score / theoreticalMax) * 100);
-    return Math.max(0, Math.min(100, normalized));
+    const finalScore = Math.max(0, Math.min(100, normalized));
+
+    product._scoreBreakdown = breakdown;
+    return finalScore;
   }
 
   // FALLBACK: Hardcoded rubric for Outdoor Power Supply (if GPT signals missing)
   // ═══════════════════════════════════════════════════════════════
   //  CATEGORY SIGNALS
   // ═══════════════════════════════════════════════════════════════
-  if (title.includes('储能')) score += 20;
-  if (/220v|110v/i.test(title)) score += 15;
-  if (title.includes('正弦波') || title.includes('逆变')) score += 15;
-  if (title.includes('户外电源') || (title.includes('户外') && title.includes('电源')))
+  if (title.includes('储能')) {
+    score += 20;
+    breakdown.specMatches.push('energy storage');
+  }
+  if (/220v|110v/i.test(title)) {
+    score += 15;
+    breakdown.specMatches.push('voltage specified');
+  }
+  if (title.includes('正弦波') || title.includes('逆变')) {
+    score += 15;
+    breakdown.specMatches.push('sine wave inverter');
+  }
+  if (title.includes('户外电源') || (title.includes('户外') && title.includes('电源'))) {
     score += 10;
-  if (title.includes('露营')) score += 10;
-  if (title.includes('充电宝') || title.includes('移动电源')) score += 3;
-  if (/磁吸|迷你|礼品/.test(title)) score -= 20;
+    breakdown.specMatches.push('outdoor power');
+  }
+  if (title.includes('露营')) {
+    score += 10;
+    breakdown.specMatches.push('camping');
+  }
+  if (title.includes('充电宝') || title.includes('移动电源')) {
+    score += 3;
+    breakdown.weakKeywords.push('power bank');
+  }
+  if (/磁吸|迷你|礼品/.test(title)) {
+    score -= 20;
+    breakdown.suspiciousFlags.push('likely accessory: -20');
+  }
 
   // ═══════════════════════════════════════════════════════════════
   //  SPECS SIGNALS
   // ═══════════════════════════════════════════════════════════════
   const kwhMatch = title.match(/(\d+)\s*度电/);
-  if (kwhMatch && parseInt(kwhMatch[1]) >= 1) score += 15;
+  if (kwhMatch && parseInt(kwhMatch[1]) >= 1) {
+    score += 15;
+    breakdown.specMatches.push(`${kwhMatch[0]} capacity`);
+  }
 
   const whMatch = title.match(/(\d+)\s*[wW]h/i);
-  if (whMatch && parseInt(whMatch[1]) >= 300) score += 10;
+  if (whMatch && parseInt(whMatch[1]) >= 300) {
+    score += 10;
+    breakdown.specMatches.push(`${whMatch[0]} capacity`);
+  }
 
   const wattMatch = title.match(/(\d+)\s*[wW](?!h)/i);
   if (wattMatch) {
     const watts = parseInt(wattMatch[1]);
-    if (watts >= 1000) score += 15;
-    else if (watts >= 200) score += 10;
+    if (watts >= 1000) {
+      score += 15;
+      breakdown.specMatches.push(`${wattMatch[0]} power`);
+    }
+    else if (watts >= 200) {
+      score += 10;
+      breakdown.specMatches.push(`${wattMatch[0]} power`);
+    }
   }
 
   // ═══════════════════════════════════════════════════════════════
   //  SUPPLIER TRUST & RELEVANCE
   // ═══════════════════════════════════════════════════════════════
   const price = parseFloat(product.price || 0);
-  if (price >= 500) score += 10;
-  else if (price >= 200) score += 5;
-  else if (price < 50 && price > 0) score -= 10;
+  if (price >= 500) {
+    score += 10;
+    breakdown.priceSignals.push('premium pricing');
+  }
+  else if (price >= 200) {
+    score += 5;
+    breakdown.priceSignals.push('mid-range pricing');
+  }
+  else if (price < 50 && price > 0) {
+    score -= 10;
+    breakdown.priceSignals.push('suspiciously low price');
+  }
 
   const badges = product.product_badges || [];
-  if (badges.includes('深度验厂')) score += 5;
-  if (badges.includes('深度验商')) score += 5;
+  if (badges.includes('深度验厂')) {
+    score += 5;
+    breakdown.positiveKeywords.push('factory verified');
+  }
+  if (badges.includes('深度验商')) {
+    score += 5;
+    breakdown.positiveKeywords.push('merchant verified');
+  }
 
   const coverageScore = calculateTitleRelevance(
     product.offer_subject,
@@ -242,12 +345,21 @@ function calculateConfidence(product, intent, medianPrice) {
     score -= 30;
     product._suspicious = true;
     product._suspiciousReason = getSuspiciousReason(product);
+    breakdown.suspiciousFlags.push(`suspicious term: -30`);
   }
+
+  // Build reason string
+  if (breakdown.specMatches.length > 0) breakdown.reason += `${breakdown.specMatches.slice(0, 2).join(', ')}. `;
+  if (breakdown.priceSignals.length > 0) breakdown.reason += `${breakdown.priceSignals[0]}. `;
+  if (breakdown.suspiciousFlags.length > 0) breakdown.reason = `⚠️ ${breakdown.suspiciousFlags[0]}`;
 
   // Normalize: theoretical max ~130 → 0-100
   const THEORETICAL_MAX = 130;
   const normalized = Math.round((score / THEORETICAL_MAX) * 100);
-  return Math.max(0, Math.min(100, normalized));
+  const finalScore = Math.max(0, Math.min(100, normalized));
+
+  product._scoreBreakdown = breakdown;
+  return finalScore;
 }
 
 /**
@@ -453,9 +565,9 @@ function fuzzyMatchKeyword(title, keyword) {
  *
  * @param {Object} product - Product to validate
  * @param {Object} intent - Original intent
- * @returns {Object} Product with confidence score
+ * @returns {Object} Product with confidence score and breakdown
  */
 export function quickValidate(product, intent) {
   const score = calculateConfidence(product, intent);
-  return { ...product, _confidence: score };
+  return { ...product, _confidence: score, _scoreBreakdown: product._scoreBreakdown };
 }

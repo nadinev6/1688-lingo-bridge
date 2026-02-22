@@ -9,6 +9,16 @@ export interface ProcurementItem {
     confidence: 'High' | 'Low' | 'Mismatch';
     visionVerified: boolean;
     specStatus: string;
+    scoreBreakdown?: {  // Signal breakdown for tooltip
+        positiveKeywords: string[];
+        moderateKeywords: string[];
+        weakKeywords: string[];
+        negativeKeywords: string[];
+        specMatches: string[];
+        priceSignals: string[];
+        suspiciousFlags: string[];
+        reason: string;
+    };
     detailUrl?: string;
     companyName?: string;
     factoryLevel?: string;
@@ -78,6 +88,16 @@ export interface RawProduct {
     _visionReason?: string;
     _blacklisted?: boolean;
     _blacklistReason?: string;
+    _scoreBreakdown?: {  // Signal breakdown for tooltip
+        positiveKeywords: string[];
+        moderateKeywords: string[];
+        weakKeywords: string[];
+        negativeKeywords: string[];
+        specMatches: string[];
+        priceSignals: string[];
+        suspiciousFlags: string[];
+        reason: string;
+    };
 }
 
 export interface PipelineData {

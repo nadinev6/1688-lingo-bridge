@@ -415,6 +415,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "Dian Xiao Er 3000Pro2 outdoor power station 3600W high power 3kWh large capacity 220V emergency portable power supply"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -454,6 +468,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "100W outdoor power station in stock, 150W portable mobile power supply, 220V/110V camping emergency outdoor mobile power source"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -500,6 +528,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "Outdoor power bank, foldable hand-crank solar charger, 20,000mAh, wireless charging, portable mobile power bank"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -539,6 +581,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "66W super fast charging 20000mAh power bank, high-capacity quick charge portable charger for mobiles and outdoor use"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -587,6 +643,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Dian Xiao Er 3000Pro2 outdoor power station 3600W high power 3kWh large capacity 220V emergency portable power supply"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -629,6 +699,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "100W outdoor power station in stock, 150W portable mobile power supply, 220V/110V camping emergency outdoor mobile power source"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -675,7 +759,21 @@
       "_confidence": 100,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
+      }
     },
     {
       "query": "户外电源",
@@ -714,7 +812,21 @@
       "_confidence": 100,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
+      }
     },
     {
       "query": "户外电源",
@@ -765,6 +877,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Dian Xiao Er 3000Pro2 outdoor power station 3600W high power 3kWh large capacity 220V emergency portable power supply"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -810,6 +938,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "100W outdoor power station in stock, 150W portable mobile power supply, 220V/110V camping emergency outdoor mobile power source"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -862,6 +1006,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Outdoor power bank, foldable hand-crank solar charger, 20,000mAh, wireless charging, portable mobile power bank"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -907,6 +1067,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "66W super fast charging 20000mAh power bank, high-capacity quick charge portable charger for mobiles and outdoor use"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -952,6 +1128,20 @@
       "_confidence": 95,
       "_en": {
         "offer_subject": "Dian Xiao Er 2000 Pro 2 portable power station, 2 kWh, 2200W high power, 220V fast charging, emergency backup"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 95%"
       }
     },
     {
@@ -1000,6 +1190,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Dianxiaoer 2000pro2 portable power station 2kWh 2200W 220V fast charging emergency backup"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 95%"
       }
     },
     {
@@ -1051,6 +1255,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Dian Xiao Er 2000 Pro 2 portable power station, 2 kWh, 2200W high power, 220V fast charging, emergency backup"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -1104,6 +1324,20 @@
       "_confidence": 83,
       "_en": {
         "offer_subject": "Portable outdoor power station 1200W output 1008Wh capacity smart inverter solar storage power supply"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 83%"
       }
     },
     {
@@ -1143,6 +1377,20 @@
       "_confidence": 83,
       "_en": {
         "offer_subject": "ECOFLOW DELTA 3 EU 220V portable emergency 1800W outdoor power station DELTA 3"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 83%"
       }
     },
     {
@@ -1198,6 +1446,20 @@
       "_confidence": 83,
       "_en": {
         "offer_subject": "Outdoor portable power station 2000W high power JP/US spec dropshipping large capacity home emergency energy storage UPS"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 83%"
       }
     },
     {
@@ -1254,6 +1516,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Portable outdoor power station 1200W output 1008Wh capacity smart inverter solar storage power supply"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 83%"
       }
     },
     {
@@ -1296,6 +1572,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "EcoFlow outdoor power station DELTA 3 EU 220V portable emergency 1800W Zhenghao outdoor power station DE 3"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 83%"
       }
     },
     {
@@ -1354,6 +1644,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Outdoor portable power station 2000W high power JP/US spec dropshipping large capacity home emergency energy storage UPS"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 83%"
       }
     },
     {
@@ -1413,6 +1717,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Portable outdoor power station 1200W output 1008Wh capacity smart inverter solar storage"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -1458,6 +1778,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "EcoFlow outdoor power station DELTA 3 EU 220V portable emergency 1800W Zhenghao outdoor power station DE 3"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -1519,6 +1855,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Outdoor portable power station 2000W high power JP/US spec dropshipping large capacity home emergency energy storage UPS"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -1569,6 +1921,20 @@
       "_confidence": 76,
       "_en": {
         "offer_subject": "300W portable power station, 220V outdoor emergency battery, high-capacity solar charging, CE certified for home use"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 76%"
       }
     },
     {
@@ -1622,6 +1988,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "300W portable power station, 220V high-capacity outdoor emergency battery, solar charging, CE certified for home use"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 76%"
       }
     },
     {
@@ -1678,6 +2058,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "300W portable power station, 220V high-capacity outdoor emergency battery, solar charging, CE certified for home use"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -1724,6 +2120,20 @@
       "_confidence": 70,
       "_en": {
         "offer_subject": "Solar charging panel high-efficiency monocrystalline 3.7W per panel fast charging power bank mobile outdoor foldable portable charger generator"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 70%"
       }
     },
     {
@@ -1763,6 +2173,20 @@
       "_confidence": 70,
       "_en": {
         "offer_subject": "Wholesale 120W super fast charging 200,000mAh power bank, high capacity, outdoor live streaming, built-in cable mobile charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 70%"
       }
     },
     {
@@ -1812,6 +2236,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Solar charging panel high-efficiency monocrystalline 3.7W per panel fast charging power bank mobile outdoor foldable portable charger generator"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 70%"
       }
     },
     {
@@ -1851,7 +2289,21 @@
       "_confidence": 70,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 70%"
+      }
     },
     {
       "query": "户外电源",
@@ -1903,6 +2355,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Solar charging panel high-efficiency monocrystalline 3.7W per panel fast charging power bank mobile outdoor foldable portable charger generator"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -1948,6 +2416,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Wholesale 120W super fast charging 200,000mAh power bank, high capacity, outdoor live streaming, built-in cable mobile charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -1987,6 +2471,20 @@
       "_confidence": 66,
       "_en": {
         "offer_subject": "200,000mAh power bank mega capacity 120W super fast charging built-in cable"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 66%"
       }
     },
     {
@@ -2027,6 +2525,20 @@
       "_confidence": 66,
       "_en": {
         "offer_subject": "New 22.5W fast-charging power bank with built-in cable, foldable LED light, 20,000mAh mega capacity"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 66%"
       }
     },
     {
@@ -2083,6 +2595,20 @@
       "_confidence": 66,
       "_en": {
         "offer_subject": "3C certified Xiaomi 20,000mAh 33W power bank with cable, high capacity, two-way fast charging, portable charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 66%"
       }
     },
     {
@@ -2126,6 +2652,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "New 22.5W fast-charging power bank with built-in cable, foldable LED light, 20,000mAh mega capacity"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 66%"
       }
     },
     {
@@ -2182,7 +2722,21 @@
       "_confidence": 66,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 66%"
+      }
     },
     {
       "query": "户外电源",
@@ -2224,6 +2778,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "200,000mAh power bank mega capacity 120W super fast charging built-in cable"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 66%"
       }
     },
     {
@@ -2270,6 +2838,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "New 22.5W fast-charging power bank with built-in cable, foldable LED light, 20,000mAh mega capacity"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -2332,6 +2916,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "3C certified Xiaomi 20,000mAh 33W power bank with cable, high capacity, two-way fast charging, portable charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -2377,6 +2977,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "200,000mAh power bank mega capacity 120W super fast charging built-in cable"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -2416,6 +3032,20 @@
       "_confidence": 64,
       "_en": {
         "offer_subject": "220V outdoor power bank, portable high-capacity backup for stalls, livestreaming, road trips, emergency home power"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 64%"
       }
     },
     {
@@ -2455,6 +3085,20 @@
       "_confidence": 64,
       "_en": {
         "offer_subject": "Outdoor portable power station 220V high capacity for camping, road trips, live streaming, market stalls and emergency backup"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 64%"
       }
     },
     {
@@ -2497,6 +3141,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "220V outdoor power bank, portable high-capacity for stalls, livestreaming, road trips, emergency backup, home energy storage"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 64%"
       }
     },
     {
@@ -2539,6 +3197,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Outdoor portable power station 220V high capacity for camping, road trips, live streaming, market stalls and emergency backup"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 64%"
       }
     },
     {
@@ -2584,6 +3256,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "220V outdoor power bank, portable high-capacity for stalls, livestreaming, road trips, emergency backup, home energy storage"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -2629,6 +3317,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Outdoor portable power station 220V high capacity for camping, road trips, live streaming, market stalls and emergency backup"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -2669,6 +3373,20 @@
       "_confidence": 57,
       "_en": {
         "offer_subject": "20,000mAh foldable solar power bank – waterproof, high-capacity outdoor charger with light"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 57%"
       }
     },
     {
@@ -2714,6 +3432,20 @@
       "_confidence": 57,
       "_en": {
         "offer_subject": "Massive 50,000mAh solar power bank with built-in cables for outdoor use"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 57%"
       }
     },
     {
@@ -2755,6 +3487,20 @@
       "_confidence": 57,
       "_en": {
         "offer_subject": "120W super fast charging power bank, 100,000mAh mega capacity with built-in cables, outdoor camping light"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 57%"
       }
     },
     {
@@ -2794,6 +3540,20 @@
       "_confidence": 57,
       "_en": {
         "offer_subject": "TiK Amazon wireless solar power bank 20000mAh outdoor dual-light portable charger custom wholesale"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 57%"
       }
     },
     {
@@ -2834,6 +3594,20 @@
       "_confidence": 57,
       "_en": {
         "offer_subject": "80,000mAh high-capacity power bank with built-in cables, solar charging, multi-function outdoor live streaming portable charger gift"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 57%"
       }
     },
     {
@@ -2874,7 +3648,21 @@
       "_confidence": 57,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 57%"
+      }
     },
     {
       "query": "户外电源",
@@ -2919,7 +3707,21 @@
       "_confidence": 57,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 57%"
+      }
     },
     {
       "query": "户外电源",
@@ -2959,7 +3761,21 @@
       "_confidence": 57,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 57%"
+      }
     },
     {
       "query": "户外电源",
@@ -3000,7 +3816,21 @@
       "_confidence": 57,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 57%"
+      }
     },
     {
       "query": "户外电源",
@@ -3039,7 +3869,21 @@
       "_confidence": 57,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 57%"
+      }
     },
     {
       "query": "户外电源",
@@ -3085,6 +3929,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "20,000mAh foldable solar power bank – waterproof, high-capacity outdoor charger with light"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -3136,6 +3996,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Massive 50,000mAh solar power bank with built-in cables for outdoor use"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -3182,6 +4058,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "80,000mAh high-capacity power bank with built-in cables, solar charging, multi-function outdoor live streaming portable charger gift"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -3229,6 +4121,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "120W super fast charging power bank, 100,000mAh mega capacity with built-in cables, outdoor camping light"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -3274,6 +4182,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "TiK Amazon wireless solar power bank 20000mAh outdoor dual-light portable charger custom wholesale"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -3311,6 +4235,20 @@
       "_confidence": 54,
       "_en": {
         "offer_subject": "20,000mAh solar power bank, foldable wireless charging, fast charge, custom logo available"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 54%"
       }
     },
     {
@@ -3351,6 +4289,20 @@
       "_confidence": 54,
       "_en": {
         "offer_subject": "50,000mAh solar power bank with built-in cables, LED light & super-fast charging"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 54%"
       }
     },
     {
@@ -3391,6 +4343,20 @@
       "_confidence": 54,
       "_en": {
         "offer_subject": "50,000mAh power bank with super fast charging, built-in cables, LED light and massive capacity"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 54%"
       }
     },
     {
@@ -3431,6 +4397,20 @@
       "_confidence": 54,
       "_en": {
         "offer_subject": "Cross-border KC certified mega capacity power bank with built-in cable 20000mAh super fast charge 120W portable charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 54%"
       }
     },
     {
@@ -3470,6 +4450,20 @@
       "_confidence": 54,
       "_en": {
         "offer_subject": "Mini gradient 10000mAh power bank with built-in cable, portable 22.5W super fast charging mobile power supply wholesale"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 54%"
       }
     },
     {
@@ -3510,6 +4504,20 @@
       "_confidence": 54,
       "_en": {
         "offer_subject": "3C certified ultra-thin 8mm MagSafe wireless fast charging power bank 10000mAh portable charger for Apple 16, flight-safe"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 54%"
       }
     },
     {
@@ -3553,6 +4561,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Cross-border KC certified mega capacity power bank with built-in cable 20000mAh super fast charge 120W portable charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 54%"
       }
     },
     {
@@ -3592,7 +4614,21 @@
       "_confidence": 54,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 54%"
+      }
     },
     {
       "query": "户外电源",
@@ -3632,7 +4668,21 @@
       "_confidence": 54,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 54%"
+      }
     },
     {
       "query": "户外电源",
@@ -3675,6 +4725,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "50,000mAh solar power bank with built-in cables, LED light & super-fast charging"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 54%"
       }
     },
     {
@@ -3718,6 +4782,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "50,000mAh power bank with super fast charging, built-in cables, LED light and massive capacity"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 54%"
       }
     },
     {
@@ -3764,6 +4842,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Cross-border KC certified mega capacity power bank with built-in cable 20000mAh super fast charge 120W portable charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -3809,6 +4903,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Mini gradient 10000mAh power bank with built-in cable, portable 22.5W super fast charging mobile power supply wholesale"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -3855,6 +4965,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "3C certified ultra-thin 8mm MagSafe wireless fast charging power bank 10000mAh portable charger for Apple 16, flight approved"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -3901,6 +5027,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "50,000mAh solar power bank with built-in cables, LED light & super-fast charging"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -3947,6 +5089,22 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "50,000mAh power bank with super fast charging, built-in cables, LED light and massive capacity"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -3992,6 +5150,18 @@
       "_confidence": 45,
       "_en": {
         "offer_subject": "Portable outdoor solar power bank 220V for camping, emergencies and off-grid adventures"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 45%"
       }
     },
     {
@@ -4031,6 +5201,18 @@
       "_confidence": 45,
       "_en": {
         "offer_subject": "3kWh portable solar power station with 220V sockets for outdoor stalls and camping"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 45%"
       }
     },
     {
@@ -4072,6 +5254,18 @@
       "_confidence": 45,
       "_en": {
         "offer_subject": "3C certified custom mould power bank fast charge with cable 30000mAh outdoor ultra high capacity portable mobile charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 45%"
       }
     },
     {
@@ -4111,6 +5305,18 @@
       "_confidence": 45,
       "_en": {
         "offer_subject": "TK Temu Amazon bestseller waterproof solar power bank 20000mAh outdoor camping light portable charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 45%"
       }
     },
     {
@@ -4148,6 +5354,18 @@
       "_confidence": 45,
       "_en": {
         "offer_subject": "1088 cross-border outdoor solar power bank 20000mAh high capacity LED lighting waterproof portable charger LOG"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 45%"
       }
     },
     {
@@ -4193,7 +5411,19 @@
       "_confidence": 45,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 45%"
+      }
     },
     {
       "query": "户外电源",
@@ -4235,6 +5465,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "3kWh portable solar power station with 220V sockets for outdoor stalls and camping"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 45%"
       }
     },
     {
@@ -4274,7 +5516,19 @@
       "_confidence": 45,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 45%"
+      }
     },
     {
       "query": "户外电源",
@@ -4315,7 +5569,19 @@
       "_confidence": 45,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 45%"
+      }
     },
     {
       "query": "户外电源",
@@ -4355,6 +5621,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "1088 cross-border outdoor solar power bank 20000mAh high capacity LED lighting waterproof portable charger LOG"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 45%"
       }
     },
     {
@@ -4406,6 +5684,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Portable outdoor solar power bank 220V for camping, emergencies and off-grid adventures"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -4451,6 +5743,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "3kWh portable solar power station with 220V sockets for outdoor stalls and camping"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -4496,6 +5802,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "TK Temu Amazon bestseller waterproof solar power bank 20000mAh outdoor camping light portable charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -4543,6 +5863,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "3C certified custom mould power bank fast charge with cable 30000mAh outdoor ultra high capacity portable mobile charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -4586,6 +5920,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "1088 cross-border outdoor solar power bank 20000mAh high capacity LED lighting waterproof portable charger LOG"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -4625,6 +5973,18 @@
       "_confidence": 41,
       "_en": {
         "offer_subject": "Solar power bank with emergency long battery life, hanging bracket, camping tent light and mobile charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 41%"
       }
     },
     {
@@ -4664,6 +6024,18 @@
       "_confidence": 41,
       "_en": {
         "offer_subject": "Super fast charging power bank 3C certified new 20,000mAh mega capacity with cable high power mobile charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 41%"
       }
     },
     {
@@ -4703,6 +6075,18 @@
       "_confidence": 41,
       "_en": {
         "offer_subject": "Mini fast-charge power bank with built-in cable, 20,000mAh high capacity, corporate gift with custom logo"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 41%"
       }
     },
     {
@@ -4745,6 +6129,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Solar power bank with emergency long battery life, hanging bracket, camping tent light and mobile charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 41%"
       }
     },
     {
@@ -4784,7 +6180,19 @@
       "_confidence": 41,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 41%"
+      }
     },
     {
       "query": "户外电源",
@@ -4823,7 +6231,19 @@
       "_confidence": 41,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 41%"
+      }
     },
     {
       "query": "户外电源",
@@ -4868,6 +6288,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Solar power bank with emergency long battery life, hanging bracket, camping tent light and mobile charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -4913,6 +6347,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Super fast charging power bank 3C certified new 20,000mAh mega capacity with cable high power mobile charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -4958,6 +6406,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Mini fast-charge power bank with built-in cable, 20,000mAh high capacity, corporate gift with custom logo"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -4997,6 +6459,18 @@
       "_confidence": 36,
       "_en": {
         "offer_subject": "2000W outdoor power station - pure sine wave high-capacity portable solar generator"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 36%"
       }
     },
     {
@@ -5039,6 +6513,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "2000W outdoor power station - pure sine wave, high capacity portable solar generator"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 36%"
       }
     },
     {
@@ -5084,6 +6570,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "2000W outdoor power station - pure sine wave high-capacity portable solar generator"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -5123,6 +6623,18 @@
       "_confidence": 26,
       "_en": {
         "offer_subject": "220V outdoor portable power station, massive 10kWh capacity for road trips, market stalls, camping, live streaming & home backup"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 26%"
       }
     },
     {
@@ -5165,6 +6677,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "220V outdoor portable power station, massive 10kWh capacity for road trips, market stalls, camping, live streaming & home backup"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 26%"
       }
     },
     {
@@ -5210,6 +6734,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "220V outdoor portable power station, massive 10kWh capacity for road trips, market stalls, camping, live streaming & home backup"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -5249,6 +6787,18 @@
       "_confidence": 20,
       "_en": {
         "offer_subject": "Car jump starter 12V/24V for lorries, dead battery booster, outdoor rescue power pack"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 20%"
       }
     },
     {
@@ -5288,6 +6838,18 @@
       "_confidence": 20,
       "_en": {
         "offer_subject": "Wholesale 120W super fast charging 100,000mAh power bank, massive capacity outdoor live streaming student power supply"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 20%"
       }
     },
     {
@@ -5327,7 +6889,19 @@
       "_confidence": 20,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 20%"
+      }
     },
     {
       "query": "户外电源",
@@ -5369,6 +6943,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Car jump starter 12V/24V for lorries, dead battery booster, outdoor rescue power pack"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 20%"
       }
     },
     {
@@ -5414,6 +7000,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Wholesale 120W super fast charging 100,000mAh power bank, massive capacity outdoor live streaming student power supply"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -5459,6 +7059,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Car jump starter 12V/24V lorry battery booster outdoor rescue power bank"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -5511,6 +7125,18 @@
       "_confidence": 14,
       "_en": {
         "offer_subject": "Jump starter power bank for cars, no charging needed, outdoor emergency battery booster"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 14%"
       }
     },
     {
@@ -5566,6 +7192,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Jump starter power bank for cars, no charging needed, outdoor emergency battery booster"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 14%"
       }
     },
     {
@@ -5624,6 +7262,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Jump starter power bank for cars, no charging needed, outdoor emergency battery booster"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -5663,6 +7315,18 @@
       "_confidence": 13,
       "_en": {
         "offer_subject": "Creative container 66W super fast charging power bank 50,000mAh PD22W bidirectional fast charging 10,000mAh"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
       }
     },
     {
@@ -5702,7 +7366,19 @@
       "_confidence": 13,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
+      }
     },
     {
       "query": "户外电源",
@@ -5747,6 +7423,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Creative container 66W super fast charging power bank 50000mAh PD22W bidirectional fast charging 10000mAh"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -5785,6 +7475,18 @@
       "_confidence": 8,
       "_en": {
         "offer_subject": "Car jump starter power bank ultra-slim portable booster emergency battery backup outdoor rescue"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 8%"
       }
     },
     {
@@ -5821,6 +7523,18 @@
       "_confidence": 8,
       "_en": {
         "offer_subject": "Car jump starter power bank – high capacity portable charger for emergency battery boost"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 8%"
       }
     },
     {
@@ -5860,6 +7574,18 @@
       "_confidence": 8,
       "_en": {
         "offer_subject": "High-capacity portable car jump starter with outdoor ignition power bank and auto protection"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 8%"
       }
     },
     {
@@ -5898,6 +7624,18 @@
       "_confidence": 8,
       "_en": {
         "offer_subject": "Car jump starter with air pump and LED light – universal emergency rescue power bank"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 8%"
       }
     },
     {
@@ -5936,7 +7674,19 @@
       "_confidence": 8,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 8%"
+      }
     },
     {
       "query": "户外电源",
@@ -5972,7 +7722,19 @@
       "_confidence": 8,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 8%"
+      }
     },
     {
       "query": "户外电源",
@@ -6010,7 +7772,19 @@
       "_confidence": 8,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 8%"
+      }
     },
     {
       "query": "户外电源",
@@ -6049,7 +7823,19 @@
       "_confidence": 8,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 8%"
+      }
     },
     {
       "query": "户外电源",
@@ -6088,7 +7874,19 @@
       "_confidence": 8,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 8%"
+      }
     },
     {
       "query": "户外电源",
@@ -6132,6 +7930,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Car jump starter power bank ultra-slim portable booster emergency battery backup outdoor rescue"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -6174,6 +7986,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Car jump starter power bank, high-capacity portable charger for emergency battery boost and outdoor use"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -6218,6 +8044,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Car jump starter with air pump and LED light – universal emergency rescue power bank"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -6263,6 +8103,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "High-capacity portable car jump starter with outdoor ignition power bank and auto protection"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -6308,6 +8162,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Car jump starter with air compressor 12V portable power bank for outdoor roadside battery rescue"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -6349,6 +8217,18 @@
       "_confidence": 4,
       "_en": {
         "offer_subject": "Outdoor solar hand-crank 3-in-1 wireless power bank with built-in cables, fast charging, 20,000mAh"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 4%"
       }
     },
     {
@@ -6388,6 +8268,18 @@
       "_confidence": 4,
       "_en": {
         "offer_subject": "Bestselling multi-function LED light with built-in cable, hand crank, solar power, waterproof outdoor solar wireless charging power bank"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 4%"
       }
     },
     {
@@ -6429,7 +8321,19 @@
       "_confidence": 4,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 4%"
+      }
     },
     {
       "query": "户外电源",
@@ -6468,7 +8372,19 @@
       "_confidence": 4,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 4%"
+      }
     },
     {
       "query": "户外电源",
@@ -6515,6 +8431,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Outdoor solar hand-crank 3-in-1 wireless power bank with built-in cable fast charging 20,000mAh"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -6560,6 +8490,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Bestselling multi-function LED light with built-in cable, hand crank, solar power, waterproof outdoor solar wireless charging power bank"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -6598,6 +8542,18 @@
       "_confidence": 0,
       "_en": {
         "offer_subject": "UPS uninterruptible power supply battery backup monitoring power 12V 2A outdoor waterproof rain camera dedicated adapter 5V 1A"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
       }
     },
     {
@@ -6637,6 +8593,18 @@
       "_confidence": 0,
       "_en": {
         "offer_subject": "Mini UPS power backup for WiFi routers with blackout protection and outdoor waterproof design"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
       }
     },
     {
@@ -6682,6 +8650,18 @@
       "_confidence": 0,
       "_en": {
         "offer_subject": "Surveillance camera 12V UPS uninterruptible power supply adapter with battery backup, outdoor weatherproof"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
       }
     },
     {
@@ -6727,7 +8707,19 @@
       "_confidence": 0,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
+      }
     },
     {
       "query": "户外电源",
@@ -6765,7 +8757,19 @@
       "_confidence": 0,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
+      }
     },
     {
       "query": "户外电源",
@@ -6802,7 +8806,19 @@
       "_confidence": 0,
       "_visualConfidence": null,
       "_visionMatch": null,
-      "_visionError": "Vision timeout"
+      "_visionError": "Vision timeout",
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
+      }
     },
     {
       "query": "户外电源",
@@ -6853,6 +8869,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Surveillance camera 12V UPS uninterruptible power supply adapter with backup battery, outdoor weatherproof"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -6897,6 +8927,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "UPS uninterruptible power supply battery backup monitoring power 12V 2A outdoor waterproof rain camera dedicated adapter 5V 1A"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -6940,6 +8984,20 @@
       "_mismatchReason": "",
       "_en": {
         "offer_subject": "Mini UPS power backup for WiFi routers with blackout protection and outdoor waterproof design"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [
+          "Vision verified"
+        ],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "A portable power station with multiple output ports and a digital display."
       }
     },
     {
@@ -6979,6 +9037,20 @@
       "_confidence": 63,
       "_en": {
         "offer_subject": "Tungsten carbide inserts, rods and welding tips in various sizes and materials"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 63%"
       }
     },
     {
@@ -7018,6 +9090,20 @@
       "_confidence": 63,
       "_en": {
         "offer_subject": "55° 4-flute tungsten carbide milling cutter with bronze coating, flat end mill, hard alloy CNC engraving tool for steel cutting"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 63%"
       }
     },
     {
@@ -7061,6 +9147,20 @@
       "_confidence": 63,
       "_en": {
         "offer_subject": "Carbide products, tungsten carbide rods, tungsten carbide plates, parts, blade strips, thin strips"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 63%"
       }
     },
     {
@@ -7101,6 +9201,18 @@
       "_confidence": 50,
       "_en": {
         "offer_subject": "Non-standard carbide products, wear-resistant impact-resistant tungsten steel alloy blades, precision-ground carbide blades"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 50%"
       }
     },
     {
@@ -7142,6 +9254,18 @@
       "_confidence": 50,
       "_en": {
         "offer_subject": "60° tungsten carbide chamfer cutter, hard alloy reversible chamfering mill, 90° double-sided undercut cutter for steel and aluminium"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 50%"
       }
     },
     {
@@ -7188,6 +9312,18 @@
       "_confidence": 50,
       "_en": {
         "offer_subject": "Custom YG6 carbide bars, precision ground, high hardness pure tungsten strips, wear-resistant shaped tungsten steel blade strips, custom processing from drawings"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 50%"
       }
     },
     {
@@ -7223,6 +9359,18 @@
       "_confidence": 41,
       "_en": {
         "offer_subject": "Carbide insert parting tool for steel, copper, aluminium parts – CNC grooving blade MGMN300-M gold coated"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 41%"
       }
     },
     {
@@ -7264,6 +9412,18 @@
       "_confidence": 41,
       "_en": {
         "offer_subject": "Carbide insert parting tool for steel, copper, aluminium parts – CNC grooving blade MGMN300-M gold coated"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 41%"
       }
     },
     {
@@ -7306,6 +9466,18 @@
       "_confidence": 38,
       "_en": {
         "offer_subject": "Carbide strips, tungsten steel alloy, various sizes, tungsten carbide alloy strips, round bars, alloy plates, ultra-hard"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 38%"
       }
     },
     {
@@ -7356,6 +9528,18 @@
       "_confidence": 38,
       "_en": {
         "offer_subject": "YL10.2 carbide blank round bar tungsten steel stamping rod tungsten carbide extrusion bar"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 38%"
       }
     },
     {
@@ -7401,6 +9585,18 @@
       "_confidence": 38,
       "_en": {
         "offer_subject": "In stock: quality carbide sharpener blades, tungsten steel, great prices"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 38%"
       }
     },
     {
@@ -7438,6 +9634,18 @@
       "_confidence": 38,
       "_en": {
         "offer_subject": "Tungsten carbide pottery trimming tool, tungsten steel ring, small round seven-shaped scraper, tungsten steel trimming scraper, carving knife"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 38%"
       }
     },
     {
@@ -7483,6 +9691,18 @@
       "_confidence": 38,
       "_en": {
         "offer_subject": "Factory-direct Zhuzhou blade sharpener with high-hardness tungsten steel blades, wear-resistant carbide precision blades"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 38%"
       }
     },
     {
@@ -7519,7 +9739,19 @@
       "offer_price": "25 ($3.50)",
       "_search_query": "硬质合金",
       "_scraped_at": "2026-02-21T16:31:13.277Z",
-      "_confidence": 38
+      "_confidence": 38,
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 38%"
+      }
     },
     {
       "query": "硬质合金",
@@ -7562,6 +9794,18 @@
       "_confidence": 38,
       "_en": {
         "offer_subject": "WCMX040208-SK CNC insert peach-shaped carbide U-drill insert for stainless steel CNC roughing"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 38%"
       }
     },
     {
@@ -7594,6 +9838,18 @@
       "_confidence": 38,
       "_en": {
         "offer_subject": "Carbide precision ground rods, solid tungsten carbide bar stock, tungsten steel end mill blanks, wear-resistant materials"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 38%"
       }
     },
     {
@@ -7630,7 +9886,19 @@
       "offer_price": "10 ($1.40)",
       "_search_query": "硬质合金",
       "_scraped_at": "2026-02-21T16:31:13.277Z",
-      "_confidence": 38
+      "_confidence": 38,
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 38%"
+      }
     },
     {
       "query": "硬质合金",
@@ -7666,6 +9934,18 @@
       "_confidence": 38,
       "_en": {
         "offer_subject": "Tungsten carbide strips YG11 hard alloy strips long-edge tungsten steel blades woodworking tools high-hardness tungsten steel round bars"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 38%"
       }
     },
     {
@@ -7705,6 +9985,18 @@
       "_confidence": 38,
       "_en": {
         "offer_subject": "Carbon crystal panel arc bending blade carbide trimmer special T-type semi-circular flat bottom 2-in-1 grooving"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 38%"
       }
     },
     {
@@ -7741,6 +10033,18 @@
       "_confidence": 38,
       "_en": {
         "offer_subject": "Cross-border foreign trade CNC turning tools factory wholesale CCMT carbide turning insert"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 38%"
       }
     },
     {
@@ -7777,7 +10081,19 @@
       "offer_price": "8.5 ($1.19)",
       "_search_query": "硬质合金",
       "_scraped_at": "2026-02-21T16:31:13.277Z",
-      "_confidence": 38
+      "_confidence": 38,
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 38%"
+      }
     },
     {
       "query": "硬质合金",
@@ -7820,6 +10136,18 @@
       "_confidence": 38,
       "_en": {
         "offer_subject": "CCMT09T308-TT turning insert carbide CNC boring bar insert semi-finishing and roughing general machining"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 38%"
       }
     },
     {
@@ -7857,6 +10185,18 @@
       "_confidence": 25,
       "_en": {
         "offer_subject": "Carbide locating blocks, tungsten steel parts, custom-shaped components made to drawing, wear-resistant prefabricated products"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 25%"
       }
     },
     {
@@ -7899,7 +10239,19 @@
       "offer_price": "156 ($21.84)",
       "_search_query": "硬质合金",
       "_scraped_at": "2026-02-21T16:31:13.277Z",
-      "_confidence": 25
+      "_confidence": 25,
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 25%"
+      }
     },
     {
       "query": "硬质合金",
@@ -7935,7 +10287,19 @@
       "offer_price": "155 ($21.70)",
       "_search_query": "硬质合金",
       "_scraped_at": "2026-02-21T16:31:13.277Z",
-      "_confidence": 25
+      "_confidence": 25,
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 25%"
+      }
     },
     {
       "query": "硬质合金",
@@ -7980,6 +10344,18 @@
       "_confidence": 25,
       "_en": {
         "offer_subject": "Tungsten carbide blanks - manufacturer supply of cemented carbide blanks, tungsten carbide blank rods, plates, sleeves, washers and block blanks"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 25%"
       }
     },
     {
@@ -8030,6 +10406,18 @@
       "_confidence": 13,
       "_en": {
         "offer_subject": "YG10X precision ground & polished tungsten carbide rods – tungsten-cobalt alloy cylinders, all sizes available"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
       }
     },
     {
@@ -8067,6 +10455,18 @@
       "_confidence": 13,
       "_en": {
         "offer_subject": "Cross-border carbide balls – manufacturer with full range of specs and grades, tungsten carbide steel balls in stock, precision ground bearing balls"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
       }
     },
     {
@@ -8112,6 +10512,18 @@
       "_confidence": 13,
       "_en": {
         "offer_subject": "65° tungsten steel twist drill bits, high hardness carbide straight shank for stainless steel metal drilling 1-15mm complete set"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
       }
     },
     {
@@ -8152,6 +10564,18 @@
       "_confidence": 13,
       "_en": {
         "offer_subject": "Domestic carbide single-hole round bars, tungsten steel hollow bars, excellent straightness and concentricity, full range of sizes"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
       }
     },
     {
@@ -8202,6 +10626,18 @@
       "_confidence": 13,
       "_en": {
         "offer_subject": "YG8 carbide small round rod high hardness tungsten steel pin bar tungsten carbide cylindrical pin"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
       }
     },
     {
@@ -8242,6 +10678,18 @@
       "_confidence": 13,
       "_en": {
         "offer_subject": "YL10.2 precision ground standard tungsten carbide rod D8.0×60mm with chamfered hard alloy rod"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
       }
     },
     {
@@ -8281,6 +10729,18 @@
       "_confidence": 13,
       "_en": {
         "offer_subject": "Carbide marking pen"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
       }
     },
     {
@@ -8318,6 +10778,18 @@
       "_confidence": 13,
       "_en": {
         "offer_subject": "Tungsten carbide tip K10 lychee disc grinder teeth cement chisel teeth fire rescue hammer carbide hammer head"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
       }
     },
     {
@@ -8358,6 +10830,18 @@
       "_confidence": 13,
       "_en": {
         "offer_subject": "Zhuzhou carbide ball manufacturer in-stock high-hardness tungsten steel balls tungsten carbide beads YG6/YG8 extrusion balls"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
       }
     },
     {
@@ -8401,6 +10885,18 @@
       "_confidence": 13,
       "_en": {
         "offer_subject": "Extended handle carbide rotary burr, long shaft cylindrical tungsten steel A-type, 100/150/200mm Golden Eagle"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
       }
     },
     {
@@ -8430,7 +10926,19 @@
       "offer_price": "12.5 ($1.75)",
       "_search_query": "硬质合金",
       "_scraped_at": "2026-02-21T16:31:13.277Z",
-      "_confidence": 13
+      "_confidence": 13,
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
+      }
     },
     {
       "query": "硬质合金",
@@ -8462,6 +10970,18 @@
       "_confidence": 13,
       "_en": {
         "offer_subject": "YG10X carbide rods: high hardness, strong impact resistance, custom sizes available"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
       }
     },
     {
@@ -8502,6 +11022,18 @@
       "_confidence": 13,
       "_en": {
         "offer_subject": "Carbide balls tungsten steel balls 0.25–12mm wear-resistant tungsten balls deringed precision-ground alloy valve balls"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 13%"
       }
     },
     {
@@ -8541,6 +11073,18 @@
       "_confidence": 4,
       "_en": {
         "offer_subject": "Red rosewood tungsten steel trimming knife pottery sculpture alloy texture clay scraping tool ceramic shaping handcraft tool"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 4%"
       }
     },
     {
@@ -8586,6 +11130,18 @@
       "_confidence": 0,
       "_en": {
         "offer_subject": "Factory stock: tungsten steel window breakers, tungsten steel strike heads – full range, quality guaranteed"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
       }
     },
     {
@@ -8626,7 +11182,19 @@
       "offer_price": "0.2 ($0.03)",
       "_search_query": "硬质合金",
       "_scraped_at": "2026-02-21T16:31:13.277Z",
-      "_confidence": 0
+      "_confidence": 0,
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
+      }
     },
     {
       "query": "硬质合金",
@@ -8664,6 +11232,18 @@
       "_confidence": 0,
       "_en": {
         "offer_subject": "Car window breaker tool, screen remover, shattering pen, diamond tip, tungsten steel tip, alloy striker head, window breaker, impact pin, ejector pin"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
       }
     },
     {
@@ -8709,6 +11289,18 @@
       "_confidence": 0,
       "_en": {
         "offer_subject": "Factory direct knife sharpener tungsten steel blades, full range of specs, custom production available"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
       }
     },
     {
@@ -8749,6 +11341,18 @@
       "_confidence": 0,
       "_en": {
         "offer_subject": "Zhuzhou tungsten carbide button punch needle, tungsten carbide core pin, high hardness wear-resistant tungsten carbide needle"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
       }
     },
     {
@@ -8786,6 +11390,18 @@
       "_confidence": 0,
       "_en": {
         "offer_subject": "Car paint touch-up scraper spray paint repair blade polishing film scraper tungsten steel blade"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
       }
     },
     {
@@ -8826,6 +11442,18 @@
       "_confidence": 0,
       "_en": {
         "offer_subject": "Tungsten carbide alloy round bars in stock – powder metallurgy extrusion, high density, tough & break-resistant"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
       }
     },
     {
@@ -8869,6 +11497,18 @@
       "_confidence": 0,
       "_en": {
         "offer_subject": "Zhuzhou factory direct YG8 tungsten carbide thin plates - multi-size processing, high hardness wear-resistant tungsten steel blocks for stamping"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
       }
     },
     {
@@ -8914,6 +11554,18 @@
       "_confidence": 0,
       "_en": {
         "offer_subject": "Inconel718 C-276 N06625 N06600 nickel-based corrosion-resistant alloy tubing capillary tubes"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
       }
     },
     {
@@ -8953,6 +11605,18 @@
       "_confidence": 0,
       "_en": {
         "offer_subject": "Tungsten carbide drawing dies, YG8 drill bushings, wear-resistant sleeves, cold extrusion products, custom parts processing"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 0%"
       }
     },
     {
@@ -8991,6 +11655,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Amazon 100% mulberry silk pillowcase 22 momme double-sided silk pillowcase with zip closure"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9035,6 +11713,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Amazon mulberry silk pillowcase 100% 16 momme double-sided envelope silk pillowcase silk pillow cover"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9075,6 +11767,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Premium silk pillowcases, 100% mulberry silk, Amazon 19 momme pillow covers, customisable logo embroidery, wholesale silk pillowcases"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9113,6 +11819,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Zippered silk pillowcase 100% mulberry silk 30 momme double-sided silk pillow cover with zip reactive dyed"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9153,6 +11873,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Premium export embroidered silk pillowcase, 100% mulberry silk, solid colour, logo embroidery, wholesale"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9193,6 +11927,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Envelope pillowcase OEKO certified silk pillow cover silk pillowcase envelope pillow mulberry silk pillowcase"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9247,6 +11995,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Pure silk pillowcase, 100% single-sided mulberry silk, colour-block, genuine stock, solid colour piped silk pillow cover, anti-mite"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9287,6 +12049,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Silk pillowcase bedding 100% mulberry silk pillow cover satin fabric soft"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9327,6 +12103,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "100% mulberry silk double-sided pillowcase 22 momme pillow cover Amazon solid colour silk customisable logo wholesale"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9366,6 +12156,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "40mm 100% heavyweight silk pillowcase, mulberry silk summer silk beauty single ice silk pillowcase pair"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9406,6 +12210,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Factory silk pillowcase, double-sided 100% mulberry silk pure colour zip cool pillow cover, Amazon supplier"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9457,6 +12275,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Butterfly embroidery 22 momme heavyweight silk pillowcase glossy envelope double-sided 100% mulberry silk pillow cover 48×74"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9496,6 +12328,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "6A grade 40mm digital print silk pillowcase 100% mulberry silk single pillow cover beauty silk pillowcase"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9550,6 +12396,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Silk pillowcase, piped envelope style, 16 momme, single-sided mulberry silk pillow cover, solid colour, wholesale"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9589,6 +12449,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Double-sided 100% mulberry silk pillowcase, heavyweight 40 momme pure silk pillow cover, beauty skin-friendly single pillow protector"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9628,6 +12502,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Heavy-duty 40mm silk pillowcase 100% mulberry silk pillow cover tencel single pillow core cover 48x74cm wholesale"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9684,6 +12572,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Y silk pillowcase with zip, 22 momme glossy version, double-sided 100% mulberry silk pillowcase, solid colour"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9738,6 +12640,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "19 momme silk pillowcase, solid colour envelope mulberry silk pillowcase for Amazon export"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9778,6 +12694,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "40mm 100% heavyweight silk pillowcase, mulberry silk summer silk beauty single ice silk pillowcase pair"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9818,6 +12748,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "20 momme silk pillowcase mulberry silk with Tencel envelope style bedding wholesale"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9872,6 +12816,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "30mm mulberry silk beauty sleep pillowcase, double-sided, thick, simple American style"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9913,6 +12871,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Heavyweight 40mm silk pillowcase, side A 100% mulberry silk, single pillowcase, beauty silk pillow cover 48x74cm"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9953,6 +12925,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Two-tone reversible mulberry silk pillowcase"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -9994,6 +12980,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Export pure silk pillowcase, solid colour double-sided mulberry silk pillow cover, beauty silk single pillowcase wholesale"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -10047,6 +13047,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "In-stock silk pillowcase 16 momme single-sided 6A grade mulberry silk envelope style with piping wholesale"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -10101,6 +13115,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Premium 25mm pure silk pillowcase 100% mulberry silk pillow cover summer cool silk pillowcase"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -10140,6 +13168,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Heavyweight 40mm silk pillowcase, side A 100% mulberry silk, single pillowcase, beauty silk pillow cover 48x74cm"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -10179,6 +13221,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Solid colour 30mm pure silk pillowcase, ice silk mulberry silk beauty single pillow cover, Tencel pillow core cover, wholesale"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -10218,6 +13274,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Double-sided 40mm heavyweight silk pillowcase, 100% mulberry silk hair care pillow cover, single adult 48x74cm"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -10274,6 +13344,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Pure silk pillowcase 16 momme 100% mulberry silk single-sided pillow cover bedding solid colour pillow slip home textiles"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -10312,6 +13396,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "40mm heavyweight silk printed pillowcase 100% mulberry silk pillow cover beauty pillowcase ice silk pillow protector"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -10350,6 +13448,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "40 momme heavyweight silk printed pillowcase, 100% mulberry silk pillow cover, silk beauty pillowcase, ice silk pillow protector"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -10389,6 +13501,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "40mm 6A grade silk digital print pillowcase 100% mulberry silk 48x74cm single silk pillow cover"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -10434,6 +13560,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Amazon AliExpress bedding washed silk pillowcase single ice silk satin silk imitation silk pillow cover cross-border"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 91%"
       }
     },
     {
@@ -10472,6 +13612,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Solid colour faux silk pillowcase"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 91%"
       }
     },
     {
@@ -10512,6 +13666,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Direct factory supply cross-border faux silk pillowcase satin pillow cover American style solid colour cool smooth silk cushion cover"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 91%"
       }
     },
     {
@@ -10551,6 +13719,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Solid colour double-sided silk beauty pillowcase, mulberry silk ice silk pillow, single silk pillowcase, wholesale and retail"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 91%"
       }
     },
     {
@@ -10589,6 +13771,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Solid colour pure silk pillowcase, double-sided mulberry silk pillow cover, 48×74 cm, adult ice silk pillowcase for cross-border export"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 91%"
       }
     },
     {
@@ -10628,6 +13824,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Silk double long pillowcase double-sided mulberry silk beauty pillow cover 1.2m 1.5m couple ice silk pillowcase"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 91%"
       }
     },
     {
@@ -10674,6 +13884,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Silk pillowcase 100% mulberry silk 16 momme pillow cover solid colour tie-style pillow protector in stock direct from factory"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 54%"
       }
     },
     {
@@ -10730,6 +13954,20 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Y silk pillowcase 16 momme 100% mulberry silk minimalist tie pillowcase travel pillow cover mulberry silk pillowcase"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [
+          "(inferred from moderate score)"
+        ],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 54%"
       }
     },
     {
@@ -10771,6 +14009,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Factory custom silk pillowcase - one side silk, one side Tencel, made for Japan's Yahoo & Amazon markets"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 50%"
       }
     },
     {
@@ -10809,6 +14059,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "European silk beauty pillowcase, silk pillow cover, ice silk pillow core cover 48*74cm, wholesale cross-border export pillow towel"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 41%"
       }
     },
     {
@@ -10848,6 +14110,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Cross-border faux silk couple pillowcases, solid colour ice silk pillow covers, satin pillowcases, silk kids pillow protectors wholesale"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 41%"
       }
     },
     {
@@ -10887,6 +14161,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "✅Factory wholesale cross-border Amazon pillowcases satin ice silk sateen pillow covers silk satin AliExpress pillows"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 41%"
       }
     },
     {
@@ -10925,6 +14211,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Pillowcase pair summer silk pillow cover ice silk cool pillow core cover single 4874 colour adult use supply chain"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 29%"
       }
     },
     {
@@ -10963,6 +14261,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Cross-border export 100% lyocell Tencel pillowcase summer cool ice silk pillowcase 48x74cm"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 4%"
       }
     },
     {
@@ -11001,6 +14311,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Solid colour grade A 100-count Tencel pillowcase, silky smooth summer cool ice silk pillow cover 48×74cm, silk pillow protector"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 4%"
       }
     },
     {
@@ -11039,6 +14361,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Grade A 100-count Tencel pillowcase, summer cool silk beauty pillow cover, solid colour ice silk pillow core cover 48×74cm"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 4%"
       }
     },
     {
@@ -11079,6 +14413,18 @@
       "_visionError": "Vision timeout",
       "_en": {
         "offer_subject": "Cross-border export 100 Tencel pillowcases summer ice silk pillow covers silk pillow core covers 48X74cm adult pillow towels"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "price concern"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 4%"
       }
     },
     {
@@ -11102,6 +14448,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11125,6 +14485,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11148,6 +14522,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11171,6 +14559,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11194,6 +14596,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11217,6 +14633,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11240,6 +14670,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11263,6 +14707,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11286,6 +14744,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11309,6 +14781,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11332,6 +14818,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11355,6 +14855,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11378,6 +14892,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11401,6 +14929,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11424,6 +14966,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11447,6 +15003,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11470,6 +15040,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11493,6 +15077,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11516,6 +15114,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11539,6 +15151,20 @@
       "_confidence": 100,
       "_en": {
         "offer_subject": "GaN charger 120W gallium nitride fast charging adapter"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 100%"
       }
     },
     {
@@ -11562,6 +15188,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11585,6 +15225,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11608,6 +15262,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11631,6 +15299,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11654,6 +15336,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11677,6 +15373,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11700,6 +15410,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11723,6 +15447,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11746,6 +15484,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11769,6 +15521,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11792,6 +15558,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11815,6 +15595,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11838,6 +15632,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11861,6 +15669,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11884,6 +15706,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11907,6 +15743,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11930,6 +15780,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11953,6 +15817,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11976,6 +15854,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -11999,6 +15891,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "65W GaN fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12020,6 +15926,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12041,6 +15961,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12062,6 +15996,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12083,6 +16031,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12104,6 +16066,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12125,6 +16101,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12146,6 +16136,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12167,6 +16171,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12188,6 +16206,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12209,6 +16241,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12230,6 +16276,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12251,6 +16311,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12272,6 +16346,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12293,6 +16381,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12314,6 +16416,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12335,6 +16451,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12356,6 +16486,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12377,6 +16521,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12398,6 +16556,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     },
     {
@@ -12419,6 +16591,20 @@
       "_confidence": 88,
       "_en": {
         "offer_subject": "100W GaN Type-C fast charger"
+      },
+      "_scoreBreakdown": {
+        "positiveKeywords": [
+          "(inferred from high score)"
+        ],
+        "moderateKeywords": [],
+        "weakKeywords": [],
+        "negativeKeywords": [],
+        "specMatches": [],
+        "priceSignals": [
+          "acceptable price"
+        ],
+        "suspiciousFlags": [],
+        "reason": "Legacy product - confidence: 88%"
       }
     }
   ],

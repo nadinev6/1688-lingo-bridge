@@ -29,6 +29,10 @@
 }
 
 @layer components {
+    .how-it-works-bg {
+        background-image: url('/src/assets/header-bg.webp');
+    }
+
     #top-guardrail-bar {
         position: fixed;
         top: 0;

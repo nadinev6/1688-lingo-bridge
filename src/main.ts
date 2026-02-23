@@ -531,7 +531,7 @@ function renderDashboard(): void {
         return `
         <div class="hybrid-card p-6 ${item.isFlagged ? 'flagged' : ''} group">
             <div class="img-container relative">
-                <img src="${item.imageUrl}" alt="${item.title}" loading="lazy" onerror="this.src='./src/components/bridge.svg'" />
+                <img src="${item.imageUrl}" alt="${item.title}" loading="lazy" referrerpolicy="no-referrer" onerror="this.src='/bridge.svg'" />
                 <div class="absolute top-2 right-2 flex gap-1">
                     <span class="score-tooltip-trigger px-2 py-0.5 text-[9px] font-black uppercase rounded-full ${confClass} cursor-help" style="white-space:nowrap" title="Click for score breakdown">
                         ${item.confidence === 'High' ? 'HIGH CONF' : item.confidence === 'Mismatch' ? 'MISMATCH' : 'LOW CONF'}

@@ -14,8 +14,13 @@ import 'dotenv/config';
 const lingo = new LingoDotDevEngine({ apiKey: process.env.LINGODOTDEV_API_KEY });
 
 // Build reverse glossary map: English (lowercase) -> Chinese
+// Flatten category-keyed glossary into a single array of { src, tgt } pairs
+const flatGlossary = Object.entries(glossaryData.glossary)
+  .filter(([key]) => key !== '_comment')
+  .flatMap(([, entries]) => entries);
+
 const reverseGlossary = new Map(
-  glossaryData.glossary.map(g => [g.tgt.toLowerCase(), g.src])
+  flatGlossary.map(g => [g.tgt.toLowerCase(), g.src])
 );
 
 // In-memory cache for Lingo.dev translations

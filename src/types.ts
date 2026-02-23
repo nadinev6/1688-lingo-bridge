@@ -68,26 +68,50 @@ export interface SearchBundle {
 }
 
 export interface RawProduct {
-    offer_subject: string;
-    main_category: string;
-    categoryName: string;
-    company_name: string;
-    offer_price: string;
-    offer_pic_url: string;
+    // Actual JSON fields from scraper
+    query?: string;
+    page?: number;
+    offer_id?: number;
+    title?: string;
+    price?: number;
+    price_integer?: string;
+    price_decimal?: string;
     image_url?: string;
-    offer_detail_url: string;
-    company_url: string;
-    province: string;
-    city: string;
-    is_factory: boolean;
-    factory_level: string;
-    _search_query: string;
-    _scraped_at: string;
-    _confidence: number;
+    shop_name?: string;
+    member_id?: string;
+    province?: string;
+    city?: string;
+    order_count?: string;
+    repurchase_rate?: string;
+    detail_url?: string;
+    quantity_prices?: string | null;
+    service_tags?: string[];
+    product_specs?: string[];
+    product_badges?: string[];
+    offer_subject?: string;
+    offer_price?: string;
+    main_category?: string;
+    categoryName?: string;
+    company_name?: string;
+    offer_pic_url?: string;
+    offer_detail_url?: string;
+    company_url?: string;
+    is_factory?: boolean;
+    factory_level?: string;
+    _search_query?: string;
+    _scraped_at?: string;
+    _confidence?: number;
     _visualConfidence?: number | null;
+    _visionMatch?: boolean;
     _visionReason?: string;
+    _isAccessoryOnly?: boolean;
+    _scaleVerified?: boolean;
+    _mismatchReason?: string;
     _blacklisted?: boolean;
     _blacklistReason?: string;
+    _en?: {
+        offer_subject: string;
+    };
     _scoreBreakdown?: {  // Signal breakdown for tooltip
         positiveKeywords: string[];
         moderateKeywords: string[];

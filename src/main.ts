@@ -9,7 +9,7 @@ let allItems: ProcurementItem[] = [];
 // Fetch pipeline data from JSON file
 async function loadPipelineData(): Promise<void> {
     try {
-        const response = await fetch('/docs/artifacts/validated_results.json');
+        const response = await fetch('/validated_results.json');
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const jsonData = await response.json();
 
@@ -210,6 +210,44 @@ function extractAndTranslateServiceTags(title: string): string[] {
     return translateTags(foundTags);
 }
 
+
+// ─── Map Raw Product to Procurement Item ──────────────────────────────────────
+function mapRawToItem(raw: RawProduct, index: number): ProcurementItem {
+    const title = raw.title || raw.offer_subject || '';
+    const price = raw.price || parsePriceCny(raw.offer_price || '0');
+    const imageUrl = raw.image_url || raw.offer_pic_url || '';
+    const detailUrl = raw.detail_url || raw.offer_detail_url || '';
+    const companyName = raw.shop_name || raw.company_name || '';
+    const confidence = raw._confidence || 0;
+    const hasVisionMismatch = raw._visionMatch === false;
+
+    return {
+        id: `item-${index}-${raw.offer_id || Date.now()}`,
+        title: title,
+        chineseTitle: title,
+        price: price,
+        imageUrl: imageUrl,
+        isFlagged: raw._blacklisted || false,
+        systemNote: raw._blacklistReason || raw._mismatchReason || '',
+        confidence: mapConfidence(confidence, hasVisionMismatch),
+        visionVerified: raw._visionMatch === true,
+        specStatus: `${confidence}% Match`,
+        scoreBreakdown: raw._scoreBreakdown,
+        detailUrl: detailUrl,
+        companyName: companyName,
+        factoryLevel: raw.factory_level || '',
+        province: raw.province || '',
+        city: raw.city || '',
+        searchQuery: raw._search_query || raw.query || '',
+        specTags: extractSpecTags(title),
+        productSpecs: raw.product_specs,
+        serviceTags: raw.service_tags ? translateTags(raw.service_tags) : undefined,
+        visionConfidence: raw._visualConfidence ?? null,
+        blacklisted: raw._blacklisted,
+        blacklistReason: raw._blacklistReason,
+        _en: raw._en,
+    };
+}
 
 // ─── Deduplicate by detailUrl ────────────────────────────────────────────────
 function deduplicateItems(items: ProcurementItem[]): ProcurementItem[] {

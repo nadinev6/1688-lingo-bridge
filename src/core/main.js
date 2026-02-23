@@ -32,9 +32,9 @@ import { validateWithVision } from './visionValidator.js';
 function dedupeByUrl(results) {
     const seen = new Set();
     return results.filter(product => {
-        const url = product.offer_detail_url || product.detail_url || product.url;
-        if (seen.has(url)) return false;
-        seen.add(url);
+        const key = product.offer_id || product.offer_detail_url || product.detail_url || product.url;
+        if (seen.has(key)) return false;
+        seen.add(key);
         return true;
     });
 }
@@ -278,7 +278,7 @@ async function demoPhase3() {
         console.log(`\n   ⚠️ Low confidence (${validationResult.metadata.averageConfidence}% < ${CONFIDENCE_THRESHOLD}%), forcing synonym expansion...`);
 
         // Force scrape all synonyms
-        const { smartScrape: forceScrape } = await import('./lib/scraper.js');
+        const { smartScrape: forceScrape } = await import('./scraper.js');
         const forcedBundle = {
             ...bundle,
             primary: bundle.synonyms[0] // Use first synonym as primary
@@ -583,17 +583,17 @@ export async function demoPhase4Append(customQuery = null) {
     // Step 1: Load existing results
     console.log("\n📍 Step 1: Loading Existing Results");
     let existingData = { results: [], pipeline_summary: {}, search_bundle: {}, metadata: {} };
-    let existingUrls = new Set();
+    let existingIds = new Set();
 
     if (existsSync(latestFile)) {
         try {
             const rawExisting = await readFile(latestFile, 'utf-8');
             existingData = JSON.parse(rawExisting);
             existingData.results.forEach(product => {
-                const url = product.offer_detail_url || product.detail_url || product.url;
-                if (url) existingUrls.add(url);
+                const id = product.offer_id;
+                if (id) existingIds.add(id);
             });
-            console.log(`   ✅ Loaded ${existingData.results.length} existing results`);
+            console.log(`   ✅ Loaded ${existingData.results.length} existing results (${existingIds.size} unique offer_ids)`);
         } catch (e) {
             console.log(`   ⚠️ Could not parse existing file, starting fresh`);
         }
@@ -687,10 +687,10 @@ export async function demoPhase4Append(customQuery = null) {
     let dupeCount = 0;
 
     resultsWithEnglish.forEach(product => {
-        const url = product.offer_detail_url || product.detail_url || product.url;
-        if (url && !existingUrls.has(url)) {
+        const id = product.offer_id;
+        if (id && !existingIds.has(id)) {
             existingData.results.push(product);
-            existingUrls.add(url);
+            existingIds.add(id);
             newCount++;
         } else {
             dupeCount++;

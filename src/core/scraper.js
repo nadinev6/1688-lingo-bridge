@@ -155,7 +155,7 @@ function filterByBlacklist(results, blacklist) {
  * @returns {Promise<Object[]>} Product results
  */
 export async function scrape1688(query, options = {}) {
-  const limit = options.limit || 20;
+  const limit = Math.max(options.limit || 20, 1);  // Ensure minimum of 1
 
   if (!process.env.APIFY_TOKEN) {
     throw new Error('APIFY_TOKEN not found. Scraper requires a valid token to perform live searches.');
@@ -165,6 +165,7 @@ export async function scrape1688(query, options = {}) {
     const input = {
       "queries": [query],
       "maxItems": limit,
+      "maxChargedResults": limit,
       "proxy": {
         "useApifyProxy": true,
         "apifyProxyGroups": ["RESIDENTIAL"]

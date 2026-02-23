@@ -74,8 +74,8 @@ is actually what you find.
 ## ▶︎ Demo
 
 ### Dashboard
-<img width="1920" height="1440" alt="21shots_so" src="https://github.com/user-attachments/assets/f97d1513-1973-49c8-bfdc-3dfe6a108f4f" />
 
+<img width="1920" height="1440" alt="242shots_so" src="https://github.com/user-attachments/assets/1327c4b1-a4f2-4f59-a95c-9a559d3c880b" />
 *Real-time procurement intelligence with confidence scoring*
 
 ### Pipeline Output ⤵︎
@@ -357,4 +357,5 @@ npm test
 <p align="center">
 𒆜 Created for the Lingo.dev Multilingual Hackathon 2.0 (Feb 2026).ᐟ
 
-</p>�
+</p>
+

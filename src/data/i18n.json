@@ -179,18 +179,27 @@
     ]
   },
   "vision_prompts": {
-    "_comment": "Default prompt is used when no category-specific prompt matches. Add new verticals as needed.",
-    "default": "Does this product image match the buyer's search intent? Evaluate whether the item shown is the type of product described by the query, not an accessory or unrelated item.",
-    "electronics": "Does this image show an electronic device or component? Look for circuit boards, screens, charging ports, or electronic housings.",
-    "power": "Does this image show a power station, battery, or energy storage device? Look for battery packs, power outlets, LED displays showing capacity, or solar panels.",
-    "textiles": "Does this image show a textile product? Look for fabric, pillows, bedding, or clothing items.",
-    "silk": "Does this image show silk fabric or silk products? Look for the characteristic sheen, smooth texture, and luxury appearance of silk."
+    "_comment": "Default prompt handles any product vertical. Add category-specific overrides only when the default cannot distinguish the product from common false positives.",
+    "default": "You are a product verification assistant for a B2B wholesale platform. Given the buyer's search query and this product image, determine: 1) Does the image show the PRIMARY product the buyer is searching for (not an accessory, replacement part, or packaging)? 2) Is the product a plausible wholesale item (not a retail mockup, stock photo, or unrelated listing)? Respond with a confidence score 0-100 and a one-sentence justification.",
+    "electronics": "Does this image show a complete electronic device or component? Look for circuit boards, screens, charging ports, buttons, LED indicators, or electronic housings. Reject if the image only shows cables, adapters, cases, or packaging without the main device.",
+    "power": "Does this image show a portable power station, battery pack, or energy storage device? Look for battery enclosures, power outlets (AC/DC), LED capacity displays, solar panel connectors, or inverter units. Reject if the image only shows charging cables, carrying bags, or solar panels sold separately.",
+    "textiles": "Does this image show a textile or fabric product? Look for fabric texture, stitching, patterns, garment construction, or bedding/upholstery. Reject if the image only shows hangers, mannequins without product focus, or packaging.",
+    "silk": "Does this image show silk fabric or silk products? Look for the characteristic sheen, smooth texture, and luxury appearance of silk. Reject if the image shows synthetic satin or polyester imitations.",
+    "toys": "Does this image show a toy or children's product? Look for play features, child-safe construction, bright colours, or age-range indicators. Reject if the image shows toy packaging only, display stands, or miniature items sold as collectibles rather than toys.",
+    "beauty": "Does this image show a beauty, skincare, or cosmetic product? Look for bottles, tubes, compacts, applicators, ingredient labels, or beauty tools. Reject if the image only shows empty containers, packaging materials, or promotional displays without product.",
+    "automotive": "Does this image show an automotive part or vehicle accessory? Look for mechanical components, OEM part numbers, fitment details, metal/rubber construction, or installation context. Reject if the image shows generic hardware, tools, or decorative items not specific to vehicles.",
+    "kitchenware": "Does this image show kitchen equipment or cookware? Look for food-grade materials, cooking surfaces, handles, lids, or kitchen-specific design. Reject if the image shows only utensil holders, packaging, or decorative items.",
+    "furniture": "Does this image show furniture or home furnishing? Look for structural construction, upholstery, wood/metal framing, or functional design (seating, storage, surfaces). Reject if the image shows only hardware, fabric swatches, or assembly instructions."
   },
   "vision_categories": {
-    "_comment": "Category-specific vision rules. 'default' is the fallback when no specific category matches.",
+    "_comment": "Category-specific vision rules. 'default' is the fallback when no specific category matches. Add must_have/must_not_have only when the default prompt needs guardrails for a specific vertical.",
     "default": {
       "must_have": [],
-      "must_not_have": [],
+      "must_not_have": [
+        "empty background only",
+        "screenshot of a website",
+        "blurry unidentifiable image"
+      ],
       "_comment": "Fallback — Vision API uses search query context when no specific category rules exist"
     },
     "portable power station": {
@@ -211,24 +220,48 @@
       "must_have": [
         "charging port",
         "plug",
-        "compact design"
+        "electronic housing"
       ],
       "must_not_have": [
         "fabric",
         "food",
-        "kitchen utensils"
+        "battery pack"
       ]
     },
     "silk pillowcase": {
       "must_have": [
         "fabric",
-        "pillow shape",
-        "smooth texture"
+        "pillowcase",
+        "silk sheen"
       ],
       "must_not_have": [
         "electronics",
-        "plastic",
-        "metal"
+        "metal",
+        "plastic housing"
+      ]
+    },
+    "toys": {
+      "must_have": [],
+      "must_not_have": [
+        "sharp edges",
+        "adult product",
+        "industrial equipment"
+      ]
+    },
+    "beauty": {
+      "must_have": [],
+      "must_not_have": [
+        "industrial chemical",
+        "raw material barrel",
+        "laboratory equipment"
+      ]
+    },
+    "automotive": {
+      "must_have": [],
+      "must_not_have": [
+        "toy car",
+        "model kit",
+        "decorative miniature"
       ]
     }
   }

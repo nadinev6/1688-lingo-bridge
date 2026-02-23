@@ -9,12 +9,14 @@
 <img src="https://img.shields.io/badge/Built%20with-Lingo.dev-2ecc71?style=flat-square" alt="Lingo.dev">
 <img src="https://img.shields.io/badge/AI-GPT--4o-blue?style=flat-square" alt="GPT-4o">
 
-<p>
-  <!-- Demo video placeholder -->
-  <a href="https://1688-lingo-bridge.vercel.app/">
-    <img src="docs/screenshots/video-thumbnail.png" width="100%">
-  </a>
-</p>
+<div align="center">
+  <kbd>
+    <video src="https://github.com/user-attachments/assets/abe9557c-3fcf-4f90-bdbc-5ccae517feb5" controls muted style="max-width: 100%;">
+      <p>Your browser does not support the video tag or the file format. 
+      <a href="https://1688-lingo-bridge.vercel.app/">View Demo Here</a></p>
+    </video>
+  </kbd>
+</div>
 
 ## [Demo](https://1688-lingo-bridge.vercel.app/)
 
@@ -75,8 +77,12 @@ is actually what you find.
 
 ### Dashboard
 
-<img width="1920" height="1440" alt="242shots_so" src="https://github.com/user-attachments/assets/1327c4b1-a4f2-4f59-a95c-9a559d3c880b" />
-*Real-time procurement intelligence with confidence scoring*
+<div align="center">
+  <kbd>
+<img width="1920" height="1080" alt="Screenshot" src="https://github.com/user-attachments/assets/3095f01b-52b5-4be7-bb0b-16b08d95d865" />
+</kbd>
+</div>
+
 
 ### Pipeline Output ⤵︎
 <details>
@@ -355,7 +361,8 @@ npm test
 
 ---
 <p align="center">
-𒆜 Created for the Lingo.dev Multilingual Hackathon 2.0 (Feb 2026).ᐟ
+𒆜 Created for the Lingo.dev Multilingual Hackathon 2.0 (Feb 2026).
 
 </p>
+
 

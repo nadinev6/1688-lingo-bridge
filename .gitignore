@@ -121,5 +121,7 @@ src/data/enrich-results.json
 docs/artifacts/results-archive/
 docs/artifacts/*.backup.json
 docs/artifacts/*_backup.json
-# Allow the main demo file
+# Allow the main demo files
 !docs/artifacts/validated_results.json
+!public/validated_results.json
+.vercel
